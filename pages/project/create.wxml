@@ -1,0 +1,15 @@
+<view class="label">选择类型</view>
+
+<view class="cate-view">
+  <view wx:for="{{cateList}}" wx:key='cate_{{index}}'>
+    <image class="{{currentCate._id == item._id ? 'active': ''}}" src="{{item.icon}}" bindtap="toggleCate" data-cate="{{item}}"></image>
+  </view>
+</view>
+<view class="cate-desc">{{currentCate.desc}}</view>
+
+
+<view class="label">清单标题</view>
+
+<input value="{{inputValue}}" placeholder="可不填，默认名称：{{placeholder}}" bindblur="bindBlurFunc" maxlength="30"></input>
+
+<view class="opt-icon" bindtap="addProject"><i-icon type="right" size="28" /></view>

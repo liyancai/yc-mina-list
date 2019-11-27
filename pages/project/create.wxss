@@ -1,0 +1,31 @@
+.cate-view {
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+}
+.cate-desc {
+
+  margin: 25rpx; padding: 25rpx;
+  min-height: 120rpx;
+  font-size: 10pt;
+  color: var(--gray);
+  border: 2px solid var(--ghostWhite);
+  border-radius: 3px;
+}
+image {
+  width: 150rpx; height: 150rpx;
+  border: 2px solid var(--ghostWhite);
+  border-radius: 3px;
+}
+image.active {
+  border-color: var(--green);
+}
+
+input {
+  margin: 0 20rpx; padding: 20rpx 15rpx;
+  border-bottom: 1px solid var(--ghostWhite);
+}
+
+.opt-icon {
+  left: calc(50vw - 20px);
+}

@@ -1,0 +1,6 @@
+.empty-view {
+  margin: 40vh 0;
+  text-align: center;
+  color: #888888;
+  font-size: 10pt;
+}

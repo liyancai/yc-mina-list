@@ -1,0 +1,54 @@
+.section-module {
+    background: #fff;
+}
+.section-item {
+    padding: 20rpx 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+.section-item image {
+    margin: 0 25rpx;
+    width: 8vw; height: 8vw;
+    background: transparent;
+}
+.section-item view {
+    width: 70vw; line-height: 1.8rem;
+    font-size: 12pt;
+}
+.section-module span {
+    margin-right: 5vw;
+    width: 10vw;
+    text-align: right;
+}
+.section-item span:after {
+    content: " ";
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-width: 2px 2px 0 0;
+    border-style: solid;
+    border-color: #d2d2d2;
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+}
+
+.opt-icon.add {
+  position: fixed;
+  right: 10vw; bottom: 10vw;
+}
+.opt-icon.other {
+  left: 10vw; bottom: 10vw;
+  background: var(--yellow);
+}
+
+i-modal .model-text {
+  padding: 0 0 25rpx;
+  font-size: 10pt;
+}
+i-modal button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10pt;
+}

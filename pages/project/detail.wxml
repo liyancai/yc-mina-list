@@ -1,0 +1,48 @@
+<i-message id="message" />
+
+<!--  -->
+<view class="project-view" style="background-color: {{project.color}};">
+  <view class="project-info">
+    <image src="{{project.avatar}}"></image>
+    <i-icon type="setup" size="24" bindtap="showProjectOptModal"/>
+  </view>
+  <view class="project-info">
+      <text>{{project.name}}</text>
+  </view>
+</view>
+<!--  -->
+<view class="member-view">
+  <view wx:for="{{project.members}}" wx:key="member_{{index}}">
+    <image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image>
+  </view>
+  <view wx:if="{{project.members.length < project.max_num_account}}"><i-icon type="add" size="40" color="{{project.color}}" /></view>
+</view>
+
+<!--  -->
+<view class="label">待办事项</view>
+
+<view class="task-item todo-task-item">
+  <i-icon type="add" size="30" />
+  <input value="{{inputValue}}" placeholder="添加新的待办事项" maxlength="200" bindconfirm="addTask"></input>
+</view>
+
+<block wx:for="{{todoTaskList}}" wx:key='todo_task_{{index}}'>
+  <view class="task-item todo-task-item">
+    <view class="checkbox" bindtap="doneTask" data-task-id="{{item._id}}" data-index="{{index}}"><span></span></view>
+    <view class="task-item-title" bindlongpress="showTaskOptModal" data-task="{{item}}" data-index="{{index}}">{{item.title}}</view>
+    <image wx:if="{{project.cate_id != '1'}}" src="{{memberMap[item.author].avatar}}" lazy-load="{{true}}"></image>
+  </view>
+</block>
+
+<!--  -->
+<view class="label" wx:if="{{doneTaskList}}" bindtap="toggleDoneTaskListViewVisible">已完成</view>
+
+<block wx:for="{{doneTaskList}}" wx:key='done_task_{{index}}'>
+  <view wx:if="{{true}}" class="task-item done-task-item">
+    <view class="checkbox active" bindtap="undoneTask" data-task-id="{{item._id}}" data-index="{{index}}"><span></span></view>
+    <view class="task-item-title" bindlongpress="showTaskOptModal" data-task="{{item}}" data-index="{{index}}">{{item.title}}</view>
+    <image wx:if="{{project.cate_id != '1'}}" src="{{memberMap[item.completer].avatar}}" lazy-load="{{true}}"></image>
+  </view>
+</block>
+
+<view class="line-m"></view>

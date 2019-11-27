@@ -1,0 +1,23 @@
+<view class="label">我的清单</view>
+
+<yc-empty-view show='{{projectList.length==0 && !loading}}'></yc-empty-view>
+
+<view class="section-module" wx:for="{{projectList}}" wx:key='project_{{index}}'>
+  <navigator url="/pages/project/detail?projectId={{item._id}}">
+  <view class="section-item">
+    <image src="{{item.avatar}}"></image>
+    <view>{{item.name}}</view>
+    <span></span>
+  </view>
+  </navigator>
+</view>
+
+
+<view class="opt-icon add" bindtap="addProject" wx:if="{{projectList.length < maxNumProject}}"><i-icon type="add" size="28"/></view>
+<!-- <view class="opt-icon other" bindtap="gotoAbout"><i-icon type="other" size="28"/></view> -->
+
+
+<i-modal title="申请授权" visible="{{ authModelVisible }}" show-ok="{{true}}" show-cancel="{{false}}" bind:ok="gotoCreate" ok-text="跳过">
+  <view class="model-text">用以在清单中显示您的头像和昵称</view>
+  <button type="primary" open-type="getUserInfo" size="min" bindgetuserinfo="getUserInfo">授权</button>
+</i-modal>

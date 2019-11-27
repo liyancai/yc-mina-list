@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/project/list",
+    "pages/project/detail",
+    "pages/project/modify",
+    "pages/project/create",
+    
+    "pages/index/index",
+
+    "pages/project/archives",
+    "pages/personal/index",
+    "pages/personal/about"
+  ],
+  "subpackages": [
+    {
+      "root": "square",
+      "name": "square",
+      "pages": [
+        "pages/index/index"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "backgroundColorTop": "#f8f8f8",
+    "backgroundColorBottom": "#f8f8f8",
+    "onReachBottomDistance": 300
+  },
+  "networkTimeout": {
+    "request": 8000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

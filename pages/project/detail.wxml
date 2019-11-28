@@ -23,7 +23,7 @@
 
 <view class="task-item todo-task-item">
   <i-icon type="add" size="30" />
-  <input value="{{inputValue}}" placeholder="添加新的待办事项" maxlength="200" bindconfirm="addTask"></input>
+  <input value="{{inputValue}}" placeholder="添加新的待办事项" maxlength="200" bindblur="addTask" bindconfirm="addTask"></input>
 </view>
 
 <block wx:for="{{todoTaskList}}" wx:key='todo_task_{{index}}'>

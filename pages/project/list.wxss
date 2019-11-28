@@ -2,7 +2,7 @@
     background: #fff;
 }
 .section-item {
-    padding: 20rpx 0;
+    margin: 0 25rpx; padding: 25rpx 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,18 +10,17 @@
     position: relative;
 }
 .section-item image {
-    margin: 0 25rpx;
+    margin: 0 25rpx 0 5rpx;
     width: 8vw; height: 8vw;
     background: transparent;
 }
 .section-item view {
-    width: 70vw; line-height: 1.8rem;
+    line-height: 1.8rem;
     font-size: 12pt;
+    flex: 1;
 }
 .section-module span {
-    margin-right: 5vw;
-    width: 10vw;
-    text-align: right;
+    margin-right: 25rpx;
 }
 .section-item span:after {
     content: " ";

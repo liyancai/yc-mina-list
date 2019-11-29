@@ -22,7 +22,7 @@ button {
 }
 
 .btn-link {
-  padding: 20rpx;
+  padding: 30rpx;
   font-size: 10pt;
   color: var(--gray);
 }

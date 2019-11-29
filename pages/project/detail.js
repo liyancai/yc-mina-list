@@ -297,16 +297,19 @@ Page({
   },
 
   /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      return {
+        title: '我列了一张任务清单，快来和我一起完成',
+        path: '/pages/project/join?projectId=' + this.data.projectId
+      }
+    } else {
+      return {
+        title: '超好用的清单小程序，重要的事儿统统记下来',
+        path: '/pages/project/list'
+      }
+    }
   }
 })

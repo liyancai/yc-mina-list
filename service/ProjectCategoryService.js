@@ -13,6 +13,9 @@ let getCollection = () => {
 let getList = callback => {
 
   getCollection()
+  .where({
+    active: true
+  })
   .get()
   .then(res => {
     if (res.data.length > 0) {

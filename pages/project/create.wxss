@@ -1,24 +1,23 @@
 .cate-view {
+  margin: 25rpx;
   display: flex;
-  justify-content: space-around;
-  background: #fff;
-}
-.cate-desc {
-
-  margin: 25rpx; padding: 25rpx;
-  min-height: 120rpx;
-  font-size: 10pt;
-  color: var(--gray);
-  border: 2px solid var(--ghostWhite);
-  border-radius: 3px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 image {
-  width: 150rpx; height: 150rpx;
+  width: 120rpx; height: 120rpx;
   border: 2px solid var(--ghostWhite);
   border-radius: 3px;
 }
 image.active {
   border-color: var(--green);
+}
+.cate-desc {
+  margin: 25rpx; padding: 50rpx;
+  width: 600rpx; min-height: 120rpx; line-height: 1.8rem;
+  color: #fff;
+  font-size: 10pt;
+  border-radius: 3px;
 }
 
 input {

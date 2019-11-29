@@ -5,7 +5,7 @@
     <image class="{{currentCate._id == item._id ? 'active': ''}}" src="{{item.icon}}" bindtap="toggleCate" data-cate="{{item}}"></image>
   </view>
 </view>
-<view class="cate-desc">{{currentCate.desc}}</view>
+<view class="cate-desc" style="background: {{currentCate.color}};">{{currentCate.desc}}</view>
 
 
 <view class="label">清单标题</view>

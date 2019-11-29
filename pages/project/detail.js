@@ -9,7 +9,6 @@ Page({
     inputValue: '',
     projectId: '',
     project: null,
-    memberList: [],
     memberMap: {},
     todoTaskList: [],
     doneTaskList: [],
@@ -106,7 +105,6 @@ Page({
         })
         
         that.setData({
-          // memberList: res,
           memberMap: _map
         })
       })

@@ -1,0 +1,10 @@
+<view class="section" wx:if="{{project.members.length >= project.max_num_account}}">
+  <view class="info-view">您朋友的清单项目 "{{project.name}}" 已满员。</view>
+  <button type="primary" size="min" bindtap="gotoProjectList">回首页看看</button>
+</view>
+
+<view class="section" wx:else>
+  <view class="info-view">您的朋友邀请您共同维护TA的清单 "{{project.name}}"， 是否接受？</view>
+  <button type="primary" open-type="getUserInfo" size="min" bindgetuserinfo="joinProject">接受邀请</button>
+  <view class="btn-link" bindtap="gotoProjectList">暂不加入</view>
+</view>

@@ -1,5 +1,6 @@
 page {
   --love: #fd575d;
+  --work: #3b9cff;
 	/* 标准色 */
 	--red: #e54d42;
 	--orange: #f37b1d;

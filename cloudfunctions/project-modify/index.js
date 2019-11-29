@@ -10,24 +10,36 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
 
-  const log = cloud.logger()
+  // const log = cloud.logger()
 
-  const { OPENID, APPID, UNIONID, ENV, SOURCE } = cloud.getWXContext()
+  const { OPENID, APPID } = cloud.getWXContext()
 
-  const { action, projectId, name, avatar, color, member, } = event
+  const { action, projectId, project, name, avatar } = event
 
-
-  let _data = (action == 'modify') ? {
-    name: name,
-    modifyTime: new Date(),
-  } : (action == 'done') ? {
-    done: true,
-    finishedTime: new Date(),
-  } : (action == 'undone') ? {
-    done: false,
-  } : (action == 'join') ? {
-    members: _.push([OPENID]),
-  } : {}
+  let _data = {}
+  if (action == 'modify') {
+    _data = {
+      name: name,
+      modifyTime: new Date(),
+    }
+  } else if (action == 'done') {
+    _data = {
+      done: true,
+      finishedTime: new Date(),
+    }
+  } else if (action == 'undone') {
+    _data = {
+      done: false,
+    }
+  } else if (action == 'join') {
+    if (project.members.indexOf(OPENID) > -1) {
+      return ''
+    } else {
+      _data = {
+        members: _.push([OPENID]),
+      }
+    }
+  }
 
   try {
     return await coll.doc(projectId).update({

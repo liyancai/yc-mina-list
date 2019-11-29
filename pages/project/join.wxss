@@ -1,0 +1,28 @@
+.section {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-view {
+  margin: 25rpx; padding: 50rpx;
+  width: 600rpx;
+  background: var(--work);
+  color: #fff;
+  border-radius: 3px;
+}
+
+button {
+  width: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10pt;
+}
+
+.btn-link {
+  padding: 20rpx;
+  font-size: 10pt;
+  color: var(--gray);
+}

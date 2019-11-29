@@ -15,7 +15,9 @@
   <view wx:for="{{project.members}}" wx:key="member_{{index}}">
     <image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image>
   </view>
-  <view wx:if="{{project.members.length < project.max_num_account}}"><i-icon type="add" size="40" color="{{project.color}}" /></view>
+  <view wx:if="{{project.members.length < project.max_num_account}}">
+    <button open-type="share"><i-icon type="add" size="40" color="{{project.color}}" /></button>
+  </view>
 </view>
 
 <!--  -->

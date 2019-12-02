@@ -1,6 +1,4 @@
 page {
-  --love: #fd575d;
-  --work: #3b9cff;
 	/* 标准色 */
 	--red: #e54d42;
 	--orange: #f37b1d;
@@ -19,19 +17,13 @@ page {
 	--gray: #aaaaaa;
 	--ghostWhite: #f1f1f1;
 	--white: #ffffff;
-	/* 浅色 */
-	--redLight: #fadbd9;
-	--orangeLight: #fde6d2;
-	--yellowLight: #fef2ce;
-	--oliveLight: #e8f4d9;
-	--greenLight: #d7f0db;
-	--cyanLight: #d2f1f0;
-	--blueLight: #cce6ff;
-	--purpleLight: #e1d7f0;
-	--mauveLight: #ebd4ef;
-	--pinkLight: #f9d7ea;
-	--brownLight: #ede1d9;
-	--greyLight: #e7ebed;
+
+
+  --yc-green: #4cce75;
+  --yc-red: #fd575d;
+  --yc-purple: #8564c7;
+  --yc-cyan: #1cbbb4;
+  --yc-blue: #3b9cff;
 
   --main-font-color: #353535;
   --main-font-color-light: #fff;
@@ -63,25 +55,6 @@ page {
 .yc-ellipsis.text-line-2 { -webkit-line-clamp: 2; }
 .yc-ellipsis.text-line-3 { -webkit-line-clamp: 3; }
 
-.checkbox {
-  width: 40rpx; height: 40rpx;
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 50%;
-  border-color: var(--blue);
-}
-.checkbox.active {
-  border-color: var(--green);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.checkbox.active span {
-  width: 2px; height: 2px;
-  border: 8rpx solid var(--green);
-  border-radius: 50%;
-}
-
 .label {
   margin: 35rpx;
   font-size: 13pt;
@@ -89,7 +62,7 @@ page {
 }
 
 .opt-icon {
-  width: 40px; height: 40px;
+  width: 45px; height: 45px;
   display: flex;
   justify-content: space-around;
   align-items: center;

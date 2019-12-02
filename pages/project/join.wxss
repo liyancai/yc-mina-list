@@ -8,7 +8,7 @@
 .info-view {
   margin: 25rpx; padding: 50rpx;
   width: 600rpx;
-  background: var(--work);
+  background: var(--blue);
   color: #fff;
   border-radius: 3px;
 }

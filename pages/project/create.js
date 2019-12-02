@@ -49,7 +49,7 @@ Page({
     let _thisMonth = _now.getMonth() + 1
     let _thisDay = _now.getDate()
 
-    let defaultName = [this.data.currentCate.name, '(', _thisMonth, '月', _thisDay, '日', ')'].join('')
+    let defaultName = [_thisMonth, '月', _thisDay, '日', '的', this.data.currentCate.name].join('')
 
     this.setData({
       placeholder: defaultName

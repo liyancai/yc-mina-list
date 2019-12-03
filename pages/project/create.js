@@ -20,7 +20,7 @@ Page({
     proCateServUtil.getList(res => {
       that.setData({
         cateList: res,
-        currentCate: res[1]
+        currentCate: res[0]
       })
       that.setDefaultName()
     })

@@ -42,11 +42,13 @@ Page({
     wx.showActionSheet({
       itemList: [
         // '修改清单名称',
-        // '将清单归档',
+        '将清单归档',
         '删除清单'
       ],
       success(res) {
         if (res.tapIndex == 0) {
+          that.doDoneProject(_project)
+        } else if (res.tapIndex == 1) {
           that.doRemoveProject(_project)
         }
       },
@@ -228,6 +230,26 @@ Page({
       console.error(err)
     })
   },
+  // 归档清单
+  doDoneProject(__project) {
+    let that = this
+    wx.showLoading({ title: '正在归档···' })
+    wx.cloud.callFunction({
+      name: 'project-modify',
+      data: {
+        action: 'done',
+        projectId: __project._id,
+      }
+    })
+    .then(res => {
+      wx.hideLoading()
+      that.gotoProjectList()
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
+  },
   // 删除清单
   doRemoveProject(__project) {
     let that = this
@@ -284,6 +306,11 @@ Page({
       backgroundColor: __color,
       backgroundColorTop: __color,
       backgroundColorBottom: __color,
+    })
+  },
+  gotoProjectList() {
+    wx.reLaunch({
+      url: '/pages/project/list',
     })
   },
   /**

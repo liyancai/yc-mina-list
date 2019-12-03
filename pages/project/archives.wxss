@@ -1,1 +1,18 @@
-/* pages/project/archives.wxss */
+.section-item {
+    margin: 0 25rpx; padding: 25rpx 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+.section-item image {
+    margin: 0 25rpx 0 5rpx;
+    width: 8vw; height: 8vw;
+    background: transparent;
+}
+.section-item view {
+    line-height: 1.8rem;
+    font-size: 12pt;
+    flex: 1;
+}

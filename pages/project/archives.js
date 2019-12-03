@@ -1,66 +1,118 @@
-// pages/project/archives.js
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    projectList: [],
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    this.getProjectList()
+  },
+  showOptModal(event) {
+
+    let _project = event.currentTarget.dataset.project
+    let _index = event.currentTarget.dataset.index
+
+    let that = this
+    wx.showActionSheet({
+      itemList: [
+        '恢复清单',
+        '删除清单'
+      ],
+      success(res) {
+        if (res.tapIndex == 0) {
+          that.doUndoneProject(_index, _project)
+        } else if (res.tapIndex == 1) {
+          that.doRemoveProject(_index, _project)
+        }
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  // 查询已归档的清单列表
+  getProjectList() {
+    let that = this
+
+    wx.stopPullDownRefresh()
+    wx.showLoading({ title: '请稍候···' })
+    wx.cloud.callFunction({
+      name: 'project-list',
+      data: {
+        done: true
+      }
+    })
+    .then(res => {
+      wx.hideLoading()
+      that.setData({
+        projectList: res.result.data,
+      })
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
 
   },
+  // 恢复清单
+  doUndoneProject(__index, __project) {
+    let that = this
+    wx.showLoading({ title: '正在恢复···' })
+    wx.cloud.callFunction({
+      name: 'project-modify',
+      data: {
+        action: 'undone',
+        projectId: __project._id,
+      }
+    })
+    .then(res => {
+      console.log(res)
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+      // 将project从已归档列表移除
+      that.data.projectList.splice(__index, 1)
 
+      that.setData({
+        projectList: that.data.projectList
+      })
+
+      wx.hideLoading()
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
   },
+  // 删除清单
+  doRemoveProject(__index, __project) {
+    let that = this
+    wx.showLoading({ title: '正在删除···' })
+    wx.cloud.callFunction({
+      name: 'project-remove',
+      data: {
+        project: __project,
+      }
+    })
+    .then(res => {
+      console.log(res)
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+      // 将project从已归档列表移除
+      that.data.projectList.splice(__index, 1)
 
+      that.setData({
+        projectList: that.data.projectList
+      })
+
+      wx.hideLoading()
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getProjectList()
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

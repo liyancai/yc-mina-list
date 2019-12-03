@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "yc-empty-view": "../../components/yc/yc-empty-view/yc-empty-view"
+  }
 }

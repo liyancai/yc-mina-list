@@ -59,7 +59,6 @@ Page({
       return
     }
 
-    console.log(this.data.projectList.length)
     let that = this
     // 获取用户信息
     wx.getSetting({
@@ -88,6 +87,11 @@ Page({
   gotoAbout() {
     wx.navigateTo({
       url: '/pages/personal/about',
+    })
+  },
+  gotoProjectArchives() {
+    wx.navigateTo({
+      url: '/pages/project/archives',
     })
   },
   // 更新微信账号信息

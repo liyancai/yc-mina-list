@@ -67,7 +67,7 @@ Page({
     let that = this
     // 调用添加project云函数请求
     
-    wx.showLoading({ title: '正在创建……' })
+    wx.showLoading({ title: '正在创建···' })
     let _cate = that.data.currentCate
     wx.cloud.callFunction({
       name: 'project-add',

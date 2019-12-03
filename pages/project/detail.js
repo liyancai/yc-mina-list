@@ -109,7 +109,9 @@ Page({
         })
       })
 
-      that.setMainColor(res.color)
+      if(res.cover == null || res.cover == undefined || res.cover == '') {
+        that.setMainColor(res.color)
+      }
     })
   },
   // 查询清单下的未完成任务列表
@@ -149,7 +151,7 @@ Page({
 
     let that = this
     // 调用添加task的云函数请求
-    wx.showLoading({ title: '请稍候……' })
+    wx.showLoading({ title: '正在添加···' })
     wx.cloud.callFunction({
       name: 'task-add',
       data: {
@@ -194,7 +196,7 @@ Page({
     let _projectId = this.data.projectId
 
     let that = this
-    wx.showLoading({ title: '请稍候……' })
+    wx.showLoading({ title: '请稍候···' })
     wx.cloud.callFunction({
       name: 'task-modify',
       data: {
@@ -229,7 +231,7 @@ Page({
   // 删除清单
   doRemoveProject(__project) {
     let that = this
-    wx.showLoading({ title: '正在删除……' })
+    wx.showLoading({ title: '正在删除···' })
     wx.cloud.callFunction({
       name: 'project-remove',
       data: {

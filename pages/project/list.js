@@ -1,3 +1,5 @@
+const { $Message } = require('../../components/iview/base/index');
+
 Page({
   data: {
     loading: false,
@@ -49,6 +51,15 @@ Page({
   },
   // 点击添加清单按钮
   addProject() {
+    if (this.data.projectList.length >= this.data.maxNumProject) {
+      $Message({
+        content: '清单数量已达上限!',
+        type: 'error'
+      });
+      return
+    }
+
+    console.log(this.data.projectList.length)
     let that = this
     // 获取用户信息
     wx.getSetting({
@@ -84,7 +95,7 @@ Page({
 
     let that = this
     // 调用添加account云函数请求
-    wx.showLoading({ title: '请稍候……' })
+    wx.showLoading({ title: '请稍候···' })
     wx.cloud.callFunction({
       name: 'account-add',
       data: __userInfo

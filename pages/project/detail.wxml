@@ -1,13 +1,13 @@
 <i-message id="message" />
 
 <!--  -->
-<view class="project-view" style="background-color: {{project.color}};">
+<view class="project-view" style="background: url('{{project.cover}}') {{project.color}} no-repeat; background-size: cover;">
   <view class="project-info">
     <image src="{{project.avatar}}"></image>
     <i-icon type="setup" size="24" bindtap="showProjectOptModal"/>
   </view>
   <view class="project-info">
-      <text>{{project.name}}</text>
+      <text>{{project.name || ''}}</text>
   </view>
 </view>
 <!--  -->

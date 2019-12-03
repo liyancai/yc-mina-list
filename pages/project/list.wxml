@@ -1,3 +1,5 @@
+<i-message id="message" />
+
 <view class="label">我的清单</view>
 
 <yc-empty-view show='{{projectList.length==0 && !loading}}'></yc-empty-view>
@@ -13,7 +15,7 @@
 </view>
 
 
-<view class="opt-icon add" bindtap="addProject" wx:if="{{projectList.length < maxNumProject}}"><i-icon type="add" size="28"/></view>
+<view class="opt-icon add" bindtap="addProject"><i-icon type="add" size="28"/></view>
 <!-- <view class="opt-icon other" bindtap="gotoAbout"><i-icon type="other" size="28"/></view> -->
 
 

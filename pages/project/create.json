@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "i-icon": "../../components/iview/icon/index"
+    "i-icon": "../../components/iview/icon/index",
+    "i-message": "../../components/iview/message/index"
   }
 }

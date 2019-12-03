@@ -1,6 +1,6 @@
 .project-view {
   padding: 20rpx 0 80rpx;
-  min-height: 200rpx;
+  min-height: 300rpx;
   color: #fff;
 }
 .project-info {

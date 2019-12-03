@@ -18,8 +18,6 @@ Page({
 
     let _projectId = options.projectId
 
-    // _projectId = "e2001a7f5ddd67da009a6f265990be02"
-
     if (_projectId == null || _projectId == undefined) {
       //todo 无数据页
       return
@@ -41,14 +39,16 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
-        // '修改清单名称',
+        '修改清单基本信息',
         '将清单归档',
         '删除清单'
       ],
       success(res) {
         if (res.tapIndex == 0) {
-          that.doDoneProject(_project)
+          that.gotoModify()
         } else if (res.tapIndex == 1) {
+          that.doDoneProject(_project)
+        } else if (res.tapIndex == 2) {
           that.doRemoveProject(_project)
         }
       },
@@ -311,6 +311,12 @@ Page({
   gotoProjectList() {
     wx.reLaunch({
       url: '/pages/project/list',
+    })
+  },
+  gotoModify() {
+    let that = this
+    wx.redirectTo({
+      url: '/pages/project/modify?projectId=' + this.data.projectId,
     })
   },
   /**

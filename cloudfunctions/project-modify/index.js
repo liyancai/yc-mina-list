@@ -14,12 +14,14 @@ exports.main = async (event, context) => {
 
   const { OPENID, APPID } = cloud.getWXContext()
 
-  const { action, projectId, project, name, avatar } = event
+  const { action, projectId, project, name, avatar, cover } = event
 
   let _data = {}
   if (action == 'modify') {
     _data = {
       name: name,
+      avatar: avatar,
+      cover: cover,
       modifyTime: new Date(),
     }
   } else if (action == 'done') {

@@ -56,7 +56,7 @@ Page({
     })
   },
 
-  // 添加待办任务
+  // 新建清单
   addProject() {
 
     let _name = this.data.inputValue

@@ -10,8 +10,6 @@ Page({
 
     let _projectId = options.projectId
 
-    // _projectId = "e2001a7f5ddd67da009a6f265990be02"
-
     if (_projectId == null || _projectId == undefined) {
       //todo 无数据页
       return

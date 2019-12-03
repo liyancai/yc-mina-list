@@ -1,2 +1,27 @@
-<!--pages/project/modify.wxml-->
-<text>pages/project/modify.wxml</text>
+<i-message id="message" />
+
+<!--  -->
+<view class="label">选择图标</view>
+
+<view class="icon-view">
+  <view wx:for="{{iconList}}" wx:key='icon_{{index}}'>
+    <image class="{{currentIcon._id == item._id ? 'active': ''}}" src="{{item.value}}" bindtap="toggleIcon" data-icon="{{item}}"></image>
+  </view>
+</view>
+
+<!--  -->
+<view class="label">清单标题</view>
+
+<input value="{{project.name}}" placeholder="请输入清单标题" bindblur="bindBlurFunc" maxlength="30"></input>
+
+<!--  -->
+<view class="label">选择封面图</view>
+
+<view class="cover-view">
+  <view wx:for="{{coverList}}" wx:key='cover_{{index}}'>
+    <image class="{{currentCover._id == item._id ? 'active': ''}}" src="{{item.value}}" bindtap="toggleCover" data-cover="{{item}}"></image>
+  </view>
+</view>
+
+
+<view class="opt-icon" bindtap="modifyProject">保存修改</view>

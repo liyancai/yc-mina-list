@@ -3,8 +3,8 @@
 <!--  -->
 <view class="project-view" style="background: url('{{project.cover}}') {{project.color}} no-repeat; background-size: cover;">
   <view class="project-info">
-    <image src="{{project.avatar}}"></image>
-    <i-icon type="setup" size="24" bindtap="showProjectOptModal"/>
+    <image src="{{project.avatar}}" lazy-load="{{true}}"></image>
+    <i-icon wx:if="{{isMember}}" type="setup" size="24" bindtap="showProjectOptModal"/>
   </view>
   <view class="project-info">
       <text>{{project.name || ''}}</text>
@@ -15,7 +15,7 @@
   <view wx:for="{{project.members}}" wx:key="member_{{index}}">
     <image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image>
   </view>
-  <view wx:if="{{project.members.length < project.max_num_account}}">
+  <view wx:if="{{project.members.length < project.max_num_account && isMember}}">
     <button open-type="share"><i-icon type="add" size="40" color="{{project.color}}" /></button>
   </view>
 </view>
@@ -23,26 +23,38 @@
 <!--  -->
 <view class="label">待办事项</view>
 
-<view class="task-item todo-task-item">
+<view wx:if="{{isMember}}" class="task-item todo-task-item">
   <i-icon type="add" size="28" />
   <input value="{{inputValue}}" placeholder="添加新的待办事项" maxlength="200" bindconfirm="addTask"></input>
 </view>
 
 <block wx:for="{{todoTaskList}}" wx:key='todo_task_{{index}}'>
-  <view class="task-item todo-task-item">
+  <view wx:if="{{isMember}}" class="task-item todo-task-item">
     <i-icon type="offline" size="28" bindtap="doneTask" data-task-id="{{item._id}}" data-index="{{index}}"/>
     <view class="task-item-title" bindlongpress="showTaskOptModal" data-task="{{item}}" data-index="{{index}}">{{item.title}}</view>
+    <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.author].avatar}}" lazy-load="{{true}}"></image>
+  </view>
+
+  <view wx:else class="task-item todo-task-item">
+    <i-icon type="play" size="28"/>
+    <view class="task-item-title">{{item.title}}</view>
     <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.author].avatar}}" lazy-load="{{true}}"></image>
   </view>
 </block>
 
 <!--  -->
-<view class="label" wx:if="{{doneTaskList}}" bindtap="toggleDoneTaskListViewVisible">已完成</view>
+<view class="label" wx:if="{{doneTaskList}}">已完成</view>
 
 <block wx:for="{{doneTaskList}}" wx:key='done_task_{{index}}'>
-  <view wx:if="{{true}}" class="task-item done-task-item">
+  <view wx:if="{{isMember}}" class="task-item done-task-item">
     <i-icon type="success_fill" size="28" bindtap="undoneTask" data-task-id="{{item._id}}" data-index="{{index}}"/>
     <view class="task-item-title" bindlongpress="showTaskOptModal" data-task="{{item}}" data-index="{{index}}">{{item.title}}</view>
+    <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.completer].avatar}}" lazy-load="{{true}}"></image>
+  </view>
+
+  <view wx:else class="task-item done-task-item">
+    <i-icon type="success" size="28"/>
+    <view class="task-item-title">{{item.title}}</view>
     <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.completer].avatar}}" lazy-load="{{true}}"></image>
   </view>
 </block>

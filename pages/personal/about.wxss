@@ -1,1 +1,9 @@
-/* pages/personal/about.wxss */
+.desc-view {
+  margin: 25rpx; padding: 25rpx 50rpx;
+  width: 600rpx; min-height: 120rpx; line-height: 1.8rem;
+  background: var(--yc-blue);
+  color: #fff;
+  font-size: 10pt;
+  border-radius: 3px;
+  /* text-indent: 2em; */
+}

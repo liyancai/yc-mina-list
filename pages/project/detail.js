@@ -11,7 +11,7 @@ Page({
     memberMap: {},
     todoTaskList: [],
     doneTaskList: [],
-    doneTaskListViewVisible: false,
+    isMember: true,
   },
   onLoad: function (options) {
 
@@ -98,6 +98,14 @@ Page({
       that.setData({
         project: res
       })
+
+      setTimeout(_ => {
+        if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
+          that.setData({
+            isMember: res.members.indexOf(app.globalData.userInfo._id) > -1
+          })
+        }
+      }, 300)
 
       accountServUtil.getList(res.members, res => {
         let _map = {}
@@ -307,14 +315,6 @@ Page({
     })
     .catch(err => {
       console.error(err)
-    })
-  },
-  // @deprecated
-  // 切换已完成的任务列表是否显示
-  toggleDoneTaskListViewVisible() {
-    let that = this
-    this.setData({
-      doneTaskListViewVisible: !that.data.doneTaskListViewVisible
     })
   },
   // 更改页面头部及上边区域的颜色，后续想修改为背景图

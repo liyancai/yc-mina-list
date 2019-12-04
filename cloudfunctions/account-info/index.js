@@ -19,6 +19,12 @@ exports.main = async (event, context) => {
     return await coll.doc(OPENID).get()
   } catch (e) {
     console.error(e)
+    return {
+      data: {
+        _id: OPENID
+      },
+      errMsg: "document.get:ok"
+    }
   }
 
 }

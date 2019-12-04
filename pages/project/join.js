@@ -30,14 +30,13 @@ Page({
         project: res
       })
 
-
       setTimeout(function(){
-        if (app.globalData.userInfo != null) {
+        if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
           if (res.members.indexOf(app.globalData.userInfo._id) > -1) {
             that.gotoProjectDetail(__projectId)
           }
         }
-      }, 200)
+      }, 300)
     })
   },
   joinProject(event) {

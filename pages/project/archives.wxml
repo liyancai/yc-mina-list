@@ -1,6 +1,6 @@
 <view class="label">已归档清单</view>
 
-<yc-empty-view show='{{projectList.length==0}}'></yc-empty-view>
+<yc-empty-view show='{{projectList.length==0}}'>暂无已归档的清单</yc-empty-view>
 
 <view class="section-module" wx:for="{{projectList}}" wx:key='project_{{index}}'>
   <view class="section-item" bindlongpress="showOptModal" data-project="{{item}}" data-index="{{index}}">

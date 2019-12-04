@@ -1,3 +1,6 @@
 <view>
-  <view class='empty-view' wx:if='{{show}}'>{{msg}}</view>
+  <view class='empty-view' wx:if='{{show}}'>
+    <image src='/images/documents.png'></image>
+    <slot></slot>
+  </view>
 </view>

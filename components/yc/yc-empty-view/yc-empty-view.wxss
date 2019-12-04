@@ -1,6 +1,14 @@
 .empty-view {
-  margin: 40vh 0;
-  text-align: center;
+  margin: 20vh 0;
   color: #888888;
   font-size: 10pt;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.empty-view image {
+  margin-bottom: 25rpx;
+  width: 150rpx; height: 150rpx;
 }

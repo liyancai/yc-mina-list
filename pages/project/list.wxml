@@ -2,7 +2,7 @@
 
 <view class="label">我的清单</view>
 
-<yc-empty-view show='{{projectList.length==0 && !loading}}'></yc-empty-view>
+<yc-empty-view show='{{projectList.length==0 && !loading}}'>暂无清单，快来创建一个吧</yc-empty-view>
 
 <view class="section-module" wx:for="{{projectList}}" wx:key='project_{{index}}'>
   <navigator url="/pages/project/detail?projectId={{item._id}}">

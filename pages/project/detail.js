@@ -38,7 +38,7 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
-        '修改清单基本信息',
+        '修改清单信息',
         '将清单归档',
         '删除清单'
       ],

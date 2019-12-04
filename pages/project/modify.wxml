@@ -18,10 +18,12 @@
 <view class="label">选择封面图</view>
 
 <view class="cover-view">
-  <view wx:for="{{coverList}}" wx:key='cover_{{index}}'>
-    <image class="{{currentCover._id == item._id ? 'active': ''}}" src="{{item.value}}" bindtap="toggleCover" data-cover="{{item}}"></image>
-  </view>
+  <block wx:for="{{coverList}}" wx:key='cover_{{index}}'>
+  <span class="{{currentCover._id == item._id ? 'active': ''}}" bindtap="toggleCover" data-cover="{{item}}" style="background: url('{{item.value}}') no-repeat; background-size: cover;">
+  </span>
+  </block>
 </view>
 
+<view class="line-m"></view>
 
-<view class="opt-icon" bindtap="modifyProject">保存修改</view>
+<view class="opt-btn" bindtap="modifyProject">保存修改</view>

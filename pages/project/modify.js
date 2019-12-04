@@ -17,7 +17,7 @@ Page({
 
     let _projectId = options.projectId
 
-    _projectId = "b3b086ef5de4aec1012e8b9a6a76d8fb"
+    // _projectId = "b3b086ef5de4aec1012e8b9a6a76d8fb"
 
     if (_projectId == null || _projectId == undefined) {
       
@@ -41,6 +41,30 @@ Page({
         projectId: res._id,
         inputValue: res.name
       })
+
+
+      setTimeout(_ => {
+        let _iconList = that.data.iconList
+        for(let i=0; i<_iconList.length; i++) {
+          if(_iconList[i].value == res.avatar) {
+            that.setData({
+              currentIcon: _iconList[i]
+            })
+            break;
+          }
+        }
+
+        let _coverList = that.data.coverList
+        for (let i = 0; i < _coverList.length; i++) {
+          if (_coverList[i].value == res.cover) {
+            that.setData({
+              currentCover: _coverList[i]
+            })
+            break;
+          }
+        }
+      }, 200)
+
     })
   },
   getIconList() {

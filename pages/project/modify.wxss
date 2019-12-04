@@ -19,23 +19,15 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.cover-view image {
-  width: 340rpx; height: 130rpx;
+.cover-view span {
+  width: 340rpx; height: 180rpx;
   border: 2px solid var(--ghostWhite);
-  border-radius: 3px;
 }
-.cover-view image.active {
+.cover-view span.active {
   border-color: var(--green);
 }
 
 input {
   margin: 0 20rpx; padding: 20rpx 15rpx;
   border-bottom: 1px solid var(--ghostWhite);
-}
-
-.opt-icon {
-  padding: 25rpx;
-  width: 300rpx; height: auto;
-  left: calc(50vw - 150rpx);
-  border-radius: 5px;
 }

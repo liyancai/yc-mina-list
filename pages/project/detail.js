@@ -1,7 +1,6 @@
 const app = getApp()
 const accountServUtil = require('../../service/AccountService.js')
 const projectServUtil = require('../../service/ProjectService.js')
-const taskServUtil = require('../../service/TaskService.js')
 const { $Message } = require('../../components/iview/base/index');
 
 Page({
@@ -119,19 +118,41 @@ Page({
   // 查询清单下的未完成任务列表
   getTodoTaskList(__projectId) {
     let that = this
-    taskServUtil.getTodoList(__projectId, res => {
+    // 调用task-list云函数请求
+    wx.cloud.callFunction({
+      name: 'task-list',
+      data: {
+        projectId: __projectId,
+        done: false
+      }
+    })
+    .then(res => {
       that.setData({
-        todoTaskList: res
+        todoTaskList: res.result ? res.result.data : []
       })
+    })
+    .catch(err => {
+      console.error(err)
     })
   },
   // 查询清单下的已完成任务列表
   getDoneTaskList(__projectId) {
     let that = this
-    taskServUtil.getDoneList(__projectId, res => {
+    // 调用task-list云函数请求
+    wx.cloud.callFunction({
+      name: 'task-list',
+      data: {
+        projectId: __projectId,
+        done: true
+      }
+    })
+    .then(res => {
       that.setData({
-        doneTaskList: res
+        doneTaskList: res.result ? res.result.data : []
       })
+    })
+    .catch(err => {
+      console.error(err)
     })
   },
   // 添加待办任务

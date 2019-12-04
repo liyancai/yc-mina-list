@@ -16,6 +16,7 @@ exports.main = async (event, context) => {
   const { cateId, name, avatar, color, maxNumAccount } = event
 
   try {
+    let _now = new Date()
     return await coll.add({
       data: {
         cate_id: cateId,
@@ -26,7 +27,8 @@ exports.main = async (event, context) => {
         members: [OPENID],
         max_num_account: maxNumAccount,
         done: false,
-        createTime: new Date(),
+        createTime: _now,
+        modifyTime: _now,
       }
     })
   } catch (e) {

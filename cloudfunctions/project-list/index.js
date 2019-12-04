@@ -22,7 +22,6 @@ exports.main = async (event, context) => {
       done: done,
     })
     .orderBy('modifyTime', 'desc')
-    .orderBy('createTime', 'desc')
     .get()
 
   } catch (e) {

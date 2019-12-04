@@ -10,21 +10,21 @@
 <view class="desc-view">
   <view>1. 清单生成海报图片，方便发到朋友圈嘚瑟。</view>
   <view>2. 清单归档时，能写点总结啥的。</view>
-  <view>3. 新建清单时，推荐一些常用的待办事项，省得要自己想干什么。</view>
+  <view>3. 新建清单时，增加常用待办事项推荐。</view>
   <view>4. 要是能有提醒功能就更好了。</view>
   <view>5. 其他的想到再说。</view>
 </view>
 
 <view class="label">关于作者</view>
 <view class="desc-view">
-  <view>双重人格。工作时像打了鸡血，生活中佛系的很。</view>
+  <view>双重人格。打了鸡血一样的工作，蜗牛一般的生活。</view>
 </view>
 
 <view class="label">如何使用</view>
 <view class="desc-view">
   <view>1. 创建清单。也就是先给清单起个名。什么？懒得起名？也可以。</view>
   <view>2. 在清单里添加待办事项。把要办的事儿通通记下来。</view>
-  <view>3. 清单可以归档，归档的清单不在首页列表显示。</view>
+  <view>3. 清单可以归档，归档的清单将不在首页列表显示。</view>
   <view>4. 编辑清单时可以更换图标和背景图。</view>
   <view>5. 长按待办事项可以删除。</view>
   <view>6. 长按已归档的清单可以恢复清单。</view>

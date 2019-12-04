@@ -4,6 +4,7 @@ Page({
   data: {
     loading: false,
     authModelVisible: false,
+    moreMenuVisible: false,
     maxNumProject: 10,
     projectList: [],
   },
@@ -31,6 +32,9 @@ Page({
       })
     })
     .catch(err => {
+      that.setData({
+        loading: false
+      })
       console.error(err)
     })
 
@@ -85,13 +89,21 @@ Page({
     })
   },
   gotoAbout() {
+    this.toggleMoreMenu()
     wx.navigateTo({
       url: '/pages/personal/about',
     })
   },
   gotoProjectArchives() {
+    this.toggleMoreMenu()
     wx.navigateTo({
       url: '/pages/project/archives',
+    })
+  },
+  toggleMoreMenu() {
+    let that = this
+    this.setData({
+      moreMenuVisible: !that.data.moreMenuVisible
     })
   },
   // 更新微信账号信息

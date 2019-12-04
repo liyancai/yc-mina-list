@@ -1,6 +1,7 @@
 
 Page({
   data: {
+    loading: false,
     projectList: [],
   },
   onLoad: function (options) {
@@ -32,6 +33,9 @@ Page({
   // 查询已归档的清单列表
   getProjectList() {
     let that = this
+    that.setData({
+      loading: true
+    })
 
     wx.stopPullDownRefresh()
     wx.showLoading({ title: '请稍候···' })
@@ -45,10 +49,14 @@ Page({
       wx.hideLoading()
       that.setData({
         projectList: res.result.data,
+        loading: false
       })
     })
     .catch(err => {
       wx.hideLoading()
+      that.setData({
+        loading: false
+      })
       console.error(err)
     })
 

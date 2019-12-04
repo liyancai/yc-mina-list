@@ -36,9 +36,29 @@
   position: fixed;
   right: 10vw; bottom: 10vw;
 }
-.opt-icon.other {
+.opt-icon.more {
   left: 10vw; bottom: 10vw;
   background: var(--yellow);
+}
+.opt-icon.about,
+.opt-icon.other {
+  width: 40px; height: 40px;
+  left: calc(10vw + 2px); bottom: calc(10vw + 2px);
+  z-index: 1;
+  transition: all .5s;
+  -webkit-transition: all .5s;
+}
+.opt-icon.other {
+  background: var(--yc-purple);
+}
+.opt-icon.about {
+  background: var(--yc-blue);
+}
+.opt-icon.other.active {
+  left: calc(10vw + 10px); bottom: calc(10vw + 60px);
+}
+.opt-icon.about.active {
+  left: calc(10vw + 60px); bottom: calc(10vw + 10px);
 }
 
 i-modal .model-text {

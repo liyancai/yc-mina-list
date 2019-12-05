@@ -1,5 +1,5 @@
 .empty-view {
-  margin: 20vh 0;
+  margin: 15vh 0;
   color: #888888;
   font-size: 10pt;
 
@@ -10,5 +10,5 @@
 }
 .empty-view image {
   margin-bottom: 25rpx;
-  width: 150rpx; height: 150rpx;
+  width: 456rpx; height: 342rpx;
 }

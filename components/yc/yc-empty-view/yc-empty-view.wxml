@@ -1,6 +1,6 @@
 <view>
   <view class='empty-view' wx:if='{{show}}'>
-    <image src='./documents.png'></image>
+    <image src='./images/list-is-empty.png'></image>
     <slot></slot>
   </view>
 </view>

@@ -363,8 +363,8 @@ Page({
       }
     } else {
       return {
-        title: '超好用的清单小程序，重要的事儿统统记下来',
-        path: '/pages/project/list'
+        title: '超好用的清单小程序，重要的事儿通通记下来',
+        path: '/pages/project/detail?projectId=' + this.data.projectId
       }
     }
   }

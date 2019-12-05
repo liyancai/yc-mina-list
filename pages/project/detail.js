@@ -290,9 +290,6 @@ Page({
       }
     })
     .then(res => {
-      
-      console.log(res)
-
       wx.hideLoading()
       wx.reLaunch({
         url: '/pages/project/list',

@@ -3,13 +3,13 @@
     "pages/project/list",
     "pages/project/detail",
     "pages/project/create",
-    "pages/project/modify",    
+    "pages/project/modify",
     "pages/project/join",
     "pages/project/archives",
 
-    "pages/personal/index",
     "pages/personal/about",
 
+    "pages/personal/index",
     "pages/index/index"
   ],
   "subpackages": [

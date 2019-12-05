@@ -138,6 +138,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: '超好用的清单小程序，重要的事儿通通记下来',
+      imageUrl: '/images/cover.png',
       path: '/pages/project/list'
     }
   }

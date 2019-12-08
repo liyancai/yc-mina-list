@@ -1,15 +1,15 @@
 <view class="label">起因</view>
 <view class="desc-view">
-  <view>有一次，我家那位让我缴电费，拖延症加上健忘症，没能按时搞定。</view>
-  <view>对方很生气，后果很严重。</view>
-  <view>于是乎，带了一定扩展功能的清单小程序诞生了。</view>
+  <view>有一次，N让Y缴电费，拖延症加上健忘症，Y没能按时搞定。</view>
+  <view>N很生气，后果很严重。</view>
+  <view>于是，带了一定扩展功能的清单小程序诞生了。</view>
 </view>
 
 <view class="label">下一步</view>
 <view class="desc-view">
   <view>1. 清单生成海报图片，方便发到朋友圈嘚瑟。</view>
   <view>2. 清单归档时，是不是可以写点总结。</view>
-  <view>3. 情侣之间必做的N件事、旅行之前的准备等等，这些都可以做一下推荐。</view>
+  <view>3. 情侣之间必做的那些事、旅行之前的准备等等，这些都可以做一下推荐。</view>
   <view>4. 要是能有提醒功能就更好了。</view>
   <view>5. 特色清单秀。</view>
   <view>6. 一些彩蛋。</view>
@@ -26,10 +26,10 @@
   <view>7. 长按已归档的清单可以恢复清单。</view>
 </view>
 
-<view class="label">关于作者</view>
+<view class="label">关于我们</view>
 <view class="desc-view">
-  <view>双重人格。打了鸡血一样的工作，蜗牛一般的生活。</view>
-  <view>想跟作者沟通？wx: 461148124</view>
+  <view>打了鸡血一样的工作，蜗牛一般的生活。</view>
+  <view>如何联系？wx: bzsnail</view>
 </view>
 
 <view class="line-m"></view>

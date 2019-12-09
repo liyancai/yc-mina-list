@@ -1,4 +1,5 @@
 const app = getApp()
+const canvasUtil = require('../../utils/canvas.js')
 const accountServUtil = require('../../service/AccountService.js')
 const projectServUtil = require('../../service/ProjectService.js')
 const { $Message } = require('../../components/iview/base/index');
@@ -12,6 +13,8 @@ Page({
     todoTaskList: [],
     doneTaskList: [],
     isMember: true,
+    placardVisible: false,
+    avatar_temp: '/images/icon/christmas_star.png'
   },
   onLoad: function (options) {
 
@@ -38,9 +41,10 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
-        '修改清单信息',
+        '个性设置',
         '将清单归档',
-        '删除清单'
+        '删除清单',
+        '生成海报图片',
       ],
       success(res) {
         if (res.tapIndex == 0) {
@@ -49,6 +53,8 @@ Page({
           that.doDoneProject(_project)
         } else if (res.tapIndex == 2) {
           that.doRemoveProject(_project)
+        } else if (res.tapIndex == 3) {
+          that.openCanvasView()
         }
       },
       fail(res) {
@@ -348,7 +354,130 @@ Page({
     this.getTodoTaskList(_projectId)
     this.getDoneTaskList(_projectId)
   },
+  openCanvasView() {
+    let that = this
 
+    that.drawPlacard()
+    that.setData({
+      placardVisible: true,
+    })
+  },
+  closeCanvasView() {
+    this.setData({
+      placardVisible: false,
+    })
+  },
+  drawPlacard: function () {
+    var that = this
+
+    var _sysInfo = wx.getSystemInfoSync()
+    let _wWidth = _sysInfo.windowWidth
+    let _cWidth = _wWidth * .7, _cHeight = _wWidth * 1.2
+
+    that.drawImage(_cWidth, _cHeight);
+  },
+  drawImage(__cWidth, __cHeight) {
+    wx.showLoading({
+      title: '生成海报···',
+    })
+
+    var that = this
+    var _ctx = wx.createCanvasContext('project-placard')
+
+   // 绘制白色背景
+    _ctx.setFillStyle('#fff')
+    _ctx.fillRect(0, 0, __cWidth, __cHeight)
+
+    // 绘制页头颜色
+    _ctx.setFillStyle(that.data.project.color)
+    _ctx.fillRect(0, 0, __cWidth, __cWidth * .45)
+
+    //绘制icon
+    let _icon_x = __cWidth * 0.06, _icon_y = __cWidth * 0.06, _icon_w = __cWidth * 0.15
+    _ctx.drawImage(that.data.project.avatar, _icon_x, _icon_y, _icon_w, _icon_w)
+    _ctx.draw(true)
+
+    //绘制清单名称
+    _ctx.setFillStyle('#fff')
+    _ctx.setFontSize(14)
+    _ctx.fillText(that.data.project.name, _icon_x + _icon_w + 10, _icon_y + _icon_w / 2)
+    _ctx.draw(true)
+
+    
+    //绘制内容
+    var textX, initX, textY, initY
+    textX = initX = __cWidth * .16, textY = initY = __cWidth * .6
+    var maxWidth = __cWidth * .7
+
+    let _list = that.data.todoTaskList.concat(that.data.doneTaskList)
+    for (var i = 0; i < _list.length && i < 6; i++) {
+      //绘制文章列表前的圆点
+      _ctx.setTextAlign('left')
+      _ctx.setFillStyle(that.data.project.color)
+      _ctx.setFontSize(24)
+      _ctx.fillText('·', __cWidth * .1, textY + 5)
+
+      //绘制文章标题
+      _ctx.setFillStyle('#353535')
+      _ctx.setFontSize(14)
+      let text = _list[i].title
+      let res = canvasUtil.fillMultipleText(_ctx, text, textX, textY, maxWidth, 22, 2)
+
+      textX = initX
+      textY = res.y + 10
+    }
+    _ctx.draw(true)
+
+    //绘制分割线
+    let line_x_s = __cWidth * 0.10, line_x_e = __cWidth - line_x_s, line_y = __cHeight * .84
+    _ctx.moveTo(line_x_s, line_y)
+    _ctx.lineTo(line_x_e, line_y)
+    _ctx.setStrokeStyle('#f1f1f1')
+    _ctx.stroke()
+    _ctx.draw(true)
+
+    //绘制底部信息
+    _ctx.setFillStyle('#353535')
+    _ctx.setFontSize(14)
+    _ctx.fillText('长按识别二维码', line_x_s, __cHeight * .90)
+    _ctx.fillText('查看更多清单内容', line_x_s, __cHeight * .94)
+
+    //绘制小程序码
+    let qrcode_width = __cWidth * .16
+    _ctx.beginPath()
+    _ctx.drawImage('/images/qrcode.jpeg', __cWidth * .90 - qrcode_width, __cHeight * .84 + (__cHeight * .14 - qrcode_width) / 2, qrcode_width, qrcode_width)
+
+
+    _ctx.draw(true)
+    wx.hideLoading()
+    return
+  },
+  /**
+   * 保存canvas图片到手机
+   */
+  save2PhoneImage: function () {
+    var that = this
+    wx.showLoading({
+      title: '正在保存···',
+    })
+    wx.canvasToTempFilePath({
+      canvasId: 'project-placard',
+      success(res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(res) {
+            wx.hideLoading()
+          },
+          fail(res) {
+            wx.hideLoading()
+            wx.showToast({
+              title: '保存到相册失败！',
+            })
+          }
+        })
+      }
+    })
+  },
   /**
    * 用户点击右上角分享
    */

@@ -60,3 +60,12 @@
 </block>
 
 <view class="line-m"></view>
+
+<!-- 海报 -->
+<view class="canvas-view {{placardVisible ? 'active' : ''}}" bindtap="closeCanvasView">
+  <view class="mask"></view>
+  <view class="main">
+    <canvas canvas-id="project-placard"></canvas>
+    <view class="download-btn" catchtap="save2PhoneImage">下载到手机</view>
+  </view>
+</view>

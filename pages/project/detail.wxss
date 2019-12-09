@@ -83,6 +83,7 @@
 .canvas-view {
   width: 100vw;
   position: absolute;
+  top: 0;
 }
 .canvas-view .mask {
   position: fixed;

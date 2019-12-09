@@ -70,7 +70,7 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
-        '删除'
+        '删除任务'
       ],
       success(res) {
         if(res.tapIndex == 0) {
@@ -400,17 +400,17 @@ Page({
     //绘制清单名称
     _ctx.setFillStyle('#fff')
     _ctx.setFontSize(14)
-    _ctx.fillText(that.data.project.name, _icon_x + _icon_w + 10, _icon_y + _icon_w / 2)
+    _ctx.fillText(that.data.project.name, _icon_x + __cWidth * 0.2, _icon_y +  + __cWidth * 0.1)
     _ctx.draw(true)
 
     
     //绘制内容
     var textX, initX, textY, initY
-    textX = initX = __cWidth * .16, textY = initY = __cWidth * .6
+    textX = initX = __cWidth * .16, textY = initY = __cWidth * .55
     var maxWidth = __cWidth * .7
 
     let _list = that.data.todoTaskList.concat(that.data.doneTaskList)
-    for (var i = 0; i < _list.length && i < 6; i++) {
+    for (var i = 0; i < _list.length && i < 7; i++) {
       //绘制文章列表前的圆点
       _ctx.setTextAlign('left')
       _ctx.setFillStyle(that.data.project.color)
@@ -429,7 +429,7 @@ Page({
     _ctx.draw(true)
 
     //绘制分割线
-    let line_x_s = __cWidth * 0.10, line_x_e = __cWidth - line_x_s, line_y = __cHeight * .84
+    let line_x_s = __cWidth * 0.10, line_x_e = __cWidth - line_x_s, line_y = __cHeight * .86
     _ctx.moveTo(line_x_s, line_y)
     _ctx.lineTo(line_x_e, line_y)
     _ctx.setStrokeStyle('#f1f1f1')
@@ -438,14 +438,14 @@ Page({
 
     //绘制底部信息
     _ctx.setFillStyle('#353535')
-    _ctx.setFontSize(14)
-    _ctx.fillText('长按识别二维码', line_x_s, __cHeight * .90)
-    _ctx.fillText('查看更多清单内容', line_x_s, __cHeight * .94)
+    _ctx.setFontSize(12)
+    _ctx.fillText('长按识别二维码', line_x_s, __cHeight * .92)
+    _ctx.fillText('查看更多清单内容', line_x_s, __cHeight * .96)
 
     //绘制小程序码
-    let qrcode_width = __cWidth * .16
+    let qrcode_width = __cWidth * .18
     _ctx.beginPath()
-    _ctx.drawImage('/images/qrcode.jpeg', __cWidth * .90 - qrcode_width, __cHeight * .84 + (__cHeight * .14 - qrcode_width) / 2, qrcode_width, qrcode_width)
+    _ctx.drawImage('/images/qrcode.jpeg', __cWidth * .90 - qrcode_width, __cHeight * .86 + (__cHeight * .14 - qrcode_width) / 2, qrcode_width, qrcode_width)
 
 
     _ctx.draw(true)

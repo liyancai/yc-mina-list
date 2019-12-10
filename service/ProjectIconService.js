@@ -13,7 +13,6 @@ let getCollection = () => {
 let getList = callback => {
 
   getCollection()
-  .orderBy('sort', 'asc')
   .get()
   .then(res => {
     if (res.data.length > 0) {

@@ -14,7 +14,7 @@
   width: 80rpx; height: 80rpx;
 }
 .member-view {
-  margin-top: -70rpx;
+  margin-top: -72rpx;
   display: flex;
   justify-content: center;
   align-items: center;

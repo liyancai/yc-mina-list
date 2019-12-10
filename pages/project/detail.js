@@ -428,7 +428,7 @@ Page({
     
     //绘制内容
     var textX, initX, textY, initY
-    textX = initX = __cWidth * .16, textY = initY = __cWidth * .40
+    textX = initX = __cWidth * .16, textY = initY = __cWidth * .35
     var maxWidth = __cWidth * .7
 
     let _list = that.data.todoTaskList.concat(that.data.doneTaskList)
@@ -459,9 +459,9 @@ Page({
 
     //绘制底部信息
     _ctx.setFillStyle('#353535')
-    _ctx.setFontSize(12)
+    _ctx.setFontSize(10)
     _ctx.fillText('长按识别二维码', line_x_s, __cHeight * .90)
-    _ctx.fillText('查看更多清单内容', line_x_s, __cHeight * .94)
+    _ctx.fillText('使用更多清单功能', line_x_s, __cHeight * .94)
 
     //绘制小程序码
     let qrcode_width = __cWidth * .18

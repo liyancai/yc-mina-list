@@ -1,6 +1,6 @@
 {
   "enablePullDownRefresh": true,
-  "navigationBarTitleText": "清单详情",
+  "navigationBarTitleText": "清单小本子",
   "usingComponents": {
     "i-icon": "../../components/iview/icon/index",
     "i-message": "../../components/iview/message/index"

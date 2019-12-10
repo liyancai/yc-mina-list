@@ -384,7 +384,7 @@ Page({
 
     var _sysInfo = wx.getSystemInfoSync()
     let _wWidth = _sysInfo.windowWidth
-    let _cWidth = _wWidth * .7, _cHeight = _wWidth * 1.2
+    let _cWidth = Math.round(_wWidth * .7), _cHeight = Math.round(_wWidth * 1.2)
 
     that.drawImage(_cWidth, _cHeight);
   },
@@ -396,18 +396,28 @@ Page({
     var that = this
     var _ctx = wx.createCanvasContext('project-placard')
 
-   // 绘制白色背景
-    _ctx.setFillStyle('#fff')
-    _ctx.fillRect(0, 0, __cWidth, __cHeight)
+    // 绘制白色背景
+    _ctx.setFillStyle('#ffffff')
+    canvasUtil.fillRadiusRect(_ctx, 0, 0, __cWidth, __cHeight, 3)
+    _ctx.draw(true)
 
     // 绘制页头颜色
     _ctx.setFillStyle(that.data.project.color)
-    _ctx.fillRect(0, 0, __cWidth, __cWidth * .45)
+    canvasUtil.fillRadiusRect(_ctx, 0, 0, __cWidth, __cWidth * .40, 3)
+    _ctx.draw(true)
+
+    const grd = _ctx.createLinearGradient(0, 10, 0, __cHeight * .50)
+    grd.addColorStop(0, that.data.project.color)
+    grd.addColorStop(1, '#FFFFFF')
+    _ctx.setFillStyle(grd)
+
+    _ctx.fillRect(0, 10, __cWidth, __cHeight * .80 - 10)
+
+    _ctx.draw(true)
 
     //绘制icon
     let _icon_x = __cWidth * 0.06, _icon_y = __cWidth * 0.06, _icon_w = __cWidth * 0.15
     _ctx.drawImage(that.data.project.avatar, _icon_x, _icon_y, _icon_w, _icon_w)
-    _ctx.draw(true)
 
     //绘制清单名称
     _ctx.setFillStyle('#fff')
@@ -418,20 +428,20 @@ Page({
     
     //绘制内容
     var textX, initX, textY, initY
-    textX = initX = __cWidth * .16, textY = initY = __cWidth * .55
+    textX = initX = __cWidth * .16, textY = initY = __cWidth * .40
     var maxWidth = __cWidth * .7
 
     let _list = that.data.todoTaskList.concat(that.data.doneTaskList)
-    for (var i = 0; i < _list.length && i < 7; i++) {
+    for (var i = 0; i < _list.length && i < 8; i++) {
       //绘制文章列表前的圆点
       _ctx.setTextAlign('left')
       _ctx.setFillStyle(that.data.project.color)
-      _ctx.setFontSize(24)
-      _ctx.fillText('·', __cWidth * .1, textY + 5)
+      _ctx.setFontSize(14)
+      _ctx.fillText((i + 1) + '.  ', __cWidth * .1, textY)
 
       //绘制文章标题
       _ctx.setFillStyle('#353535')
-      _ctx.setFontSize(14)
+      _ctx.setFontSize(12)
       let text = _list[i].title
       let res = canvasUtil.fillMultipleText(_ctx, text, textX, textY, maxWidth, 22, 2)
 
@@ -441,23 +451,22 @@ Page({
     _ctx.draw(true)
 
     //绘制分割线
-    let line_x_s = __cWidth * 0.10, line_x_e = __cWidth - line_x_s, line_y = __cHeight * .86
+    let line_x_s = __cWidth * 0.10, line_x_e = __cWidth - line_x_s, line_y = __cHeight * .84
     _ctx.moveTo(line_x_s, line_y)
     _ctx.lineTo(line_x_e, line_y)
     _ctx.setStrokeStyle('#f1f1f1')
     _ctx.stroke()
-    _ctx.draw(true)
 
     //绘制底部信息
     _ctx.setFillStyle('#353535')
     _ctx.setFontSize(12)
-    _ctx.fillText('长按识别二维码', line_x_s, __cHeight * .92)
-    _ctx.fillText('查看更多清单内容', line_x_s, __cHeight * .96)
+    _ctx.fillText('长按识别二维码', line_x_s, __cHeight * .90)
+    _ctx.fillText('查看更多清单内容', line_x_s, __cHeight * .94)
 
     //绘制小程序码
     let qrcode_width = __cWidth * .18
     _ctx.beginPath()
-    _ctx.drawImage('/images/qrcode.jpeg', __cWidth * .90 - qrcode_width, __cHeight * .86 + (__cHeight * .14 - qrcode_width) / 2, qrcode_width, qrcode_width)
+    _ctx.drawImage('/images/qrcode.jpeg', __cWidth * .90 - qrcode_width, __cHeight * .84 + (__cHeight * .14 - qrcode_width) / 2, qrcode_width, qrcode_width)
 
 
     _ctx.draw(true)

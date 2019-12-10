@@ -197,20 +197,32 @@ Page({
       }
     })
     .then(res => {
-      // 添加新task成功后，将对象添加到todoTaskList的开头
-      that.data.todoTaskList.unshift({
-        _id: res.result._id,
-        author: app.globalData.userInfo == null ? '' : app.globalData.userInfo._id,
-        projectId: _projectId,
-        title: _title,
-        done: false,
-      })
-
-      that.setData({
-        inputValue: '',
-        todoTaskList: that.data.todoTaskList
-      })
       wx.hideLoading()
+      if (res.result && res.result._id) {
+        // 添加新task成功后，将对象添加到todoTaskList的开头
+        that.data.todoTaskList.unshift({
+          _id: res.result._id,
+          author: app.globalData.userInfo == null ? '' : app.globalData.userInfo._id,
+          projectId: _projectId,
+          title: _title,
+          done: false,
+        })
+
+        that.setData({
+          inputValue: '',
+          todoTaskList: that.data.todoTaskList
+        })
+      } else if (res.result && res.result.errCode && res.result.errCode == 87014) {
+        $Message({
+          content: '请正确录入待办任务！',
+          type: 'error'
+        });
+      } else {
+        $Message({
+          content: '更新失败，请稍候重试~',
+          type: 'error'
+        });
+      }
     })
     .catch(err => {
       wx.hideLoading()

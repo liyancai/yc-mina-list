@@ -17,8 +17,6 @@ Page({
 
     let _projectId = options.projectId
 
-    // _projectId = "b3b086ef5de4aec1012e8b9a6a76d8fb"
-
     if (_projectId == null || _projectId == undefined) {
       
       return
@@ -143,10 +141,15 @@ Page({
     })
     .then(res => {
       wx.hideLoading()
-      if (res.result.errMsg == 'document.update:ok') {
+      if (res.result && res.result.errMsg == 'document.update:ok') {
         wx.redirectTo({
           url: '/pages/project/detail?projectId=' + _projectId,
         })
+      } else if (res.result && res.result.errCode && res.result.errCode == 87014) {
+        $Message({
+          content: '请正确填写清单标题！',
+          type: 'error'
+        });
       } else {
         $Message({
           content: '更新失败，请稍候重试~',

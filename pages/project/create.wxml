@@ -1,3 +1,5 @@
+<i-message id="message" />
+
 <view class="label">选择类型</view>
 
 <view class="cate-view">

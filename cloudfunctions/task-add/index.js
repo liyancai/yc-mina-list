@@ -15,6 +15,14 @@ exports.main = async (event, context) => {
 
   const { projectId, title } = event
 
+  // 内容审核
+  let _res = await msgSecCheck(title)
+  if (!_res || _res.errCode != 0) {
+    return {
+      errCode: 87014
+    }
+  }
+
   try {
     let _now = new Date()
     return await coll.add({
@@ -32,4 +40,18 @@ exports.main = async (event, context) => {
     console.error(e)
   }
 
+}
+
+/**
+ * 内容审核
+ */
+async function msgSecCheck(__content) {
+  try {
+    const result = await cloud.openapi.security.msgSecCheck({
+      content: __content
+    })
+    return result;
+  } catch (e) {
+    console.error(e)
+  }
 }

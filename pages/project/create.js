@@ -81,10 +81,15 @@ Page({
     })
     .then(res => {
       wx.hideLoading()
-      if (res.result._id) {
+      if (res.result && res.result._id) {
         wx.redirectTo({
           url: '/pages/project/detail?projectId=' + res.result._id,
         })
+      } else if (res.result && res.result.errCode && res.result.errCode == 87014) {
+        $Message({
+          content: '请正确填写清单标题！',
+          type: 'error'
+        });
       } else {
         $Message({
           content: '添加失败，请稍候重试~',

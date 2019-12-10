@@ -7,12 +7,9 @@
 
 <view class="label">下一步</view>
 <view class="desc-view">
-  <view>1. 清单生成海报图片，方便发到朋友圈嘚瑟。</view>
-  <view>2. 清单归档时，是不是可以写点总结。</view>
-  <view>3. 情侣之间必做的那些事、旅行之前的准备等等，这些都可以做一下推荐。</view>
-  <view>4. 要是能有提醒功能就更好了。</view>
-  <view>5. 特色清单秀。</view>
-  <view>6. 一些彩蛋。</view>
+  <navigator url="/pages/project/detail?projectId=sys-1">
+  <view class="opt-link">查看清单小本子功能清单 >></view>
+  </navigator>
 </view>
 
 <view class="label">说明书</view>

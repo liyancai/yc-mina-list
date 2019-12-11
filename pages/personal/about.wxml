@@ -8,7 +8,7 @@
 <view class="label">下一步</view>
 <view class="desc-view">
   <navigator url="/pages/project/detail?projectId=sys-1">
-  <view class="opt-link">查看清单小本子功能清单 >></view>
+  <view class="opt-link">查看清单小本子功能列表 >></view>
   </navigator>
 </view>
 

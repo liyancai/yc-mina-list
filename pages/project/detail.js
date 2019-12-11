@@ -403,32 +403,24 @@ Page({
 
     // 绘制页头颜色
     _ctx.setFillStyle(that.data.project.color)
-    canvasUtil.fillRadiusRect(_ctx, 0, 0, __cWidth, __cWidth * .40, 3)
-    _ctx.draw(true)
-
-    const grd = _ctx.createLinearGradient(0, 10, 0, __cHeight * .50)
-    grd.addColorStop(0, that.data.project.color)
-    grd.addColorStop(1, '#FFFFFF')
-    _ctx.setFillStyle(grd)
-
-    _ctx.fillRect(0, 10, __cWidth, __cHeight * .80 - 10)
-
+    canvasUtil.fillRadiusRect(_ctx, 0, 0, __cWidth, 20, 3)
+    _ctx.fillRect(0, 10, __cWidth, __cWidth * .25 - 10)
     _ctx.draw(true)
 
     //绘制icon
-    let _icon_x = __cWidth * 0.06, _icon_y = __cWidth * 0.06, _icon_w = __cWidth * 0.15
+    let _icon_x = __cWidth * 0.05, _icon_y = __cWidth * 0.05, _icon_w = __cWidth * 0.15
     _ctx.drawImage(that.data.project.avatar, _icon_x, _icon_y, _icon_w, _icon_w)
 
     //绘制清单名称
     _ctx.setFillStyle('#fff')
     _ctx.setFontSize(14)
-    _ctx.fillText(that.data.project.name, _icon_x + __cWidth * 0.2, _icon_y +  + __cWidth * 0.1)
+    _ctx.fillText(that.data.project.name, _icon_x + __cWidth * 0.2, _icon_y + + __cWidth * 0.1)
     _ctx.draw(true)
 
-    
+
     //绘制内容
     var textX, initX, textY, initY
-    textX = initX = __cWidth * .16, textY = initY = __cWidth * .35
+    textX = initX = __cWidth * .17, textY = initY = __cWidth * .35
     var maxWidth = __cWidth * .7
 
     let _list = that.data.todoTaskList.concat(that.data.doneTaskList)
@@ -437,7 +429,7 @@ Page({
       _ctx.setTextAlign('left')
       _ctx.setFillStyle(that.data.project.color)
       _ctx.setFontSize(14)
-      _ctx.fillText((i + 1) + '.  ', __cWidth * .1, textY)
+      _ctx.fillText(_list[i].done ? '√' : (i + 1) + '.', __cWidth * .1, textY)
 
       //绘制文章标题
       _ctx.setFillStyle('#353535')

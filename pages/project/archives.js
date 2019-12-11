@@ -39,7 +39,6 @@ Page({
     })
 
     wx.stopPullDownRefresh()
-    wx.showLoading({ title: '请稍候···' })
     wx.cloud.callFunction({
       name: 'project-list',
       data: {

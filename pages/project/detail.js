@@ -100,6 +100,7 @@ Page({
   // 查询清单信息
   getProjectInfo(__projectId) {
     let that = this
+    wx.showNavigationBarLoading()
     projectServUtil.getInfo(__projectId, res => {
       that.setData({
         project: res
@@ -127,6 +128,8 @@ Page({
       if(res.cover == null || res.cover == undefined || res.cover == '') {
         that.setMainColor(res.color)
       }
+
+      wx.hideNavigationBarLoading()
     })
   },
   // 查询清单下的未完成任务列表

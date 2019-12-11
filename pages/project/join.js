@@ -25,7 +25,10 @@ Page({
   // 查询清单信息
   getProjectInfo(__projectId) {
     let that = this
+    wx.showNavigationBarLoading()
     projectServUtil.getInfo(__projectId, res => {
+      wx.hideNavigationBarLoading()
+
       that.setData({
         project: res
       })

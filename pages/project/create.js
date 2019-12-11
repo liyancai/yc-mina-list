@@ -17,7 +17,10 @@ Page({
   // 查询清单分类列表
   getCateList() {
     let that = this
+    wx.showNavigationBarLoading()
     proCateServUtil.getList(res => {
+      wx.hideNavigationBarLoading()
+
       that.setData({
         cateList: res,
         currentCate: res[0]

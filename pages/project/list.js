@@ -14,6 +14,7 @@ Page({
   // 查询未归档的清单列表
   getProjectList() {
     let that = this
+    wx.showNavigationBarLoading()
     that.setData({
       loading: true
     })
@@ -26,12 +27,15 @@ Page({
       }
     })
     .then(res => {
+      wx.hideNavigationBarLoading()
+
       that.setData({
         projectList: res.result.data,
         loading: false
       })
     })
     .catch(err => {
+      wx.hideNavigationBarLoading()
       that.setData({
         loading: false
       })

@@ -33,6 +33,7 @@ Page({
   // 查询清单信息
   getProjectInfo(__projectId) {
     let that = this
+    wx.showNavigationBarLoading()
     projectServUtil.getInfo(__projectId, res => {
       that.setData({
         project: res,
@@ -61,6 +62,8 @@ Page({
             break;
           }
         }
+
+        wx.hideNavigationBarLoading()
       }, 200)
 
     })

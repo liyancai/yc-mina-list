@@ -427,21 +427,21 @@ Page({
     var maxWidth = __cWidth * .7
 
     let _list = that.data.todoTaskList.concat(that.data.doneTaskList)
-    for (var i = 0; i < _list.length && i < 8; i++) {
+    for (var i = 0; i < _list.length && i < 10; i++) {
       //绘制文章列表前的圆点
       _ctx.setTextAlign('left')
       _ctx.setFillStyle(that.data.project.color)
-      _ctx.setFontSize(14)
+      _ctx.setFontSize(12)
       _ctx.fillText(_list[i].done ? '√' : (i + 1) + '.', __cWidth * .1, textY)
 
       //绘制文章标题
       _ctx.setFillStyle('#353535')
-      _ctx.setFontSize(12)
+      _ctx.setFontSize(10)
       let text = _list[i].title
-      let res = canvasUtil.fillMultipleText(_ctx, text, textX, textY, maxWidth, 22, 2)
+      let res = canvasUtil.fillMultipleText(_ctx, text, textX, textY, maxWidth, 22, 1)
 
       textX = initX
-      textY = res.y + 10
+      textY = res.y + 7
     }
     _ctx.draw(true)
 
@@ -454,7 +454,7 @@ Page({
 
     //绘制底部信息
     _ctx.setFillStyle('#353535')
-    _ctx.setFontSize(10)
+    _ctx.setFontSize(8)
     _ctx.fillText('长按识别二维码', line_x_s, __cHeight * .90)
     _ctx.fillText('使用更多清单功能', line_x_s, __cHeight * .94)
 

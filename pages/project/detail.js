@@ -12,7 +12,7 @@ Page({
     memberMap: {},
     todoTaskList: [],
     doneTaskList: [],
-    isMember: true,
+    isMember: false,
     placardVisible: false,
     avatar_temp: '/images/icon/christmas_star.png'
   },
@@ -29,6 +29,17 @@ Page({
     this.setData({
       projectId: _projectId
     })
+
+    // initMemberStatus
+    let pages = getCurrentPages()
+    if (pages.length >= 2) {
+      let prevpage = pages[pages.length - 2]
+      // 如果从列表页进入的，则初始化为 isMember = true
+      if(prevpage.route == 'pages/project/list')
+      this.setData({
+        isMember: true
+      })
+    }
 
     this.getProjectInfo(_projectId)
     this.getTodoTaskList(_projectId)

@@ -11,7 +11,8 @@ Page({
     let _projectId = options.projectId
 
     if (_projectId == null || _projectId == undefined) {
-      //todo 无数据页
+
+      this.gotoProjectList()
       return
     }
 
@@ -29,17 +30,27 @@ Page({
     projectServUtil.getInfo(__projectId, res => {
       wx.hideNavigationBarLoading()
 
-      that.setData({
-        project: res
-      })
+      if (res == null) {
+        wx.showToast({
+          title: '清单已归档或已删除！',
+          icon: 'none'
+        })
+        that.gotoProjectList()
 
-      setTimeout(function(){
-        if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
-          if (res.members.indexOf(app.globalData.userInfo._id) > -1) {
-            that.gotoProjectDetail(__projectId)
+        return
+      } else {
+        that.setData({
+          project: res
+        })
+
+        setTimeout(function(){
+          if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
+            if (res.members.indexOf(app.globalData.userInfo._id) > -1) {
+              that.gotoProjectDetail(__projectId)
+            }
           }
-        }
-      }, 300)
+        }, 300)
+      }
     })
   },
   joinProject(event) {

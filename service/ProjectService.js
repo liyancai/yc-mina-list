@@ -17,10 +17,14 @@ let getInfo = (id, callback) => {
   .doc(id)
   .get()
   .then(res => {
-    callback(res.data)
+    if(res.data && res.data.done) {
+      callback(null)
+    } else {
+      callback(res.data)
+    }
   }).catch(err => {
     console.log(err)
-    callback({})
+    callback(null)
   })
 }
 

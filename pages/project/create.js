@@ -1,4 +1,3 @@
-const projectServUtil = require('../../service/ProjectService.js')
 const proCateServUtil = require('../../service/ProjectCategoryService.js')
 const { $Message } = require('../../components/iview/base/index');
 

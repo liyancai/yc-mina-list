@@ -21,7 +21,8 @@ Page({
     let _projectId = options.projectId
 
     if (_projectId == null || _projectId == undefined) {
-      //todo 无数据页
+
+      this.gotoProjectList()
       return
     }
 
@@ -113,34 +114,43 @@ Page({
     let that = this
     wx.showNavigationBarLoading()
     projectServUtil.getInfo(__projectId, res => {
-      that.setData({
-        project: res
-      })
-
-      setTimeout(_ => {
-        if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
-          that.setData({
-            isMember: res.members.indexOf(app.globalData.userInfo._id) > -1
-          })
-        }
-      }, 300)
-
-      accountServUtil.getList(res.members, res => {
-        let _map = {}
-        res.forEach(v => {
-          _map[v._id] = v
-        })
-        
-        that.setData({
-          memberMap: _map
-        })
-      })
-
-      if(res.cover == null || res.cover == undefined || res.cover == '') {
-        that.setMainColor(res.color)
-      }
-
       wx.hideNavigationBarLoading()
+      if (res == null) {
+        wx.showToast({
+          title: '清单已归档或已删除！',
+          icon: 'none'
+        })
+        that.gotoProjectList()
+
+        return
+      } else {
+        that.setData({
+          project: res
+        })
+
+        setTimeout(_ => {
+          if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
+            that.setData({
+              isMember: res.members.indexOf(app.globalData.userInfo._id) > -1
+            })
+          }
+        }, 300)
+
+        accountServUtil.getList(res.members, res => {
+          let _map = {}
+          res.forEach(v => {
+            _map[v._id] = v
+          })
+          
+          that.setData({
+            memberMap: _map
+          })
+        })
+
+        if(res.cover == null || res.cover == undefined || res.cover == '') {
+          that.setMainColor(res.color)
+        }
+      }
     })
   },
   // 查询清单下的未完成任务列表

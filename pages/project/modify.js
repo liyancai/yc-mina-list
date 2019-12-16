@@ -18,7 +18,8 @@ Page({
     let _projectId = options.projectId
 
     if (_projectId == null || _projectId == undefined) {
-      
+
+      this.gotoProjectList()
       return
     }
 
@@ -35,37 +36,45 @@ Page({
     let that = this
     wx.showNavigationBarLoading()
     projectServUtil.getInfo(__projectId, res => {
-      that.setData({
-        project: res,
-        projectId: res._id,
-        inputValue: res.name
-      })
+      wx.hideNavigationBarLoading()
 
+      if(res == null) {
+        wx.showToast({
+          title: '清单已归档或已删除！',
+          icon: 'none'
+        })
+        that.gotoProjectList()
 
-      setTimeout(_ => {
-        let _iconList = that.data.iconList
-        for(let i=0; i<_iconList.length; i++) {
-          if(_iconList[i].value == res.avatar) {
-            that.setData({
-              currentIcon: _iconList[i]
-            })
-            break;
+        return
+      } else {
+        that.setData({
+          project: res,
+          projectId: res._id,
+          inputValue: res.name
+        })
+
+        setTimeout(_ => {
+          let _iconList = that.data.iconList
+          for(let i=0; i<_iconList.length; i++) {
+            if(_iconList[i].value == res.avatar) {
+              that.setData({
+                currentIcon: _iconList[i]
+              })
+              break;
+            }
           }
-        }
 
-        let _coverList = that.data.coverList
-        for (let i = 0; i < _coverList.length; i++) {
-          if (_coverList[i].value == res.cover) {
-            that.setData({
-              currentCover: _coverList[i]
-            })
-            break;
+          let _coverList = that.data.coverList
+          for (let i = 0; i < _coverList.length; i++) {
+            if (_coverList[i].value == res.cover) {
+              that.setData({
+                currentCover: _coverList[i]
+              })
+              break;
+            }
           }
-        }
-
-        wx.hideNavigationBarLoading()
-      }, 200)
-
+        }, 200)
+      }
     })
   },
   getIconList() {
@@ -163,6 +172,11 @@ Page({
     .catch(err => {
       wx.hideLoading()
       console.error(err)
+    })
+  },
+  gotoProjectList() {
+    wx.reLaunch({
+      url: '/pages/project/list',
     })
   },
 

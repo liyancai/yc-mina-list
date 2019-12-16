@@ -27,17 +27,13 @@ Page({
     this.setData({
       projectId: _projectId
     })
+
     this.getProjectInfo(_projectId)
-    this.getIconList()
-    this.getCoverList()
   },
   // 查询清单信息
   getProjectInfo(__projectId) {
     let that = this
-    wx.showNavigationBarLoading()
     projectServUtil.getInfo(__projectId, res => {
-      wx.hideNavigationBarLoading()
-
       if(res == null) {
         wx.showToast({
           title: '清单已归档或已删除！',
@@ -53,27 +49,8 @@ Page({
           inputValue: res.name
         })
 
-        setTimeout(_ => {
-          let _iconList = that.data.iconList
-          for(let i=0; i<_iconList.length; i++) {
-            if(_iconList[i].value == res.avatar) {
-              that.setData({
-                currentIcon: _iconList[i]
-              })
-              break;
-            }
-          }
-
-          let _coverList = that.data.coverList
-          for (let i = 0; i < _coverList.length; i++) {
-            if (_coverList[i].value == res.cover) {
-              that.setData({
-                currentCover: _coverList[i]
-              })
-              break;
-            }
-          }
-        }, 200)
+        that.getIconList()
+        that.getCoverList()
       }
     })
   },
@@ -84,6 +61,16 @@ Page({
         iconList: res,
         currentIcon: res[0]
       })
+
+      let _project = that.data.project
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].value == _project.avatar) {
+          that.setData({
+            currentIcon: res[i]
+          })
+          break;
+        }
+      }
     })
   },
   getCoverList() {
@@ -93,6 +80,16 @@ Page({
         coverList: res,
         currentCover: res[0]
       })
+
+      let _project = that.data.project
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].value == _project.cover) {
+          that.setData({
+            currentCover: res[i]
+          })
+          break;
+        }
+      }
     })
   },
   // 切换图标

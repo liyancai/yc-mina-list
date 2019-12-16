@@ -112,9 +112,7 @@ Page({
   // 查询清单信息
   getProjectInfo(__projectId) {
     let that = this
-    wx.showNavigationBarLoading()
     projectServUtil.getInfo(__projectId, res => {
-      wx.hideNavigationBarLoading()
       if (res == null) {
         wx.showToast({
           title: '清单已归档或已删除！',
@@ -128,13 +126,16 @@ Page({
           project: res
         })
 
-        setTimeout(_ => {
+        let setMemberStatus = function() {
           if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
             that.setData({
               isMember: res.members.indexOf(app.globalData.userInfo._id) > -1
             })
           }
-        }, 300)
+        }
+        // 获取清单详情后立即更新成员状态，预防执行顺序的问题，300ms后再次更新一次
+        setMemberStatus()
+        setTimeout(setMemberStatus, 300)
 
         accountServUtil.getList(res.members, res => {
           let _map = {}

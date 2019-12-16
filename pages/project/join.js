@@ -26,10 +26,7 @@ Page({
   // 查询清单信息
   getProjectInfo(__projectId) {
     let that = this
-    wx.showNavigationBarLoading()
     projectServUtil.getInfo(__projectId, res => {
-      wx.hideNavigationBarLoading()
-
       if (res == null) {
         wx.showToast({
           title: '清单已归档或已删除！',

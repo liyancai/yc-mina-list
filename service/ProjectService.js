@@ -13,17 +13,19 @@ let getCollection = () => {
  */
 let getInfo = (id, callback) => {
   wx.stopPullDownRefresh()
+  wx.showNavigationBarLoading()
   getCollection()
   .doc(id)
   .get()
   .then(res => {
+    wx.hideNavigationBarLoading()
     if(res.data && res.data.done) {
       callback(null)
     } else {
       callback(res.data)
     }
   }).catch(err => {
-    console.log(err)
+    wx.hideNavigationBarLoading()
     callback(null)
   })
 }

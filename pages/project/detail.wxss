@@ -112,12 +112,18 @@
 .canvas-view canvas {
   width: 70vw; height: 120vw;
 }
-.canvas-view .download-btn {
-  margin: 50rpx auto 0; padding: 20rpx 0;
-  width: 300rpx;
+.canvas-view .opt-view {
+  margin: 50rpx auto 0;
+  display: flex;
+  justify-content: space-between;
+}
+.canvas-view .opt-view .download-btn {
+  padding: 20rpx 0;
+  width: 240rpx;
   text-align: center;
   background: var(--green);
   color: #fff;
   border-radius: 20px;
   box-shadow: 2px 2px 10px rgba(10, 10, 10, .2);  
 }
+

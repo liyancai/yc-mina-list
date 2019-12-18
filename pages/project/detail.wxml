@@ -66,6 +66,9 @@
   <view class="mask"></view>
   <view class="main">
     <canvas canvas-id="project-placard"></canvas>
-    <view class="download-btn" catchtap="save2PhoneImage">下载到手机</view>
+    <view class="opt-view">
+      <view class="download-btn" catchtap="save2PhoneImage">下载到手机</view>
+      <view class="download-btn" catchtap="previewImage">长按分享</view>
+    </view>
   </view>
 </view>

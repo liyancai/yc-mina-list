@@ -14,7 +14,7 @@ Page({
     doneTaskList: [],
     isMember: false,
     placardVisible: false,
-    avatar_temp: '/images/icon/christmas_star.png'
+    cover_temp: '/images/cover.png'
   },
   onLoad: function (options) {
 
@@ -421,6 +421,8 @@ Page({
     var that = this
     var _ctx = wx.createCanvasContext('project-placard')
 
+    let _header_h = __cWidth * .25
+
     // 绘制白色背景
     _ctx.setFillStyle('#ffffff')
     canvasUtil.fillRadiusRect(_ctx, 0, 0, __cWidth, __cHeight, 3)
@@ -429,7 +431,7 @@ Page({
     // 绘制页头颜色
     _ctx.setFillStyle(that.data.project.color)
     canvasUtil.fillRadiusRect(_ctx, 0, 0, __cWidth, 20, 3)
-    _ctx.fillRect(0, 10, __cWidth, __cWidth * .25 - 10)
+    _ctx.fillRect(0, 10, __cWidth, _header_h - 10)
     _ctx.draw(true)
 
     //绘制icon
@@ -510,8 +512,20 @@ Page({
             wx.hideLoading()
             wx.showToast({
               title: '保存到相册失败！',
+              icon: 'none'
             })
           }
+        })
+      }
+    })
+  },
+  previewImage(){
+    var that = this
+    wx.canvasToTempFilePath({
+      canvasId: 'project-placard',
+      success(res) {
+        wx.previewImage({
+          urls: [res.tempFilePath] // 需要预览的图片http链接列表
         })
       }
     })

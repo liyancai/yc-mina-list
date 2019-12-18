@@ -1,7 +1,7 @@
 <i-message id="message" />
 
 <!--  -->
-<view class="project-view" style="background: url('{{project.cover}}') {{project.color}} no-repeat; background-size: cover;">
+<view class="project-view {{project.cover ? '' : 'default'}}" style="background: url('{{project.cover}}') {{project.color}} no-repeat; background-size: cover;">
   <view class="project-info">
     <image src="{{project.avatar}}" lazy-load="{{true}}"></image>
     <i-icon wx:if="{{isMember}}" type="setup" size="24" bindtap="showProjectOptModal"/>

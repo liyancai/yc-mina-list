@@ -18,8 +18,9 @@
 
 <view class="opt-icon add" bindtap="addProject"><i-icon type="add" size="28"/></view>
 <view class="opt-icon more" bindtap="toggleMoreMenu"><i-icon type="other" size="28"/></view>
-<view class="opt-icon other {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoProjectArchives"><i-icon type="tasklist" size="28"/></view>
+<view class="opt-icon achives {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoProjectArchives"><i-icon type="tasklist" size="28"/></view>
 <view class="opt-icon about {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoAbout"><i-icon type="feedback" size="28"/></view>
+<view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}"><button open-type="contact" plain='{{true}}'><i-icon type="customerservice" size="28"/></button></view>
 
 
 <i-modal title="申请授权" visible="{{ authModelVisible }}" show-ok="{{true}}" show-cancel="{{false}}" bind:ok="gotoCreate" ok-text="跳过">

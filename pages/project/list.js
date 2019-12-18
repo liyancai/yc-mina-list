@@ -61,8 +61,8 @@ Page({
   addProject() {
     if (this.data.projectList.length >= this.data.maxNumProject) {
       $Message({
-        content: '清单数量已达上限!',
-        type: 'error'
+        content: '数量已达上限，建议删除或归档历史清单!',
+        type: 'warning'
       });
       return
     }

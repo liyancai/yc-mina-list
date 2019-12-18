@@ -41,25 +41,40 @@
   background: var(--yellow);
 }
 .opt-icon.about,
-.opt-icon.other {
+.opt-icon.achives,
+.opt-icon.contact {
   width: 40px; height: 40px;
   left: calc(10vw + 2px); bottom: calc(10vw + 2px);
   z-index: 1;
   transition: all .5s;
   -webkit-transition: all .5s;
 }
-.opt-icon.other {
-  background: var(--yc-purple);
-}
 .opt-icon.about {
   background: var(--yc-blue);
 }
-.opt-icon.other.active {
-  left: calc(10vw + 10px); bottom: calc(10vw + 60px);
+.opt-icon.achives {
+  background: var(--yc-purple);
+}
+.opt-icon.contact {
+  background: var(--yc-green);
+}
+.opt-icon.achives.active {
+  left: calc(10vw); bottom: calc(10vw + 60px);
 }
 .opt-icon.about.active {
-  left: calc(10vw + 60px); bottom: calc(10vw + 10px);
+  left: calc(10vw + 50px); bottom: calc(10vw + 50px);
 }
+.opt-icon.contact.active {
+  left: calc(10vw + 60px); bottom: calc(10vw);
+}
+.opt-icon.contact button {
+  border: none;
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.opt-icon.contactbutton::after{ border: none; }
 
 i-modal .model-text {
   padding: 0 0 25rpx;

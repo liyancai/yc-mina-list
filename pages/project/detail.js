@@ -450,8 +450,9 @@ Page({
     textX = initX = __cWidth * .17, textY = initY = __cWidth * .35
     var maxWidth = __cWidth * .7
 
+    let _maxListLength = 10
     let _list = that.data.todoTaskList.concat(that.data.doneTaskList)
-    for (var i = 0; i < _list.length && i < 10; i++) {
+    for (var i = 0; i < _list.length && i < _maxListLength; i++) {
       //绘制文章列表前的圆点
       _ctx.setTextAlign('left')
       _ctx.setFillStyle(that.data.project.color)
@@ -466,6 +467,9 @@ Page({
 
       textX = initX
       textY = res.y + 7
+    }
+    if (_list.length > _maxListLength) {
+      _ctx.fillText('······', textX, textY - 7)
     }
     _ctx.draw(true)
 

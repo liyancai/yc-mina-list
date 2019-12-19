@@ -545,7 +545,7 @@ Page({
       }
     } else {
       return {
-        title: '超好用的清单小程序，重要的事儿通通记下来',
+        title: this.data.project.name + ' - 来自简单好用的清单小程序',
         path: '/pages/project/detail?projectId=' + this.data.projectId
       }
     }

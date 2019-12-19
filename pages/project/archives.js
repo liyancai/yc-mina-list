@@ -15,8 +15,8 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
-        '恢复清单',
-        '删除清单'
+        '📤 恢复清单',
+        '️️️🗑️ 删除清单'
       ],
       success(res) {
         if (res.tapIndex == 0) {

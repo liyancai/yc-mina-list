@@ -53,10 +53,10 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
-        '个性设置',
-        '将清单归档',
-        '删除清单',
-        '生成海报图片',
+        '📝 个性设置',
+        '📥 将清单归档',
+        '🗑️ 删除清单',
+        '🌇 生成海报图片',
       ],
       success(res) {
         if (res.tapIndex == 0) {
@@ -82,7 +82,7 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
-        '删除任务'
+        '🗑️ 删除该事项'
       ],
       success(res) {
         if(res.tapIndex == 0) {
@@ -409,7 +409,7 @@ Page({
 
     var _sysInfo = wx.getSystemInfoSync()
     let _wWidth = _sysInfo.windowWidth
-    let _cWidth = Math.round(_wWidth * .7), _cHeight = Math.round(_wWidth * 1.2)
+    let _cWidth = Math.round(_wWidth * .7), _cHeight = Math.round(_wWidth * 1.25)
 
     that.drawImage(_cWidth, _cHeight);
   },

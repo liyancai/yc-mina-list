@@ -7,6 +7,7 @@ Page({
     moreMenuVisible: false,
     maxNumProject: 10,
     projectList: [],
+    projectStatisticsMap: {},
   },
   onShow: function (options) {
     this.getProjectList()
@@ -33,6 +34,13 @@ Page({
         projectList: res.result.data,
         loading: false
       })
+
+      let _projectIds = []
+      that.data.projectList.forEach(v => {
+        _projectIds.push(v._id)
+      })
+      that.getProjectStatistics(_projectIds);
+
     })
     .catch(err => {
       wx.hideNavigationBarLoading()
@@ -42,6 +50,53 @@ Page({
       console.error(err)
     })
 
+  },
+  // 获取清单完成度的统计信息
+  getProjectStatistics(__projectIds) {
+
+    if(__projectIds == null || __projectIds == undefined || __projectIds.length == 0) {
+      return
+    }
+
+    let that = this
+    wx.showNavigationBarLoading()
+    wx.cloud.callFunction({
+      name: 'project-statistics',
+      data: {
+        projectIds: __projectIds
+      }
+    })
+    .then(res => {
+      wx.hideNavigationBarLoading()
+
+      let _list = res.result.list
+      let _map = {}
+      _list.forEach(v => {
+        let _doneCount = 0
+        let _total = 0
+        for(let i=0; i<v.detail.length; i++) {
+          if(v.detail[i].done) {
+            _doneCount = v.detail[i].count
+          }
+          _total += v.detail[i].count
+        }
+
+        _map[v._id] = {
+          projectId: v._id,
+          total: _total,
+          doneCount: _doneCount,
+          percent: _total == 0 ? 0 : Number(_doneCount / _total).toFixed(2),
+        }
+      })
+
+      that.setData({
+        projectStatisticsMap: _map
+      })
+    })
+    .catch(err => {
+      wx.hideNavigationBarLoading()
+      console.error(err)
+    })
   },
   getUserInfo(event) {
 

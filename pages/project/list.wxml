@@ -10,6 +10,7 @@
     <image src="{{item.avatar}}"></image>
     <view>{{item.name}}</view>
     <span></span>
+    <view class="progress-bar" style="width: {{projectStatisticsMap[item._id].percent * 100 || 0}}%;"></view>
   </view>
   </navigator>
 </view>

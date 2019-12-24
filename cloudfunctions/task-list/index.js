@@ -25,7 +25,7 @@ exports.main = async (event, context) => {
     if(done) {
       res = res.orderBy('finishedTime', 'desc')
     } else {
-      res = res.orderBy('modifyTime', 'desc')
+      res = res.orderBy('modifyTime', 'asc')
     }
 
     return res.get()

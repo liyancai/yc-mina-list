@@ -14,13 +14,23 @@ exports.main = async (event, context) => {
 
   const { OPENID, APPID } = cloud.getWXContext()
 
-  const { done } = event
+  const { action, done } = event
 
-  try {
-    return await coll.where({
+  let _data = {}
+  if (action == 'square') {
+    _data = {
+      square: true,
+      audit: true,
+    }
+  } else {
+    _data = {
       members: _.in([OPENID]),
       done: done,
-    })
+    }
+  }
+
+  try {
+    return await coll.where(_data)
     .orderBy('modifyTime', 'desc')
     .get()
 

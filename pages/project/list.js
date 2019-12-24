@@ -159,6 +159,18 @@ Page({
       url: '/pages/project/archives',
     })
   },
+  gotoPersonal() {
+    this.toggleMoreMenu()
+    wx.navigateTo({
+      url: '/pages/personal/index',
+    })
+  },
+  gotoSquare() {
+    this.toggleMoreMenu()
+    wx.navigateTo({
+      url: '/square/pages/project/index',
+    })
+  },
   toggleMoreMenu() {
     let that = this
     this.setData({

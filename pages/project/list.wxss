@@ -83,7 +83,7 @@
   justify-content: space-around;
   align-items: center;
 }
-.opt-icon.contactbutton::after{ border: none; }
+.opt-icon.contact button::after{ border: none; }
 
 i-modal .model-text {
   padding: 0 0 25rpx;

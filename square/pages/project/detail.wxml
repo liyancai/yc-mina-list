@@ -1,0 +1,33 @@
+<!--  -->
+<view class="project-view {{project.cover ? '' : 'default'}}" style="background: url('{{project.cover}}') {{project.color}} no-repeat; background-size: cover;">
+  <view class="project-info">
+    <image src="{{project.avatar}}" lazy-load="{{true}}"></image>
+  </view>
+  <view class="project-info">
+      <text>{{project.name || ''}}</text>
+  </view>
+</view>
+<!--  -->
+<view class="member-view">
+  <view wx:for="{{project.members}}" wx:key="member_{{index}}">
+    <image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image>
+  </view>
+</view>
+
+<!--  -->
+<block wx:for="{{todoTaskList}}" wx:key='todo_task_{{index}}'>
+  <view class="task-item todo-task-item">
+    <i-icon type="label" size="28"/>
+    <view class="task-item-title">{{item.title}}</view>
+  </view>
+</block>
+
+<!--  -->
+<block wx:for="{{doneTaskList}}" wx:key='done_task_{{index}}'>
+  <view class="task-item done-task-item">
+    <i-icon type="success" size="28"/>
+    <view class="task-item-title">{{item.title}}</view>
+  </view>
+</block>
+
+<view class="line-m"></view>

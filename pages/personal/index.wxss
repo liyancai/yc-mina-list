@@ -1,1 +1,62 @@
-/* pages/personal/index.wxss */
+page {
+  background: var(--gray-background-color);
+}
+.section-user {
+  min-height: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.section-user open-data:first-child {
+  margin: 8vw 0 0;
+  width: 18vw; height: 18vw;
+  display: inline-block;
+  overflow: hidden;
+  border: 2px solid #fff;  
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, .2);  
+  border-radius: 50%;
+}
+.section-user open-data:last-child {
+  padding: 5vw 0; 
+  color: #fff;
+}
+
+.section-module {
+  background: #fff;
+}
+.section-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+.section-item i-icon {
+  margin: 3.5vw;
+  background: transparent;
+}
+.section-item view {
+  flex: 1;
+}
+.section-module span {
+  margin-right: 4vw;
+  width: 20vw;
+  text-align: right;
+}
+.section-item span:after {
+  content: " ";
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-width: 2px 2px 0 0;
+  border-style: solid;
+  border-color: #b2b2b2;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+}
+
+.item-contact button {
+  width: 100vw; height: 12vw;
+  position: absolute; bottom: 0; z-index: 999;
+  border: none;
+}
+.item-contact button::after{ border: none; }

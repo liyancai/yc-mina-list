@@ -1,66 +1,20 @@
-// pages/personal/index.js
+const sysSettingServUtil = require('../../service/SystemSettingService.js')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    bgImage: ''
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    this.getBgImage()
+  },
+  // 查询清单信息
+  getBgImage() {
+    let that = this
+    sysSettingServUtil.getPersonalBg(res => {
+      that.setData({
+        bgImage: res.value ? res.value : 'https://goss1.veer.com/creative/vcg/veer/612/veer-343378905.jpg'
+      })      
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

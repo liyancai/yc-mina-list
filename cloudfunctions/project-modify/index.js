@@ -50,6 +50,17 @@ exports.main = async (event, context) => {
         members: _.push([OPENID]),
       }
     }
+  } else if (action == 'doSquare') {
+    _data = {
+      square: true,
+      audit: true,
+      modifyTime: new Date(),
+    }
+  } else if (action == 'unSquare') {
+    _data = {
+      square: false,
+      audit: false,
+    }
   }
 
   try {

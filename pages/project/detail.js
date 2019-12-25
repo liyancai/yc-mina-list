@@ -13,6 +13,7 @@ Page({
     todoTaskList: [],
     doneTaskList: [],
     isMember: false,
+    projectOptList: [],
     placardVisible: false,
     cover_temp: '/images/cover.png'
   },
@@ -20,7 +21,7 @@ Page({
 
     let _projectId = options.projectId
 
-    // _projectId = 'dbff9fc75e027a7506ac0d592285e754'
+    // _projectId = 'dbff9fc75e02c96206ba59575f276d72'
 
     if (_projectId == null || _projectId == undefined) {
 
@@ -48,18 +49,35 @@ Page({
     this.getTodoTaskList(_projectId)
     this.getDoneTaskList(_projectId)
   },
+  initProjectOptList(__project) {
+    let _list = [
+      '📝 个性设置',
+      '📥 将清单归档',
+      '🗑️ 删除清单',
+      '🌇 生成海报图片',
+    ]
+    if (__project.square) {
+      if (__project.audit) {
+        _list.push('⛲ 从清单广场撤销')
+      } else {
+        _list.push('⛲ 撤销清单广场申请')
+      }
+    } else {
+      _list.push('⛲ 分享到清单广场')
+    }
+    this.setData({
+      projectOptList: _list
+    })
+  },
   showProjectOptModal() {
 
     let _project = this.data.project
+    
+    this.initProjectOptList(_project)
 
     let that = this
     wx.showActionSheet({
-      itemList: [
-        '📝 个性设置',
-        '📥 将清单归档',
-        '🗑️ 删除清单',
-        '🌇 生成海报图片',
-      ],
+      itemList: that.data.projectOptList,
       success(res) {
         if (res.tapIndex == 0) {
           that.gotoModify()
@@ -69,6 +87,12 @@ Page({
           that.doRemoveProject(_project)
         } else if (res.tapIndex == 3) {
           that.openCanvasView()
+        } else if (res.tapIndex == 4) {
+          if (_project.square) {
+            that.unSquareProject(_project)
+          } else {
+            that.doSquareProject(_project)
+          }
         }
       },
       fail(res) {
@@ -318,6 +342,60 @@ Page({
     .then(res => {
       wx.hideLoading()
       that.gotoProjectList()
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
+  },
+  doSquareProject(__project) {
+    let that = this
+    wx.showLoading({ title: '加载中···' })
+    wx.cloud.callFunction({
+      name: 'project-modify',
+      data: {
+        action: 'doSquare',
+        projectId: __project._id,
+      }
+    })
+    .then(res => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '已发布到广场！',
+      })
+      __project['square'] = true
+      __project['audit'] = true
+      that.setData({
+        project: __project
+      })
+      that.initProjectOptList(__project)
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
+  },
+  unSquareProject(__project) {
+    let that = this
+    wx.showLoading({ title: '加载中···' })
+    wx.cloud.callFunction({
+      name: 'project-modify',
+      data: {
+        action: 'unSquare',
+        projectId: __project._id,
+      }
+    })
+    .then(res => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '已从广场撤销！',
+      })
+      __project['square'] = false
+      __project['audit'] = false
+      that.setData({
+        project: __project
+      })
+      that.initProjectOptList(__project)
     })
     .catch(err => {
       wx.hideLoading()

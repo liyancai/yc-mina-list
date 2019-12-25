@@ -19,11 +19,7 @@ let getInfo = (id, callback) => {
   .get()
   .then(res => {
     wx.hideNavigationBarLoading()
-    if(res.data && res.data.done) {
-      callback(null)
-    } else {
-      callback(res.data)
-    }
+    callback(res.data)
   }).catch(err => {
     wx.hideNavigationBarLoading()
     callback(null)

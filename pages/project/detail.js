@@ -20,6 +20,8 @@ Page({
 
     let _projectId = options.projectId
 
+    // _projectId = 'dbff9fc75e027a7506ac0d592285e754'
+
     if (_projectId == null || _projectId == undefined) {
 
       this.gotoProjectList()
@@ -113,7 +115,7 @@ Page({
   getProjectInfo(__projectId) {
     let that = this
     projectServUtil.getInfo(__projectId, res => {
-      if (res == null) {
+      if (res == null || res.done) {
         wx.showToast({
           title: '清单已归档或已删除！',
           icon: 'none'

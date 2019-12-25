@@ -15,13 +15,16 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
+        '️️️📄 查看详情',
         '📤 恢复清单',
         '️️️🗑️ 删除清单'
       ],
       success(res) {
         if (res.tapIndex == 0) {
-          that.doUndoneProject(_index, _project)
+          that.gotoProjectDetail(_project._id)
         } else if (res.tapIndex == 1) {
+          that.doUndoneProject(_index, _project)
+        } else if (res.tapIndex == 2) {
           that.doRemoveProject(_index, _project)
         }
       },
@@ -116,6 +119,11 @@ Page({
       wx.hideLoading()
       console.error(err)
     })
+  },
+  gotoProjectDetail(__projectId) {
+    wx.navigateTo({
+      url: '/square/pages/project/detail?projectId=' + __projectId,
+    })    
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

@@ -35,10 +35,10 @@ Page({
     projectServUtil.getInfo(__projectId, res => {
       if (res == null) {
         wx.showToast({
-          title: '清单已归档或已删除！',
+          title: '清单已删除！',
           icon: 'none'
         })
-        that.gotoProjectList()
+        that.gotoSquare()
 
         return
       } else {
@@ -118,6 +118,11 @@ Page({
   gotoProjectList() {
     wx.reLaunch({
       url: '/pages/project/list',
+    })
+  },
+  gotoSquare() {
+    wx.redirectTo({
+      url: '/square/pages/project/index',
     })
   },
   /**

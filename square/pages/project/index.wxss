@@ -1,6 +1,3 @@
-page {
-  background: var(--main-background-color);
-}
 .project-view {
   margin: 25rpx;
   border-radius: 3px;
@@ -9,16 +6,18 @@ page {
   flex-direction: column;
 }
 .project-info {
-  margin: 300rpx 0 0;
+  margin: 280rpx 0 0;
   padding: 10rpx 25rpx;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: 11pt;
   color: #fff;
+  border-radius: 0 0 3px 3px;
 }
 .project-info.default {
   margin: 0;
+  border-radius: 3px;
 }
 .project-info image {
   margin-right: 10rpx;

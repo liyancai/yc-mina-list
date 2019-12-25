@@ -36,7 +36,7 @@
   </view>
 
   <view wx:else class="task-item todo-task-item">
-    <i-icon type="play" size="28"/>
+    <i-icon type="label" size="24"/>
     <view class="task-item-title">{{item.title}}</view>
     <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.author].avatar}}" lazy-load="{{true}}"></image>
   </view>
@@ -53,7 +53,7 @@
   </view>
 
   <view wx:else class="task-item done-task-item">
-    <i-icon type="success" size="28"/>
+    <i-icon type="success" size="24"/>
     <view class="task-item-title">{{item.title}}</view>
     <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.completer].avatar}}" lazy-load="{{true}}"></image>
   </view>

@@ -19,7 +19,13 @@ let getInfo = (id, callback) => {
   .get()
   .then(res => {
     wx.hideNavigationBarLoading()
-    callback(res.data)
+
+    let _project = res.data
+    if(_project && _project.members) {
+      _project['members'] = Array.from(new Set(res.data.members))
+    }
+
+    callback(_project)
   }).catch(err => {
     wx.hideNavigationBarLoading()
     callback(null)

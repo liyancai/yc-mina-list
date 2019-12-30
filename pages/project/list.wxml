@@ -4,7 +4,7 @@
 
 <yc-empty-view show='{{projectList.length==0 && !loading}}'>暂无清单，快来创建一个吧</yc-empty-view>
 
-<view class="section-module" wx:for="{{projectList}}" wx:key='project_{{index}}'>
+<view class="section-module" wx:for="{{projectList}}" wx:key='project'>
   <navigator url="/pages/project/detail?projectId={{item._id}}">
   <view class="section-item">
     <image src="{{item.avatar}}"></image>

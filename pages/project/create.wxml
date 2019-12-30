@@ -3,7 +3,7 @@
 <view class="label">选择类型</view>
 
 <view class="cate-view">
-  <view wx:for="{{cateList}}" wx:key='cate_{{index}}'>
+  <view wx:for="{{cateList}}" wx:key='cate'>
     <image class="{{currentCate._id == item._id ? 'active': ''}}" src="{{item.icon}}" bindtap="toggleCate" data-cate="{{item}}"></image>
   </view>
 </view>

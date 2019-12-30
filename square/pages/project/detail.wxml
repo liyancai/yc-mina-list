@@ -9,13 +9,13 @@
 </view>
 <!--  -->
 <view class="member-view">
-  <view wx:for="{{project.members}}" wx:key="member_{{index}}">
+  <view wx:for="{{project.members}}" wx:key="member">
     <image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image>
   </view>
 </view>
 
 <!--  -->
-<block wx:for="{{todoTaskList}}" wx:key='todo_task_{{index}}'>
+<block wx:for="{{todoTaskList}}" wx:key='todo_task'>
   <view class="task-item todo-task-item">
     <i-icon type="label" size="24"/>
     <view class="task-item-title">{{item.title}}</view>
@@ -23,7 +23,7 @@
 </block>
 
 <!--  -->
-<block wx:for="{{doneTaskList}}" wx:key='done_task_{{index}}'>
+<block wx:for="{{doneTaskList}}" wx:key='done_task'>
   <view class="task-item done-task-item">
     <i-icon type="success" size="24"/>
     <view class="task-item-title">{{item.title}}</view>

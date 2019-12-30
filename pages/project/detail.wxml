@@ -12,7 +12,7 @@
 </view>
 <!--  -->
 <view class="member-view">
-  <view wx:for="{{project.members}}" wx:key="member_{{index}}">
+  <view wx:for="{{project.members}}" wx:key="member">
     <image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image>
   </view>
   <view wx:if="{{project.members.length < project.max_num_account && isMember}}">
@@ -28,7 +28,7 @@
   <input value="{{inputValue}}" placeholder="添加新的待办事项" maxlength="200" bindconfirm="addTask"></input>
 </view>
 
-<block wx:for="{{todoTaskList}}" wx:key='todo_task_{{index}}'>
+<block wx:for="{{todoTaskList}}" wx:key='todo_task'>
   <view wx:if="{{isMember}}" class="task-item todo-task-item">
     <i-icon type="offline" size="28" bindtap="doneTask" data-task-id="{{item._id}}" data-index="{{index}}"/>
     <view class="task-item-title" bindlongpress="showTaskOptModal" data-task="{{item}}" data-index="{{index}}">{{item.title}}</view>
@@ -45,7 +45,7 @@
 <!--  -->
 <view wx:if="{{isMember}}" class="label">已完成</view>
 
-<block wx:for="{{doneTaskList}}" wx:key='done_task_{{index}}'>
+<block wx:for="{{doneTaskList}}" wx:key='done_task'>
   <view wx:if="{{isMember}}" class="task-item done-task-item">
     <i-icon type="success_fill" size="28" bindtap="undoneTask" data-task-id="{{item._id}}" data-index="{{index}}"/>
     <view class="task-item-title" bindlongpress="showTaskOptModal" data-task="{{item}}" data-index="{{index}}">{{item.title}}</view>

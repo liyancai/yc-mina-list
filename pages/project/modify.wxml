@@ -4,7 +4,7 @@
 <view class="label">选择图标</view>
 
 <view class="icon-view">
-  <view wx:for="{{iconList}}" wx:key='icon_{{index}}'>
+  <view wx:for="{{iconList}}" wx:key='icon'>
     <image class="{{currentIcon._id == item._id ? 'active': ''}}" src="{{item.value}}" bindtap="toggleIcon" data-icon="{{item}}"></image>
   </view>
 </view>
@@ -18,7 +18,7 @@
 <view class="label">选择封面图</view>
 
 <view class="cover-view">
-  <block wx:for="{{coverList}}" wx:key='cover_{{index}}'>
+  <block wx:for="{{coverList}}" wx:key='cover'>
   <span class="{{currentCover._id == item._id ? 'active': ''}}" bindtap="toggleCover" data-cover="{{item}}" style="background: url('{{item.value}}') no-repeat; background-size: cover;">
   </span>
   </block>

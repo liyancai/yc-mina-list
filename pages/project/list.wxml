@@ -24,7 +24,12 @@
 <view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}"><button open-type="contact" plain='{{true}}'><i-icon type="customerservice" size="28"/></button></view>
 
 
-<i-modal title="申请授权" visible="{{ authModelVisible }}" show-ok="{{true}}" show-cancel="{{false}}" bind:ok="gotoCreate" ok-text="跳过">
-  <view class="model-text">用以在清单中显示您的头像和昵称</view>
-  <button type="primary" open-type="getUserInfo" size="min" bindgetuserinfo="getUserInfo">授权</button>
-</i-modal>
+<view class="auth-view {{authModelVisible ? 'active' : ''}}">
+  <view class="mask" bindtap="closeAuthView"></view>
+  <view class="main">
+    <view class="title">申请授权</view>
+    <view class="model-text">用以在清单中显示您的头像和昵称</view>
+    <button type="primary" open-type="getUserInfo" size="min" bindgetuserinfo="getUserInfo">授权</button>
+    <view class="link opt-link" catchtap="gotoCreate">跳过</view>
+  </view>
+</view>

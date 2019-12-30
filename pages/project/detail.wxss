@@ -16,6 +16,9 @@
 .project-info image {
   width: 80rpx; height: 80rpx;
 }
+.project-info i-icon {
+  padding: 15rpx;
+}
 .member-view {
   margin-top: -72rpx;
   display: flex;
@@ -50,7 +53,7 @@
 }
 
 .task-item {
-  margin: 0 25rpx; padding: 20rpx 0;
+  margin: 0 25rpx;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -73,7 +76,7 @@
   text-decoration: line-through;
 }
 .task-item i-icon {
-  margin-right: 10rpx;
+  padding: 20rpx 10rpx 20rpx 0;
   color: var(--blue);
 }
 .task-item.done-task-item i-icon {

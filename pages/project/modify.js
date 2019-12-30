@@ -24,9 +24,7 @@ Page({
     }
 
     _projectId += ''
-    this.setData({
-      projectId: _projectId
-    })
+    this.data.projectId = _projectId
 
     this.getProjectInfo(_projectId)
   },
@@ -45,9 +43,9 @@ Page({
       } else {
         that.setData({
           project: res,
-          projectId: res._id,
           inputValue: res.name
         })
+        that.data.projectId = res._id
 
         that.getIconList()
         that.getCoverList()

@@ -65,9 +65,7 @@ Page({
     } else {
       _list.push('⛲ 分享到清单广场')
     }
-    this.setData({
-      projectOptList: _list
-    })
+    this.data.projectOptList = _list
   },
   showProjectOptModal() {
 

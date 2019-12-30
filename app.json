@@ -8,9 +8,7 @@
     "pages/project/archives",
 
     "pages/personal/index",
-    "pages/personal/about",
-
-    "pages/index/index"
+    "pages/personal/about"
   ],
   "subpackages": [
     {

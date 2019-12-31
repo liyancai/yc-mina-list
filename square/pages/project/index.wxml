@@ -1,6 +1,6 @@
 <yc-empty-view show='{{projectList.length==0 && !loading}}'>暂无数据</yc-empty-view>
 
-<block wx:for="{{projectList}}" wx:key="project_{{index}}">
+<block wx:for="{{projectList}}" wx:key="square_project">
 <navigator url="/square/pages/project/detail?projectId={{item._id}}">
   <view class="project-view" style="background: url('{{item.cover}}') {{item.color}} no-repeat; background-size: cover;">
     <view class="project-info {{item.cover ? '' : 'default'}}" style="background: {{item.color}};">

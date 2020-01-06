@@ -32,7 +32,6 @@
     transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
 }
 .section-item .progress-bar {
-  min-width: 1%;
   position: absolute;
   left: 0; bottom: -1px;
   z-index: 10;

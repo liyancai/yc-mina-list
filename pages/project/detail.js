@@ -21,7 +21,7 @@ Page({
 
     let _projectId = options.projectId
 
-    // _projectId = 'dbff9fc75e02c96206ba59575f276d72'
+    // _projectId = '1dfdda755e0c935000b98a15751fb035'
 
     if (_projectId == null || _projectId == undefined) {
 
@@ -180,6 +180,10 @@ Page({
   },
   // 查询清单下的未完成任务列表
   getTodoTaskList(__projectId) {
+    wx.showLoading({
+      title: '正在加载'
+    })
+
     let that = this
     // 调用task-list云函数请求
     wx.cloud.callFunction({
@@ -190,11 +194,13 @@ Page({
       }
     })
     .then(res => {
+      wx.hideLoading()
       that.setData({
         todoTaskList: res.result ? res.result.data : []
       })
     })
     .catch(err => {
+      wx.hideLoading()
       console.error(err)
     })
   },

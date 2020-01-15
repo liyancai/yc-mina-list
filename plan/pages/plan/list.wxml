@@ -7,7 +7,7 @@
 <view class="section-module" wx:for="{{planList}}" wx:key='plan'>
   <navigator url="/plan/pages/plan/detail?planId={{item._id}}">
   <view class="section-item">
-    <image src="{{item.avatar}}"></image>
+    <image src="/images/icon/goal.png"></image>
     <view>{{item.name}}</view>
     <span></span>
   </view>

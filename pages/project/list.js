@@ -6,6 +6,7 @@ Page({
     authModelVisible: false,
     moreMenuVisible: false,
     maxNumProject: 10,
+    planList: [],
     projectList: [],
     projectStatisticsMap: {},
   },
@@ -169,6 +170,12 @@ Page({
     this.toggleMoreMenu()
     wx.navigateTo({
       url: '/square/pages/project/index',
+    })
+  },
+  gotoPlanList() {
+    this.toggleMoreMenu()
+    wx.navigateTo({
+      url: '/plan/pages/plan/list',
     })
   },
   toggleMoreMenu() {

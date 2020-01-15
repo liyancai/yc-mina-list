@@ -1,0 +1,29 @@
+<i-message id="message" />
+
+<view class="label">我的小目标</view>
+
+<yc-empty-view show='{{planList.length==0 && !loading}}'>暂无计划，快来创建一个吧</yc-empty-view>
+
+<view class="section-module" wx:for="{{planList}}" wx:key='plan'>
+  <navigator url="/plan/pages/plan/detail?planId={{item._id}}">
+  <view class="section-item">
+    <image src="{{item.avatar}}"></image>
+    <view>{{item.name}}</view>
+    <span></span>
+  </view>
+  </navigator>
+</view>
+
+<view class="line-m"></view>
+
+<view class="opt-icon add" bindtap="addPlan"><i-icon type="add" size="28"/></view>
+
+<view class="auth-view {{authModelVisible ? 'active' : ''}}">
+  <view class="mask" bindtap="closeAuthView"></view>
+  <view class="main">
+    <view class="title">申请授权</view>
+    <view class="model-text">用以在清单中显示您的头像和昵称</view>
+    <button type="primary" open-type="getUserInfo" size="min" bindgetuserinfo="getUserInfo">授权</button>
+    <view class="link opt-link" catchtap="gotoCreate">跳过</view>
+  </view>
+</view>

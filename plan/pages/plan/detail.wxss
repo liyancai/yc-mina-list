@@ -1,0 +1,114 @@
+.plan-view {
+  padding: 20rpx 25rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.plan-opt {
+  align-self: flex-end;
+}
+.plan-opt i-icon {
+  padding: 15rpx;
+}
+.plan-view image {
+  width: 150rpx; height: 150rpx;
+  box-shadow: 2px 2px 10px rgba(10, 10, 10, .2);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+}
+.plan-account {
+  margin: 25rpx;
+}
+.plan-info {
+  margin: 10rpx;
+  color: var(--tips-font-color);
+  text-align: center;
+}
+.plan-time {
+  margin: 10rpx;
+  color: var(--tips-font-color);
+  font-size: 10pt;
+}
+
+
+
+.calendar-view {
+  margin: 25rpx;
+  box-shadow: 2px 2px 10px rgba(10, 10, 10, .2);
+  border-radius: 3px;
+}
+.calendar-title,
+.calendar-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.calendar-title {
+  border-bottom: 1px solid var(--ghostWhite);
+  font-size: 11pt;
+}
+.calendar-content {
+  flex-wrap: wrap;
+  font-size: 10pt;
+}
+.calendar-title > view,
+.calendar-content > view {
+  margin: 15rpx;
+  width: 70rpx; line-height: 70rpx;
+  text-align: center;
+}
+.calendar-content > view.active {
+  background: var(--green);
+  color: var(--white);
+  border-radius: 50%;
+}
+
+
+.canvas-view {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+}
+.canvas-view .mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, .7);
+  z-index: 10;
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.canvas-view .main {
+  margin: 50rpx auto;
+  width: 70vw;
+  position: relative;
+  z-index: 100;
+  transition: all .2s ease-in-out;
+  display: none;
+}
+.canvas-view.active .main {
+  display: block;
+}
+.canvas-view.active .mask {
+  opacity: 1;
+  visibility: visible;
+}
+.canvas-view canvas {
+  width: 70vw; height: 125vw;
+}
+.canvas-view .opt-view {
+  margin: 50rpx auto 0;
+  display: flex;
+  justify-content: space-between;
+}
+.canvas-view .opt-view .download-btn {
+  padding: 20rpx 0;
+  width: 240rpx;
+  text-align: center;
+  background: var(--green);
+  color: #fff;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px rgba(10, 10, 10, .2);  
+}
+

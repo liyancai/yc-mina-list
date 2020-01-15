@@ -1,0 +1,14 @@
+<i-message id="message" />
+
+<view class="label">小目标标题</view>
+
+<input value="{{inputValue}}" placeholder="请填写小目标标题" bindblur="bindBlurFunc" maxlength="50"></input>
+
+<view class="label">小目标时长</view>
+
+<view class="days-view">
+  <view class="days-item {{item == currentDays ? 'active' : ''}}" wx:for="{{daysList}}" wx:key='days' bindtap="toggleDays" data-days="{{item}}">{{item}} 天</view>
+</view>
+
+
+<view class="opt-btn" bindtap="addPlan">创建小目标</view>

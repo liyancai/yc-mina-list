@@ -1,0 +1,40 @@
+<i-message id="message" />
+
+<!--  -->
+<view class="plan-view">
+  <view class="plan-opt">
+    <i-icon wx:if="{{isMember}}" type="setup" size="24" bindtap="showPlanOptModal"/>
+  </view>
+  <image src="{{author.avatar}}" lazy-load="{{true}}"></image>
+  <view class="plan-account">{{author.nickname || ' '}}</view>
+  <view class="plan-info">{{plan.name || ''}}</view>
+  <view class="plan-time">{{startTime}} ~ {{endTime}}</view>
+</view>
+
+<view class="calendar-view">
+  <view class="calendar-title">
+  <block wx:for="{{weeks}}" wx:key="calendar_week">
+    <view>{{item}}</view>
+  </block>
+  </view>
+  <view class="calendar-content">
+  <block wx:for="{{detail}}" wx:key="calendar_date">
+    <view wx:if="{{item.placeholder}}">·</view>
+    <view wx:else class="{{item.done ? 'active' : ''}}" bindtap="modifyDayStatus" data-timestamp="{{item.timestamp}}">{{item.day}}</view>
+  </block>
+  </view>
+</view>
+
+<view class="line-m"></view>
+
+<!-- 海报 -->
+<view class="canvas-view {{placardVisible ? 'active' : ''}}" bindtap="closeCanvasView">
+  <view class="mask"></view>
+  <view class="main">
+    <canvas canvas-id="plan-placard"></canvas>
+    <view class="opt-view">
+      <view class="download-btn" catchtap="save2PhoneImage">下载到手机</view>
+      <view class="download-btn" catchtap="previewImage">长按分享</view>
+    </view>
+  </view>
+</view>

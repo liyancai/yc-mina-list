@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "i-icon": "../../components/iview/icon/index",
+    "i-message": "../../components/iview/message/index",
+    "yc-empty-view": "../../components/yc/yc-empty-view/yc-empty-view"
+  }
+}

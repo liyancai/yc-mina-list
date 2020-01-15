@@ -1,4 +1,4 @@
-<view class="section-user" style="background: url('{{bgImage}}') no-repeat; background-size: cover;">
+<view class="section-user" style="background: url('{{bgImage}}') no-repeat center; background-size: cover;">
   <open-data type="userAvatarUrl"></open-data>
   <open-data type="userNickName"></open-data>
 </view>

@@ -18,6 +18,15 @@
         "pages/project/index",
         "pages/project/detail"
       ]
+    },
+    {
+      "root": "plan",
+      "name": "plan",
+      "pages": [
+        "pages/plan/list",    
+        "pages/plan/create",
+        "pages/plan/detail"
+      ]
     }
   ],
   "window": {

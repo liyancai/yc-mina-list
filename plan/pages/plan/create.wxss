@@ -1,0 +1,28 @@
+.days-view {
+  margin: 25rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.days-item {
+  padding: 5px 0;
+  width: 120rpx;
+  font-size: 10pt;
+  text-align: center;
+  background: var(--gray-background-color);
+  border: 1px solid var(--green);
+  border-radius: 3px;
+}
+.days-item.active {
+  background: var(--green);
+  color: var(--white);
+}
+
+input {
+  margin: 0 20rpx; padding: 20rpx 15rpx;
+  border-bottom: 1px solid var(--ghostWhite);
+}
+
+.opt-icon {
+  left: calc(50vw - 20px);
+}

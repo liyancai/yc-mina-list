@@ -1,13 +1,37 @@
+const proIconServUtil = require('../../../service/ProjectIconService.js')
 const { $Message } = require('../../../components/iview/base/index');
 
 Page({
   data: {
+    currentIcon: {},
+    iconList: [],
+
     inputValue: '',
     currentDays: 21,
-    daysList: [10, 21, 30, 45, 84]
+    daysList: [10, 21, 30, 45, 84],
   },
   onLoad: function (options) {
+    this.getIconList()
+  },
+  getIconList() {
+    let that = this
+    wx.showNavigationBarLoading()
+    proIconServUtil.getList(res => {
+      wx.hideNavigationBarLoading()
 
+      that.setData({
+        iconList: res,
+        currentIcon: res[0]
+      })
+    })
+  },
+  // 切换图标
+  toggleIcon(event) {
+    let _icon = event.currentTarget.dataset.icon
+
+    this.setData({
+      currentIcon: _icon
+    })
   },
   // 切换小目标天数
   toggleDays(event) {
@@ -30,13 +54,13 @@ Page({
     let _name = this.data.inputValue
     if (_name == "") {
       $Message({
-        content: '前填写小目标标题!',
+        content: '先明确一下目标吧~',
         type: 'warning'
       });
       return
     } else if (_name.length < 5) {
       $Message({
-        content: '目标标题太短了吧!',
+        content: '目标标题太短了吧~',
         type: 'warning'
       });
       return
@@ -44,11 +68,13 @@ Page({
 
     let that = this
     wx.showLoading({ title: '正在创建···' })
+    let _icon = that.data.currentIcon
     wx.cloud.callFunction({
       name: 'plan-add',
       data: {
+        avatar: _icon.value,
         name: _name,
-        days: that.data.currentDays
+        days: that.data.currentDays,
       }
     })
     .then(res => {

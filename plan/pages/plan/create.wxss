@@ -1,3 +1,18 @@
+.icon-view {
+  margin: 25rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.icon-view image {
+  width: 120rpx; height: 120rpx;
+  border: 2px solid var(--ghostWhite);
+  border-radius: 3px;
+}
+.icon-view image.active {
+  border-color: var(--green);
+}
+
 .days-view {
   margin: 25rpx;
   display: flex;
@@ -9,8 +24,7 @@
   width: 120rpx;
   font-size: 10pt;
   text-align: center;
-  background: var(--gray-background-color);
-  border: 1px solid var(--green);
+  border: 2px solid var(--green);
   border-radius: 3px;
 }
 .days-item.active {

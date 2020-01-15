@@ -2,7 +2,7 @@ page {
   background: var(--gray-background-color);
 }
 .section-user {
-  min-height: 60vw;
+  min-height: 50vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

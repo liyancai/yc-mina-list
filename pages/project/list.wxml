@@ -1,8 +1,8 @@
 <i-message id="message" />
 
-<view class="label">我的清单</view>
-
 <yc-empty-view show='{{projectList.length==0 && !loading}}'>暂无清单，快来创建一个吧</yc-empty-view>
+
+<view class="label">我的清单</view>
 
 <view class="section-module" wx:for="{{projectList}}" wx:key='project'>
   <navigator url="/pages/project/detail?projectId={{item._id}}">
@@ -21,7 +21,8 @@
 <view class="opt-icon more" bindtap="toggleMoreMenu"><i-icon type="other" size="28"/></view>
 <view class="opt-icon achives {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoSquare"><i-icon type="integral" size="28"/></view>
 <view class="opt-icon about {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoPersonal"><i-icon type="mine" size="28"/></view>
-<view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}"><button open-type="contact" plain='{{true}}'><i-icon type="customerservice" size="28"/></button></view>
+<view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoPlanList"><i-icon type="flashlight" size="28"/></view>
+<!-- <view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}"><button open-type="contact" plain='{{true}}'><i-icon type="customerservice" size="28"/></button></view> -->
 
 
 <view class="auth-view {{authModelVisible ? 'active' : ''}}">

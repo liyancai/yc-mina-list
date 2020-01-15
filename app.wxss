@@ -42,6 +42,9 @@ page {
 
 .line-m { width: 100vw; height: 5vw; background-color: var(--main-background-color); }
 .line-m.min { height: 2vw; }
+.line-m.gray {
+  background-color: var(--gray-background-color);
+}
 .hidden { display: none; }
 .yc-ellipsis {
     line-height: 1.5rem;

@@ -3,6 +3,18 @@
   <open-data type="userNickName"></open-data>
 </view>
 
+<view class="line-m gray"></view>
+
+<view class="section-module">
+  <navigator url='/pages/project/archives'>
+  <view class="section-item">
+    <i-icon type="tasklist" size="24"/>
+    <view>已归档清单</view>
+    <span></span>
+  </view>
+  </navigator>
+</view>
+
 <view class="section-module">
   <navigator url='/square/pages/project/index'>
   <view class="section-item">
@@ -14,14 +26,16 @@
 </view>
 
 <view class="section-module">
-  <navigator url='/pages/project/archives'>
+  <navigator url='/plan/pages/plan/list'>
   <view class="section-item">
-    <i-icon type="tasklist" size="24"/>
-    <view>已归档清单</view>
+    <i-icon type="flashlight" size="24"/>
+    <view>小目标</view>
     <span></span>
   </view>
   </navigator>
 </view>
+
+<view class="line-m gray min"></view>
 
 <view class="section-module">
   <view class="section-item item-contact">

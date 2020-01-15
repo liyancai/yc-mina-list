@@ -129,20 +129,16 @@ Page({
   // 修改计划的明细状态
   modifyDayStatus(event) {
     let _dayObj = event.currentTarget.dataset.dayObj
-    console.log(event)
-    console.log(_dayObj)
 
-    //todo
-    // 如果
-    if(!_dayObj.done) {
-      if(_dayObj.timestamp > new Date().getTime()) {
-        $Message({
-          content: '不能选择未来时间哦！',
-          type: 'error',
-        });
-        return
-      }
-    }
+    // if(!_dayObj.done) {
+    //   if(_dayObj.timestamp > new Date().getTime()) {
+    //     $Message({
+    //       content: '不能选择未来时间哦！',
+    //       type: 'error',
+    //     });
+    //     return
+    //   }
+    // }
 
     let _plan = this.data.plan
     for(let i=0; i< _plan.detail.length; i++) {
@@ -190,7 +186,12 @@ Page({
     })
     .then(res => {
       wx.hideLoading()
-      that.gotoPlanList()
+      let pages = getCurrentPages()
+      if (pages.length >= 2) {
+        wx.navigateBack({})
+      } else {
+        that.gotoPlanList()
+      }
     })
     .catch(err => {
       wx.hideLoading()

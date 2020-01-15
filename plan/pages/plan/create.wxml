@@ -1,9 +1,20 @@
 <i-message id="message" />
 
+<!--  -->
+<view class="label">选择图标</view>
+
+<view class="icon-view">
+  <view wx:for="{{iconList}}" wx:key='icon'>
+    <image class="{{currentIcon._id == item._id ? 'active': ''}}" src="{{item.value}}" bindtap="toggleIcon" data-icon="{{item}}"></image>
+  </view>
+</view>
+
+<!--  -->
 <view class="label">小目标标题</view>
 
 <input value="{{inputValue}}" placeholder="请填写小目标标题" bindblur="bindBlurFunc" maxlength="50"></input>
 
+<!--  -->
 <view class="label">小目标时长</view>
 
 <view class="days-view">

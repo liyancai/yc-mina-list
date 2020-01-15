@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
 
   const { OPENID, APPID } = cloud.getWXContext()
 
-  const { name, days } = event
+  const { name, days, avatar } = event
 
   // 内容审核
   let _res = await msgSecCheck(name)
@@ -45,6 +45,7 @@ exports.main = async (event, context) => {
       data: {
         name: name,
         author: OPENID,
+        avatar: avatar,
         detail: _detail,
         done: false,
         createTime: _now,

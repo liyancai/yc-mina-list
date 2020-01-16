@@ -1,7 +1,5 @@
 <i-message id="message" />
 
-<yc-empty-view show='{{projectList.length==0 && !loading}}'>暂无清单，快来创建一个吧</yc-empty-view>
-
 <view class="label">我的清单</view>
 
 <view class="section-module" wx:for="{{projectList}}" wx:key='project'>
@@ -14,6 +12,9 @@
   </view>
   </navigator>
 </view>
+
+<!-- 空页面 -->
+<yc-empty-view show='{{projectList.length==0 && !loading}}'>暂无清单，快来创建一个吧</yc-empty-view>
 
 <view class="line-m"></view>
 

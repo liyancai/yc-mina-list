@@ -10,13 +10,16 @@
       <text>{{project.name || ''}}</text>
   </view>
 </view>
+
 <!--  -->
 <view class="member-view">
-  <view wx:for="{{project.members}}" wx:key="member">
-    <image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image>
-  </view>
+<block wx:for="{{project.members}}" wx:key="member">
+  <view><image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image></view>
+  <view class="icon-love" wx:if="{{index == 0 && project.cate_id == 2}}"><image src="/images/pro_cate/hearts.png"></image></view>
+</block>
   <view wx:if="{{project.members.length < project.max_num_account && isMember}}">
-    <button open-type="share"><i-icon type="add" size="40" color="{{project.color}}" /></button>
+    <button open-type="share" wx:if="{{project.cate_id == 2}}" style="color: {{project.color}};">TA</button>
+    <button open-type="share" wx:else><i-icon type="add" size="40" color="{{project.color}}" /></button>
   </view>
 </view>
 

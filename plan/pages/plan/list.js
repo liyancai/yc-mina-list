@@ -6,6 +6,7 @@ Page({
     authModelVisible: false,
     maxNumPlan: 10,
     planList: [],
+    planStatisticsMap: {}
   },
   onShow: function (options) {
     this.getPlanList()
@@ -32,6 +33,9 @@ Page({
         planList: res.result.data,
         loading: false
       })
+
+      that.getPlanStatistics(res.result.data);
+
     })
     .catch(err => {
       wx.hideNavigationBarLoading()
@@ -41,6 +45,33 @@ Page({
       console.error(err)
     })
 
+  },
+  // 获取清单完成度的统计信息
+  getPlanStatistics(__planList) {
+
+    if (__planList == null || __planList == undefined || __planList.length == 0) {
+      return
+    }
+
+    let _map = {}
+    __planList.forEach(v => {
+      let _total = v.detail.length
+      let _doneCount = 0
+      for (let i = 0; i < v.detail.length; i++) {
+        if (v.detail[i].done) {
+          _doneCount++
+        }
+      }
+      _map[v._id] = {
+        planId: v._id,
+        total: _total,
+        doneCount: _doneCount,
+        percent: _total == 0 ? 0 : Number(_doneCount / _total).toFixed(2),
+      }
+    })
+    this.setData({
+      planStatisticsMap: _map
+    })
   },
   getUserInfo(event) {
 

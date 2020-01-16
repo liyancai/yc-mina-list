@@ -82,6 +82,16 @@ Page({
     }
     return _weekList
   },
+  // 统计已完成的天数
+  getFinishedDayCount(__list) {
+    let _count = 0
+    for(let i=0; i<__list.length; i++) {
+      if(__list[i].done) {
+        _count++
+      }
+    }
+    return _count
+  },
   // 查询计划信息
   getPlanInfo(__planId) {
 
@@ -102,6 +112,7 @@ Page({
           detail: that.getWeekList4Show(res.detail),
           startTime: dateUtil.formatDateZh(res.detail[0].timestamp),
           endTime: dateUtil.formatDateZh(res.detail[res.detail.length - 1].timestamp),
+          finishedCount: that.getFinishedDayCount(res.detail),
         })
 
         let setMemberStatus = function() {
@@ -134,7 +145,7 @@ Page({
       if(_dayObj.timestamp > new Date().getTime()) {
         $Message({
           content: '不能选择未来时间哦！',
-          type: 'error',
+          type: 'warning',
         });
         return
       }
@@ -166,6 +177,7 @@ Page({
       that.data.plan = __plan
       that.setData({
         detail: that.getWeekList4Show(__plan.detail),
+        finishedCount: that.getFinishedDayCount(__plan.detail),
       })
       wx.hideLoading()
     })

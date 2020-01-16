@@ -1,5 +1,8 @@
 <i-message id="message" />
 
+<view class="bg-view"></view>
+
+<view class="main-view">
 <!--  -->
 <view class="plan-view">
   <view class="plan-opt">
@@ -8,7 +11,7 @@
   <image src="{{author.avatar}}" lazy-load="{{true}}"></image>
   <view class="plan-account">{{author.nickname || ' '}}</view>
   <view class="plan-info">{{plan.name || ''}}</view>
-  <view class="plan-time">{{startTime}} ~ {{endTime}}</view>
+  <view class="plan-time">{{startTime}} ~ {{endTime}} ({{finishedCount}}/{{plan.detail.length}})</view>
 </view>
 
 <view class="calendar-view">
@@ -33,7 +36,7 @@
   </view>
 </view>
 
-<view class="line-m"></view>
+</view>
 
 <!-- 海报 -->
 <view class="canvas-view {{placardVisible ? 'active' : ''}}" bindtap="closeCanvasView">

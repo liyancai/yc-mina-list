@@ -21,5 +21,10 @@
   <view class="days-item {{item == currentDays ? 'active' : ''}}" wx:for="{{daysList}}" wx:key='days' bindtap="toggleDays" data-days="{{item}}">{{item}} 天</view>
 </view>
 
+<view class="line-m"></view>
+<view class="line-m"></view>
+<view class="line-m"></view>
+<view class="line-m"></view>
+<view class="line-m"></view>
 
 <view class="opt-btn" bindtap="addPlan">创建小目标</view>

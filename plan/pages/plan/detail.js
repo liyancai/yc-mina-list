@@ -144,7 +144,7 @@ Page({
     if(!_dayObj.done) {
       if(_dayObj.timestamp > new Date().getTime()) {
         $Message({
-          content: '不能选择未来时间哦！',
+          content: '不能选择未来时间哦~',
           type: 'warning',
         });
         return

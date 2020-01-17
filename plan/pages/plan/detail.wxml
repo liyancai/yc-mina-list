@@ -11,7 +11,7 @@
   <image src="{{author.avatar}}" lazy-load="{{true}}"></image>
   <view class="plan-account">{{author.nickname || ' '}}</view>
   <view class="plan-info">{{plan.name || ''}}</view>
-  <view class="plan-time">{{startTime}} ~ {{endTime}} ({{finishedCount}}/{{plan.detail.length}})</view>
+  <view class="plan-time">{{startTime + '~' + endTime}} ({{finishedCount || 0}}/{{plan.detail.length || 0}})</view>
 </view>
 
 <view class="calendar-view">

@@ -77,8 +77,6 @@ Page({
       }
     })
     .then(res => {
-      console.log(res)
-
       // 将project从已归档列表移除
       that.data.projectList.splice(__index, 1)
 

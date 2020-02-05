@@ -99,6 +99,77 @@ Page({
       console.error(err)
     })
   },
+  showProjectOptModal(event) {
+
+    let _project = event.currentTarget.dataset.project
+    let _index = event.currentTarget.dataset.index
+
+    let that = this
+    wx.showActionSheet({
+      itemList: [
+        '️️️📄 查看详情',
+        '📥 将清单归档',
+        '🗑️ 删除清单',
+      ],
+      success(res) {
+        if (res.tapIndex == 0) {
+          that.gotoProjectDetail(event)
+        } else if (res.tapIndex == 1) {
+          that.doDoneProject(_index, _project)
+        } else if (res.tapIndex == 2) {
+          that.doRemoveProject(_index, _project)
+        }
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  // 归档清单
+  doDoneProject(__index, __project) {
+    let that = this
+    wx.showLoading({ title: '正在归档···' })
+    wx.cloud.callFunction({
+      name: 'project-modify',
+      data: {
+        action: 'done',
+        projectId: __project._id,
+      }
+    })
+    .then(res => {
+      wx.hideLoading()
+      that.data.projectList.splice(__index, 1)
+      that.setData({
+        projectList: that.data.projectList
+      })
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
+  },
+  // 删除清单
+  doRemoveProject(__index, __project) {
+    let that = this
+    wx.showLoading({ title: '正在删除···' })
+    wx.cloud.callFunction({
+      name: 'project-remove',
+      data: {
+        project: __project,
+      }
+    })
+    .then(res => {
+      wx.hideLoading()
+      that.data.projectList.splice(__index, 1)
+      that.setData({
+        projectList: that.data.projectList
+      })
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
+  },
   getUserInfo(event) {
 
     this.setData({
@@ -152,6 +223,12 @@ Page({
     this.toggleMoreMenu()
     wx.navigateTo({
       url: '/pages/personal/about',
+    })
+  },
+  gotoProjectDetail(event) {
+    let _project = event.currentTarget.dataset.project
+    wx.navigateTo({
+      url: '/pages/project/detail?projectId=' + _project._id,
     })
   },
   gotoProjectArchives() {

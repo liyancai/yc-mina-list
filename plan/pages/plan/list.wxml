@@ -1,18 +1,16 @@
 <i-message id="message" />
 
-<view class="label">我的小目标</view>
+<view class="label">我的小目标 <text class="tips">beta</text></view>
 
 <yc-empty-view show='{{planList.length==0 && !loading}}'>暂无计划，快来创建一个吧</yc-empty-view>
 
 <view class="section-module" wx:for="{{planList}}" wx:key='plan'>
-  <navigator url="/plan/pages/plan/detail?planId={{item._id}}">
-  <view class="section-item">
+  <view class="section-item" catchtap="gotoPlanDetail" bindlongpress="showPlanOptModal" data-plan="{{item}}" data-index="{{index}}">
     <image src="{{item.avatar}}"></image>
     <view>{{item.name}}</view>
     <span></span>
     <view class="progress-bar" style="width: {{planStatisticsMap[item._id].percent * 100 || 0}}%;"></view>
   </view>
-  </navigator>
 </view>
 
 <view class="line-m"></view>

@@ -73,6 +73,50 @@ Page({
       planStatisticsMap: _map
     })
   },
+  showPlanOptModal(event) {
+
+    let _plan = event.currentTarget.dataset.plan
+    let _index = event.currentTarget.dataset.index
+
+    let that = this
+    wx.showActionSheet({
+      itemList: [
+        '️️️📄 查看详情',
+        '🗑️ 删除该计划',
+      ],
+      success(res) {
+        if (res.tapIndex == 0) {
+          that.gotoPlanDetail(event)
+        } else if (res.tapIndex == 1) {
+          that.doRemovePlan(_index, _plan)
+        }
+      },
+      fail(res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+  doRemovePlan(__index, __plan) {
+    let that = this
+    wx.showLoading({ title: '正在删除···' })
+    wx.cloud.callFunction({
+      name: 'plan-remove',
+      data: {
+        planId: __plan._id,
+      }
+    })
+    .then(res => {
+      wx.hideLoading()
+      that.data.planList.splice(__index, 1)
+      that.setData({
+        planList: that.data.planList
+      })
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
+  },
   getUserInfo(event) {
 
     this.setData({
@@ -110,6 +154,13 @@ Page({
           that.gotoCreate()
         }
       },
+    })
+  },
+  //进入计划详情页
+  gotoPlanDetail(event) {
+    let _plan = event.currentTarget.dataset.plan
+    wx.navigateTo({
+      url: '/plan/pages/plan/detail?planId=' + _plan._id,
     })
   },
   //跳转到创建清单页

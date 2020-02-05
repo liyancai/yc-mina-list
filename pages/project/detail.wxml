@@ -15,7 +15,7 @@
 <view class="member-view">
 <block wx:for="{{project.members}}" wx:key="member">
   <view><image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image></view>
-  <view class="icon-love" wx:if="{{index == 0 && project.cate_id == 2}}"><image src="/images/pro_cate/hearts.png"></image></view>
+  <view class="icon-love" wx:if="{{index == 0 && project.cate_id == 2 && (isMember || project.members.length == 2)}}"><image src="/images/pro_cate/hearts.png"></image></view>
 </block>
   <view wx:if="{{project.members.length < project.max_num_account && isMember}}">
     <button open-type="share" wx:if="{{project.cate_id == 2}}" style="color: {{project.color}};">TA</button>

@@ -3,14 +3,12 @@
 <view class="label">我的清单</view>
 
 <view class="section-module" wx:for="{{projectList}}" wx:key='project'>
-  <navigator url="/pages/project/detail?projectId={{item._id}}">
-  <view class="section-item">
+  <view class="section-item" catchtap="gotoProjectDetail" bindlongpress="showProjectOptModal" data-project="{{item}}" data-index="{{index}}">
     <image src="{{item.avatar}}"></image>
     <view>{{item.name}}</view>
     <span></span>
     <view class="progress-bar" style="width: {{projectStatisticsMap[item._id].percent * 100 || 0}}%;"></view>
   </view>
-  </navigator>
 </view>
 
 <!-- 空页面 -->

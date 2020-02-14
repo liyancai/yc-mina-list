@@ -24,14 +24,14 @@
   <view wx:if="{{isMember}}" class="calendar-content">
   <block wx:for="{{detail}}" wx:key="calendar_date">
     <view wx:if="{{item.placeholder}}"> </view>
-    <view wx:else class="{{item.done ? 'active' : ''}}" bindtap="modifyDayStatus" data-day-obj="{{item}}">{{item.day}}</view>
+    <view wx:else class="{{item.done ? 'active' : ''}}" bindtap="modifyDayStatus" data-day-obj="{{item}}">{{item.done ? '`' : item.day}}</view>
   </block>
   </view>
 
   <view wx:else class="calendar-content">
   <block wx:for="{{detail}}" wx:key="calendar_date">
     <view wx:if="{{item.placeholder}}"> </view>
-    <view wx:else class="{{item.done ? 'active' : ''}}">{{item.day}}</view>
+    <view wx:else class="{{item.done ? 'active' : ''}}">{{item.done ? '`' : item.day}}</view>
   </block>
   </view>
 </view>

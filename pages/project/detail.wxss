@@ -93,11 +93,14 @@
   color: var(--green);
 }
 
+.model-view,
 .canvas-view {
   width: 100vw;
-  position: absolute;
+  position: fixed;
   top: 0;
+  z-index: 10;
 }
+.model-view .mask,
 .canvas-view .mask {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -115,9 +118,11 @@
   transition: all .2s ease-in-out;
   display: none;
 }
+.model-view.active .main,
 .canvas-view.active .main {
   display: block;
 }
+.model-view.active .mask,
 .canvas-view.active .mask {
   opacity: 1;
   visibility: visible;
@@ -140,3 +145,43 @@
   box-shadow: 2px 2px 10px rgba(10, 10, 10, .2);  
 }
 
+.model-view .main {
+  margin: 350rpx auto 0;
+  width: 70vw;
+  background: #fff;
+  border-radius: 3px;
+  position: relative;
+  z-index: 100;
+  transition: all .2s ease-in-out;
+  display: none;
+}
+.model-view .title {
+  padding: 20rpx;
+  font-size: 12pt;
+  text-align: center;
+}
+.model-view textarea {
+  padding: 25rpx;
+  width: calc(100% - 50rpx); height: 160rpx;
+  box-sizing: content-box;
+  border-top: 1px solid var(--ghostWhite);
+}
+.model-opt {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10pt;
+}
+.model-opt view {
+  padding: 15rpx 0;
+  flex: 1;
+  text-align: center;
+  border-top: 1px solid var(--ghostWhite);
+  box-sizing: content-box;
+}
+.model-opt view:last-child {
+  background: var(--green);
+  color: var(--white);
+  border-top: 1px solid var(--green);
+  border-bottom-right-radius: 3px;
+}

@@ -7,21 +7,25 @@ const { $Message } = require('../../components/iview/base/index');
 Page({
   data: {
     inputValue: '',
+    textareaValue: '',
     projectId: '',
     project: null,
+    currentTask: null,
+    currentTaskIndex: 0,
     memberMap: {},
     todoTaskList: [],
     doneTaskList: [],
     isMember: false,
     projectOptList: [],
     placardVisible: false,
+    taskEditModelVisible: false,
     cover_temp: '/images/cover.png'
   },
   onLoad: function (options) {
 
     let _projectId = options.projectId
 
-    // _projectId = '1dfdda755e0c935000b98a15751fb035'
+    // _projectId = '59f543215e155d33002bde9768e4f7e1'
 
     if (_projectId == null || _projectId == undefined) {
 
@@ -106,11 +110,25 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
+        '📝 修改内容',
         '🗑️ 删除该事项'
       ],
       success(res) {
-        if(res.tapIndex == 0) {
-
+        if (res.tapIndex == 0) {
+          if(_task.done) {
+            $Message({
+              content: '该待办事项已经完成！',
+              type: 'warning'
+            });
+          } else {
+            that.data.currentTaskIndex = _index
+            that.setData({
+              currentTask: _task,
+              textareaValue: '',
+            })
+            that.openTaskEditView()
+          }
+        } else if (res.tapIndex == 1) {
           if(_task.done) {
             that.data.doneTaskList.splice(_index, 1)
 
@@ -294,6 +312,28 @@ Page({
     let _index = event.currentTarget.dataset.index
     this.doModifyTask('undone', _index, _taskId)
   },
+  bindTextareaValueFunc(event) {
+    this.setData({
+      textareaValue: event.detail.value.trim()
+    })
+  },
+  //保存修改任务
+  modifyTask() {
+
+    let _textareaValue = this.data.textareaValue
+    if(_textareaValue == this.data.currentTask.title || _textareaValue == '') {
+      this.closeTaskEditView()
+      return
+    } else {
+      this.doModifyTask(
+        'modify',
+        this.data.currentTaskIndex,
+        this.data.currentTask._id,
+        _textareaValue
+      )
+    }
+
+  },
   // 编辑任务
   doModifyTask(__action, __index, __taskId, __title) {
 
@@ -324,6 +364,13 @@ Page({
           doneTaskList: that.data.doneTaskList
         })
         that.getTodoTaskList(_projectId)
+      } else if (__action == 'modify') {
+        that.data.todoTaskList[__index].title = __title
+
+        that.setData({
+          todoTaskList: that.data.todoTaskList
+        })
+        that.closeTaskEditView()
       }
       wx.hideLoading()
     })
@@ -462,6 +509,17 @@ Page({
     let that = this
     wx.redirectTo({
       url: '/pages/project/modify?projectId=' + this.data.projectId,
+    })
+  },
+  openTaskEditView() {
+    let that = this
+    that.setData({
+      taskEditModelVisible: true,
+    })
+  },
+  closeTaskEditView() {
+    this.setData({
+      taskEditModelVisible: false,
     })
   },
   /**

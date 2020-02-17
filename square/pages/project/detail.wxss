@@ -68,6 +68,7 @@
 .task-item i-icon {
   margin-right: 10rpx;
   color: var(--blue);
+  align-self: flex-start;
 }
 .task-item.done-task-item i-icon {
   color: var(--green);

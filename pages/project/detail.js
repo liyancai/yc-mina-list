@@ -25,7 +25,7 @@ Page({
 
     let _projectId = options.projectId
 
-    // _projectId = '59f543215e155d33002bde9768e4f7e1'
+    // _projectId = '74b140b45e48aa251063c78b5a4639e9'
 
     if (_projectId == null || _projectId == undefined) {
 
@@ -110,11 +110,17 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
+        '📑 复制内容',
         '📝 修改内容',
         '🗑️ 删除该事项'
       ],
       success(res) {
         if (res.tapIndex == 0) {
+          wx.setClipboardData({
+            data: _task.title,
+            success(res) {}
+          })
+        } else if (res.tapIndex == 1) {
           if(_task.done) {
             $Message({
               content: '该待办事项已经完成！',
@@ -128,7 +134,7 @@ Page({
             })
             that.openTaskEditView()
           }
-        } else if (res.tapIndex == 1) {
+        } else if (res.tapIndex == 2) {
           if(_task.done) {
             that.data.doneTaskList.splice(_index, 1)
 

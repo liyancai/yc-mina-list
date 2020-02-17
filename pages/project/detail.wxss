@@ -68,9 +68,10 @@
   justify-content: flex-start;
   align-items: center;
   border-bottom: 1px solid var(--ghostWhite);
-
+  word-wrap: break-word;
+  word-break: break-all;
 }
-.task-item image {
+.task-item > image {
   width: 50rpx; height: 50rpx;
   border: 1px solid var(--ghostWhite);
   border-radius: 50%;
@@ -81,6 +82,9 @@
 .task-item-title {
   flex: 1;
 }
+.task-item-title image {
+  width: 540rpx;
+}
 .task-item.done-task-item {
   color: var(--tips-font-color);
   text-decoration: line-through;
@@ -88,7 +92,6 @@
 .task-item i-icon {
   margin-right: 10rpx;
   color: var(--blue);
-  align-self: flex-start;
 }
 .task-item.done-task-item i-icon {
   color: var(--green);

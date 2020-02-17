@@ -371,7 +371,17 @@ Page({
         })
         that.getTodoTaskList(_projectId)
       } else if (__action == 'modify') {
-        that.data.todoTaskList[__index].title = __title
+
+        let _type = ''
+        let _title = __title
+
+        const IMAGE_TAG = 'image://'
+        if (_title.substr(0, IMAGE_TAG.length) == IMAGE_TAG) {
+          _type = 'image'
+          _title = _title.substr(IMAGE_TAG.length)
+        }
+        that.data.todoTaskList[__index].title = _title
+        that.data.todoTaskList[__index].type = _type
 
         that.setData({
           todoTaskList: that.data.todoTaskList
@@ -694,7 +704,7 @@ Page({
     } else {
       return {
         title: this.data.project.name + ' - 来自简单好用的清单小程序',
-        path: '/pages/project/detail?projectId=' + this.data.projectId
+        path: '/square/pages/project/detail?projectId=' + this.data.projectId
       }
     }
   }

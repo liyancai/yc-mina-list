@@ -15,17 +15,35 @@ exports.main = async (event, context) => {
 
   const { action, taskId, title } = event
 
-  let _data = (action == 'modify') ? {
-    title: title,
-    modifyTime: new Date(),
-  } : (action == 'done') ? {
-    completer: OPENID,
-    done: true,
-    finishedTime: new Date(),
-  } : (action == 'undone') ? {
-    done: false,
-  } : {}
+  let _data = {}
+  if (action == 'modify') {
 
+    let _type = ''
+    let _title = title
+
+    const IMAGE_TAG = 'image://'
+    if (_title.substr(0, IMAGE_TAG.length) == IMAGE_TAG) {
+      _type = 'image'
+      _title = _title.substr(IMAGE_TAG.length)
+    }
+
+    _data = {
+      type: _type,
+      title: _title,
+      modifyTime: new Date(),
+    }
+  } else if (action == 'done') {
+    _data = {
+      completer: OPENID,
+      done: true,
+      finishedTime: new Date(),
+    }
+  } else if (action == 'undone') {
+    _data = {
+      done: false,
+    }
+  }
+  
   try {
     return await coll.doc(taskId).update({
       data: _data

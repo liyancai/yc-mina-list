@@ -56,10 +56,14 @@
   justify-content: flex-start;
   align-items: center;
   border-bottom: 1px solid var(--ghostWhite);
-
+  word-wrap: break-word;
+  word-break: break-all;
 }
 .task-item-title {
   flex: 1;
+}
+.task-item-title image {
+  width: 600rpx;
 }
 .task-item.done-task-item {
   color: var(--tips-font-color);

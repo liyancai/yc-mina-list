@@ -24,11 +24,22 @@ exports.main = async (event, context) => {
   }
 
   try {
+
+    let _type = ''
+    let _title = title
+
+    const IMAGE_TAG = 'image://'
+    if (_title.substr(0, IMAGE_TAG.length) == IMAGE_TAG) {
+      _type = 'image'
+      _title = _title.substr(IMAGE_TAG.length)
+    }
+
     let _now = new Date()
     return await coll.add({
       data: {
         projectId: projectId,
-        title: title,
+        type: _type,
+        title: _title,
         author: OPENID,
         completer: '',
         done: false,

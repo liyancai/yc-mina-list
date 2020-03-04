@@ -150,7 +150,7 @@
 }
 
 .model-view .main {
-  margin: 350rpx auto 0;
+  margin: 250rpx auto 0;
   width: 70vw;
   background: #fff;
   border-radius: 3px;

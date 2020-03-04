@@ -25,7 +25,7 @@ Page({
 
     let _projectId = options.projectId
 
-    // _projectId = '74b140b45e48aa251063c78b5a4639e9'
+    // _projectId = 'd9ea35c25e496efe10ba9a526236351b'
 
     if (_projectId == null || _projectId == undefined) {
 
@@ -130,7 +130,7 @@ Page({
             that.data.currentTaskIndex = _index
             that.setData({
               currentTask: _task,
-              textareaValue: '',
+              textareaValue: _task.title,
             })
             that.openTaskEditView()
           }
@@ -327,9 +327,14 @@ Page({
   modifyTask() {
 
     let _textareaValue = this.data.textareaValue
-    if(_textareaValue == this.data.currentTask.title || _textareaValue == '') {
+    if(_textareaValue == this.data.currentTask.title) {
       this.closeTaskEditView()
       return
+    } else if (_textareaValue == '') {
+      $Message({
+        content: '待办事项不能为空哦~',
+        type: 'warning'
+      });
     } else {
       this.doModifyTask(
         'modify',

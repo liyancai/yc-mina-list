@@ -28,7 +28,7 @@
 
 <view wx:if="{{isMember}}" class="task-item todo-task-item">
   <i-icon type="add" size="28" />
-  <input value="{{inputValue}}" placeholder="添加新的待办事项" maxlength="200" bindconfirm="addTask"></input>
+  <input value="{{inputValue}}" placeholder="添加新的待办事项" maxlength="300" bindblur="addTask" ></input>
 </view>
 
 <block wx:for="{{todoTaskList}}" wx:key='todo_task'>
@@ -102,7 +102,7 @@
   <view class="main">
     <view class="title">修改内容</view>
     <view class="model-text">
-      <textarea placeholder="请填写待办事项" value="{{textareaValue}}" fixed="{{true}}" maxlength="200" bindinput="bindTextareaValueFunc" />
+      <textarea placeholder="请填写待办事项" value="{{textareaValue}}" fixed="{{true}}" maxlength="300" bindinput="bindTextareaValueFunc" />
     </view>
     <view class="model-opt">
       <view catchtap="closeTaskEditView">取消</view>

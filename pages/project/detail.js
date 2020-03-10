@@ -25,7 +25,7 @@ Page({
 
     let _projectId = options.projectId
 
-    // _projectId = 'd9ea35c25e496efe10ba9a526236351b'
+    // _projectId = ''
 
     if (_projectId == null || _projectId == undefined) {
 
@@ -614,7 +614,15 @@ Page({
     var maxWidth = __cWidth * .7
 
     let _maxListLength = 10
-    let _list = that.data.todoTaskList.concat(that.data.doneTaskList)
+    let _list_all = that.data.todoTaskList.concat(that.data.doneTaskList)
+
+    // 过滤掉task是image的项目，生成的海报图片，只展示文字项
+    let _list = []
+    for (let i = 0; i < _list_all.length; i++) {
+      if (_list_all[i].type != 'image') {
+        _list.push(_list_all[i])
+      }
+    }
     for (var i = 0; i < _list.length && i < _maxListLength; i++) {
       //绘制文章列表前的圆点
       _ctx.setTextAlign('left')

@@ -14,19 +14,16 @@
 
 <view class="label">说明书</view>
 <view class="desc-view">
-  <view>1. 创建清单（拿出小本本，列一张单子）。</view>
-  <view>2. 编辑清单时可以更换图标和封面图等。</view>
-  <view>3. 在清单里添加待办事项。</view>
-  <view>4. 添加清单成员，大家一起完成。个人清单只能1人使用，情侣清单2人，其他类型目前可以添加3人。</view>
-  <view>5. 清单可以归档，归档的清单将不在首页列表显示。</view>
-  <view>6. 长按待办事项可以删除。</view>
-  <view>7. 长按已归档的清单可以恢复清单。</view>
+  <navigator url="/square/pages/project/detail?projectId=sys-3">
+  <view class="opt-link">了解更多隐藏功能 >></view>
+  </navigator>
 </view>
 
 <view class="label">关于我们</view>
 <view class="desc-view">
   <view>打了鸡血一样的工作，蜗牛一般的生活。</view>
-  <view>如何联系我们？微信: bzsnail 或者 客服会话</view>
+  <view>如何联系我们？</view>
+  <view>微信: bzsnail 或者 客服会话 或者 意见反馈</view>
 </view>
 
 <view class="line-m"></view>

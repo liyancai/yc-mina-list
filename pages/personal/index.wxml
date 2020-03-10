@@ -47,9 +47,20 @@
 </view>
 
 <view class="section-module">
+  <view class="section-item item-contact">
+    <i-icon type="feedback" size="24"/>
+    <view>意见反馈</view>
+    <span></span>
+    <button open-type="feedback" plain='{{true}}'></button>
+  </view>
+</view>
+
+<view class="line-m gray min"></view>
+
+<view class="section-module">
   <navigator url='/pages/personal/about'>
   <view class="section-item">
-    <i-icon type="feedback" size="24"/>
+    <i-icon type="eit" size="24"/>
     <view>关于小本子</view>
     <span></span>
   </view>

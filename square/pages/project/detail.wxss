@@ -63,7 +63,8 @@
   flex: 1;
 }
 .task-item-title image {
-  width: 600rpx;
+  margin: 0 25rpx;
+  width: 650rpx;
 }
 .task-item.done-task-item {
   color: var(--tips-font-color);

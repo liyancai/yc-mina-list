@@ -12,6 +12,6 @@
 
 <view class="label">清单标题</view>
 
-<input value="{{inputValue}}" placeholder="可不填，默认名称：{{placeholder}}" bindblur="bindBlurFunc" maxlength="30"></input>
+<input value="{{inputValue}}" placeholder="默认清单名称：{{placeholder}}" bindblur="bindBlurFunc" maxlength="30"></input>
 
 <view class="opt-btn" bindtap="addProject">创建清单</view>

@@ -108,7 +108,7 @@ Page({
     wx.showActionSheet({
       itemList: [
         '️️️📄 查看详情',
-        '📥 将清单归档',
+        '📥 清单归档',
         '🗑️ 删除清单',
       ],
       success(res) {

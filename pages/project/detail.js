@@ -56,9 +56,9 @@ Page({
   initProjectOptList(__project) {
     let _list = [
       '📝 个性设置',
-      '📥 将清单归档',
+      '🌇 生成海报',
+      '📥 清单归档',
       '🗑️ 删除清单',
-      '🌇 生成海报图片',
     ]
     if (__project.square) {
       if (__project.audit) {
@@ -84,11 +84,11 @@ Page({
         if (res.tapIndex == 0) {
           that.gotoModify()
         } else if (res.tapIndex == 1) {
-          that.doDoneProject(_project)
-        } else if (res.tapIndex == 2) {
-          that.doRemoveProject(_project)
-        } else if (res.tapIndex == 3) {
           that.openCanvasView()
+        } else if (res.tapIndex == 2) {
+          that.doDoneProject(_project)
+        } else if (res.tapIndex == 3) {
+          that.doRemoveProject(_project)
         } else if (res.tapIndex == 4) {
           if (_project.square) {
             that.unSquareProject(_project)

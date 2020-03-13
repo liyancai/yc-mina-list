@@ -3,6 +3,7 @@ const { $Message } = require('../../../components/iview/base/index');
 
 Page({
   data: {
+    addPlanLoading: false,
     currentIcon: {},
     iconList: [],
 
@@ -51,6 +52,10 @@ Page({
   // 新建计划
   addPlan() {
 
+    if (this.data.addPlanLoading) {
+      return
+    }
+
     let _name = this.data.inputValue
     if (_name == "") {
       $Message({
@@ -66,8 +71,10 @@ Page({
       return
     }
 
-    let that = this
+    this.data.addPlanLoading = true
     wx.showLoading({ title: '正在创建···' })
+
+    let that = this
     let _icon = that.data.currentIcon
     wx.cloud.callFunction({
       name: 'plan-add',
@@ -78,6 +85,7 @@ Page({
       }
     })
     .then(res => {
+      this.data.addPlanLoading = false
       wx.hideLoading()
       if (res.result && res.result._id) {
         wx.redirectTo({
@@ -96,6 +104,7 @@ Page({
       }
     })
     .catch(err => {
+      this.data.addPlanLoading = false
       wx.hideLoading()
       console.error(err)
     })

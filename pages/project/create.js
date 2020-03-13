@@ -3,6 +3,7 @@ const { $Message } = require('../../components/iview/base/index');
 
 Page({
   data: {
+    addProjectLoading: false,
     currentCate: {},
     cateList: [],
 
@@ -61,15 +62,19 @@ Page({
   // 新建清单
   addProject() {
 
+    if (this.data.addProjectLoading) {
+      return
+    }
+
+    this.data.addProjectLoading = true
+    wx.showLoading({ title: '正在创建···' })
+
     let _name = this.data.inputValue
     if (_name == "") {
       _name = this.data.placeholder
     }
 
     let that = this
-    // 调用添加project云函数请求
-    
-    wx.showLoading({ title: '正在创建···' })
     let _cate = that.data.currentCate
     wx.cloud.callFunction({
       name: 'project-add',
@@ -82,6 +87,7 @@ Page({
       }
     })
     .then(res => {
+      this.data.addProjectLoading = false
       wx.hideLoading()
       if (res.result && res.result._id) {
         wx.redirectTo({
@@ -100,6 +106,7 @@ Page({
       }
     })
     .catch(err => {
+      this.data.addProjectLoading = false
       wx.hideLoading()
       console.error(err)
     })

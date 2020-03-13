@@ -6,6 +6,7 @@ const { $Message } = require('../../components/iview/base/index');
 
 Page({
   data: {
+    addTaskLoading: false,
     inputValue: '',
     textareaValue: '',
     projectId: '',
@@ -250,6 +251,11 @@ Page({
   },
   // 添加待办任务
   addTask(event) {
+
+    if (this.data.addTaskLoading) {
+      return
+    }
+
     if(this.data.project == null) {
       return
     }
@@ -265,9 +271,11 @@ Page({
       return
     }
 
+    this.data.addTaskLoading = true
+    wx.showLoading({ title: '正在添加···' })
+
     let that = this
     // 调用添加task的云函数请求
-    wx.showLoading({ title: '正在添加···' })
     wx.cloud.callFunction({
       name: 'task-add',
       data: {
@@ -276,6 +284,7 @@ Page({
       }
     })
     .then(res => {
+      this.data.addTaskLoading = false
       wx.hideLoading()
       if (res.result && res.result._id) {
         // 添加新task成功后，将对象添加到todoTaskList的开头
@@ -304,6 +313,7 @@ Page({
       }
     })
     .catch(err => {
+      this.data.addTaskLoading = false
       wx.hideLoading()
       console.error(err)
     })

@@ -70,6 +70,7 @@
   border-bottom: 1px dashed var(--ghostWhite);
   word-wrap: break-word;
   word-break: break-all;
+  line-height: 22pt;
 }
 .task-item > image {
   width: 50rpx; height: 50rpx;

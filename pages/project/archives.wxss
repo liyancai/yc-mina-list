@@ -13,6 +13,5 @@
 }
 .section-item view {
     line-height: 1.8rem;
-    font-size: 12pt;
     flex: 1;
 }

@@ -69,10 +69,10 @@
 .opt-icon.achives.active {
   left: calc(10vw); bottom: calc(10vw + 60px);
 }
-.opt-icon.about.active {
+.opt-icon.contact.active {
   left: calc(10vw + 50px); bottom: calc(10vw + 50px);
 }
-.opt-icon.contact.active {
+.opt-icon.about.active {
   left: calc(10vw + 60px); bottom: calc(10vw);
 }
 .opt-icon.contact button {

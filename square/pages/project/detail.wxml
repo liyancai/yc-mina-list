@@ -17,7 +17,7 @@
 <!--  -->
 <block wx:for="{{todoTaskList}}" wx:key='todo_task'>
   <view class="task-item todo-task-item">
-    <i-icon wx:if="{{item.type!='image'}}" type="label" size="24"/>
+    <i-icon wx:if="{{item.type!='image'}}" type="label" size="22"/>
     <view class="task-item-title">
       <image wx:if="{{item.type=='image'}}" src="{{item.title}}" lazy-load="{{true}}" mode="widthFix"></image>
       <span wx:else>{{item.title}}</span>
@@ -28,7 +28,7 @@
 <!--  -->
 <block wx:for="{{doneTaskList}}" wx:key='done_task'>
   <view class="task-item done-task-item">
-    <i-icon type="success" size="24"/>
+    <i-icon type="success" size="22"/>
     <view class="task-item-title">
       <image wx:if="{{item.type=='image'}}" src="{{item.title}}" lazy-load="{{true}}" mode="widthFix"></image>
       <span wx:else>{{item.title}}</span>

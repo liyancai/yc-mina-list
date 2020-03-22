@@ -20,14 +20,14 @@
   padding: 15rpx;
 }
 .member-view {
-  margin-top: -72rpx;
+  margin: -72rpx 0 20rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
-.member-view>view {
-  margin: 0 20rpx;
+.member-view > view {
+  margin: 10rpx 15rpx;
   width: 140rpx; height: 140rpx;
   display: flex;
   justify-content: space-around;

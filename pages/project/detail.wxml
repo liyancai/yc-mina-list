@@ -28,7 +28,7 @@
 
 <view wx:if="{{isMember}}" class="task-item todo-task-item">
   <i-icon type="add" size="28" />
-  <input value="{{inputValue}}" placeholder="添加新的待办事项" maxlength="300" bindblur="addTask" ></input>
+  <input value="{{inputValue}}" placeholder="在这里添加新的待办事项" maxlength="300" bindblur="addTask" ></input>
 </view>
 
 <block wx:for="{{todoTaskList}}" wx:key='todo_task'>
@@ -44,7 +44,7 @@
   </view>
 
   <view wx:else class="task-item todo-task-item">
-    <i-icon type="label" size="24"/>
+    <i-icon type="label" size="22"/>
 
     <view class="task-item-title">
       <image wx:if="{{item.type=='image'}}" src="{{item.title}}" lazy-load="{{true}}" mode="widthFix"></image>
@@ -71,7 +71,7 @@
   </view>
 
   <view wx:else class="task-item done-task-item">
-    <i-icon type="success" size="24"/>
+    <i-icon type="success" size="22"/>
 
     <view class="task-item-title">
       <image wx:if="{{item.type=='image'}}" src="{{item.title}}" lazy-load="{{true}}" mode="widthFix"></image>

@@ -20,7 +20,7 @@
   padding: 15rpx;
 }
 .member-view {
-  margin: -72rpx 0 20rpx;
+  margin: -82rpx 0 20rpx;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,36 +98,19 @@
   color: var(--green);
 }
 
-.model-view,
 .canvas-view {
   width: 100vw;
-  position: fixed;
   top: 0;
   z-index: 10;
 }
-.model-view .mask,
-.canvas-view .mask {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, .7);
-  z-index: 10;
-  transition: all .2s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
-}
 .canvas-view .main {
-  margin: 50rpx auto;
+  margin-top: 50rpx;
   width: 70vw;
-  position: relative;
-  z-index: 100;
-  transition: all .2s ease-in-out;
-  display: none;
+  background: transparent;
 }
-.model-view.active .main,
 .canvas-view.active .main {
   display: block;
 }
-.model-view.active .mask,
 .canvas-view.active .mask {
   opacity: 1;
   visibility: visible;
@@ -150,43 +133,16 @@
   box-shadow: 2px 2px 10px rgba(10, 10, 10, .2);  
 }
 
-.model-view .main {
-  margin: 250rpx auto 0;
-  width: 70vw;
-  background: #fff;
-  border-radius: 3px;
-  position: relative;
-  z-index: 100;
-  transition: all .2s ease-in-out;
-  display: none;
+.task-edit-view .main {
+  margin-top: 200rpx;
 }
-.model-view .title {
-  padding: 20rpx;
-  font-size: 12pt;
-  text-align: center;
+.task-edit-view .title {
+  padding: 25rpx;
 }
-.model-view textarea {
+.task-edit-view textarea {
   padding: 25rpx;
   width: calc(100% - 50rpx); height: 160rpx;
+  text-align: left;
   box-sizing: content-box;
   border-top: 1px solid var(--ghostWhite);
-}
-.model-opt {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 10pt;
-}
-.model-opt view {
-  padding: 20rpx 0;
-  flex: 1;
-  text-align: center;
-  border-top: 1px solid var(--ghostWhite);
-  box-sizing: content-box;
-}
-.model-opt view:last-child {
-  background: var(--green);
-  color: var(--white);
-  border-top: 1px solid var(--green);
-  border-bottom-right-radius: 3px;
 }

@@ -15,12 +15,23 @@
 <view class="member-view">
 <block wx:for="{{project.members}}" wx:key="member">
   <view><image src="{{memberMap[item].avatar}}" lazy-load="{{true}}"></image></view>
+  
+  <!-- 情侣清单下的心形图标 -->
   <view class="icon-love" wx:if="{{index == 0 && project.cate_id == 2 && (isMember || project.members.length == 2)}}"><image src="/images/pro_cate/hearts.png"></image></view>
 </block>
+
+  <!-- 没有超出协作者数量时的按钮显示 -->
   <view wx:if="{{project.members.length < project.max_num_account && isMember}}">
     <button open-type="share" wx:if="{{project.cate_id == 2}}" style="color: {{project.color}};">TA</button>
     <button open-type="share" wx:else><i-icon type="add" size="40" color="{{project.color}}" /></button>
   </view>
+
+  <!-- 超出协作者数量时的按钮显示 （不包括个人清单和情侣清单） -->
+  <view wx:if="{{project.members.length >= project.max_num_account && isMember && project.cate_id > 2}}">
+    <button bindtap="openVideoView"><i-icon type="add" size="40" color="{{project.color}}" /></button>
+  </view>
+
+
 </view>
 
 <!--  -->
@@ -85,7 +96,7 @@
 <view class="line-m"></view>
 
 <!-- 海报 -->
-<view class="canvas-view {{placardVisible ? 'active' : ''}}" bindtap="closeCanvasView">
+<view class="model-view canvas-view {{placardVisible ? 'active' : ''}}" bindtap="closeCanvasView">
   <view class="mask"></view>
   <view class="main">
     <canvas canvas-id="project-placard"></canvas>
@@ -97,17 +108,26 @@
 </view>
 
 <!-- 修改待办事项 -->
-<view class="model-view {{taskEditModelVisible ? 'active' : ''}}">
+<view class="model-view task-edit-view {{taskEditModelVisible ? 'active' : ''}}">
   <view class="mask" bindtap="closeTaskEditView"></view>
   <view class="main">
     <view class="title">修改内容</view>
-    <view class="model-text">
-      <textarea placeholder="请填写待办事项" value="{{textareaValue}}" fixed="{{true}}" maxlength="300" bindinput="bindTextareaValueFunc" />
-    </view>
+    <textarea placeholder="请填写待办事项" value="{{textareaValue}}" fixed="{{true}}" maxlength="300" bindinput="bindTextareaValueFunc" />
     <view class="model-opt">
       <view catchtap="closeTaskEditView">取消</view>
       <view catchtap="modifyTask">保存</view>
     </view>
+  </view>
+</view>
+
+<!-- 是否观看视频 -->
+<view class="model-view {{videoModelVisible ? 'active' : ''}}">
+  <view class="mask" bindtap="closeVideoView"></view>
+  <view class="main">
+    <view class="title">已满员</view>
+    <view class="model-text">您的清单已满员，看看广告提升一下成员人数上限吧。</view>
+    <button type="primary" size="min" catchtap="playVideoAd"><i-icon type="video" size="22"/> 马上提升</button>
+    <view class="link opt-link"> </view>
   </view>
 </view>
 

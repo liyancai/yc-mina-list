@@ -3,6 +3,7 @@ const canvasUtil = require('../../utils/canvas.js')
 const accountServUtil = require('../../service/AccountService.js')
 const projectServUtil = require('../../service/ProjectService.js')
 const { $Message } = require('../../components/iview/base/index');
+let videoAd = null
 
 Page({
   data: {
@@ -20,6 +21,7 @@ Page({
     projectOptList: [],
     placardVisible: false,
     taskEditModelVisible: false,
+    videoModelVisible: false,
     cover_temp: '/images/cover.png'
   },
   onLoad: function (options) {
@@ -53,6 +55,30 @@ Page({
     this.getProjectInfo(_projectId)
     this.getTodoTaskList(_projectId)
     this.getDoneTaskList(_projectId)
+
+
+    let that = this
+    // 激励视频广告
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-ae3dee78088a4d1d'
+      })
+      videoAd.onLoad(() => { })
+      videoAd.onError((err) => { })
+      videoAd.onClose((res) => {
+        // 用户点击了【关闭广告】按钮
+        if (res && res.isEnded) {
+          // 正常播放结束，可以下发游戏奖励
+          that.doIncMemberCountProject(that.data.project)
+        } else {
+          // 播放中途退出，不下发游戏奖励
+          $Message({
+            content: '视频没有播放完，耐心一点哦~',
+            type: 'error'
+          });
+        }
+      })
+    }
   },
   initProjectOptList(__project) {
     let _list = [
@@ -443,10 +469,10 @@ Page({
     .then(res => {
       wx.hideLoading()
       wx.showToast({
-        title: '已发布到广场！',
+        title: '提交成功，正在审核中！',
       })
       __project['square'] = true
-      __project['audit'] = true
+      __project['audit'] = false
       that.setData({
         project: __project
       })
@@ -478,6 +504,35 @@ Page({
         project: __project
       })
       that.initProjectOptList(__project)
+    })
+    .catch(err => {
+      wx.hideLoading()
+      console.error(err)
+    })
+  },
+  doIncMemberCountProject(__project) {
+    let that = this
+    wx.showLoading({ title: '请稍候···' })
+    wx.cloud.callFunction({
+      name: 'project-modify',
+      data: {
+        action: 'incMemberCount',
+        projectId: __project._id,
+      }
+    })
+    .then(res => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '成员上限 +1，去邀请好友吧！',
+        icon: 'none',
+        duration: 2500
+      })
+      let _project = that.data.project
+      _project.max_num_account += 1
+      that.setData({
+        project: _project
+      })
+      that.closeVideoView()
     })
     .catch(err => {
       wx.hideLoading()
@@ -552,6 +607,37 @@ Page({
     this.setData({
       taskEditModelVisible: false,
     })
+  },
+  openVideoView() {
+    let that = this
+    that.setData({
+      videoModelVisible: true,
+    })
+  },
+  closeVideoView() {
+    this.setData({
+      videoModelVisible: false,
+    })
+  },
+  playVideoAd() {
+    if (videoAd) {
+      videoAd.show().catch(() => {
+        // 失败重试
+        videoAd.load()
+          .then(() => videoAd.show())
+          .catch(err => {
+            $Message({
+              content: '出了点小问题，稍候再试吧~',
+              type: 'error'
+            });
+          })
+      })
+    } else {
+      $Message({
+        content: '出了点小问题，稍候再试吧~',
+        type: 'error'
+      });
+    }
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

@@ -24,7 +24,7 @@
 <!-- <view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}"><button open-type="contact" plain='{{true}}'><i-icon type="customerservice" size="28"/></button></view> -->
 
 
-<view class="auth-view {{authModelVisible ? 'active' : ''}}">
+<view class="model-view {{authModelVisible ? 'active' : ''}}">
   <view class="mask" bindtap="closeAuthView"></view>
   <view class="main">
     <view class="title">申请授权</view>

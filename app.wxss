@@ -101,3 +101,74 @@ page {
   z-index: 10;
 }
 
+.model-view {
+  width: 100vw;
+  position: fixed;
+  top: 0; z-index: 10;
+}
+.model-view .mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, .7);
+  z-index: 10;
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.model-view .main {
+  margin: 350rpx auto 0;
+  width: 75vw;
+  text-align: center;
+  background: #fff;
+  border-radius: 3px;
+  position: relative;
+  z-index: 100;
+  transition: all .2s ease-in-out;
+  display: none;
+}
+.model-view.active .main {
+  display: block;
+}
+.model-view.active .mask {
+  opacity: 1;
+  visibility: visible;
+}
+.model-view .title {
+  padding: 35rpx 0 10rpx;
+  font-size: 12pt;
+}
+.model-view .model-text {
+  padding: 25rpx;
+  font-size: 10pt;
+  color: var(--tips-font-color);
+}
+.model-view button {
+  width: 300rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10pt;
+}
+.model-view .link {
+  padding: 20rpx 0;
+  font-size: 10pt;
+}
+.model-opt {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10pt;
+}
+.model-opt view {
+  padding: 20rpx 0;
+  flex: 1;
+  text-align: center;
+  border-top: 1px solid var(--ghostWhite);
+  box-sizing: content-box;
+}
+.model-opt view:last-child {
+  background: var(--green);
+  color: var(--white);
+  border-top: 1px solid var(--green);
+  border-bottom-right-radius: 3px;
+}

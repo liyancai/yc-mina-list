@@ -92,7 +92,7 @@ Page({
       if (__project.audit) {
         _list.push('⛲ 从清单广场撤销')
       } else {
-        _list.push('⛲ 撤销清单广场申请')
+        _list.push('⛲ 撤销广场申请')
       }
     } else {
       _list.push('⛲ 分享到清单广场')
@@ -471,6 +471,7 @@ Page({
       wx.hideLoading()
       wx.showToast({
         title: '提交成功，正在审核中！',
+        icon: 'none',
       })
       __project['square'] = true
       __project['audit'] = false

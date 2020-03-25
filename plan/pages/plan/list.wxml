@@ -17,7 +17,7 @@
 
 <view class="opt-icon add" bindtap="addPlan"><i-icon type="add" size="28"/></view>
 
-<view class="auth-view {{authModelVisible ? 'active' : ''}}">
+<view class="model-view {{authModelVisible ? 'active' : ''}}">
   <view class="mask" bindtap="closeAuthView"></view>
   <view class="main">
     <view class="title">申请授权</view>

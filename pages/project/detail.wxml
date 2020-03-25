@@ -51,7 +51,7 @@
       <span wx:else>{{item.title}}</span>
     </view>
 
-    <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.author].avatar}}" lazy-load="{{true}}"></image>
+    <image wx:if="{{project.cate_id != 1}}" src="{{memberMap[item.author].avatar}}" lazy-load="{{true}}"></image>
   </view>
 
   <view wx:else class="task-item todo-task-item">
@@ -62,7 +62,7 @@
       <span wx:else>{{item.title}}</span>
     </view>
 
-    <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.author].avatar}}" lazy-load="{{true}}"></image>
+    <image wx:if="{{project.cate_id != 1}}" src="{{memberMap[item.author].avatar}}" lazy-load="{{true}}"></image>
   </view>
 </block>
 
@@ -78,7 +78,7 @@
       <span wx:else>{{item.title}}</span>
     </view>
 
-    <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.completer].avatar}}" lazy-load="{{true}}"></image>
+    <image wx:if="{{project.cate_id != 1}}" src="{{memberMap[item.completer].avatar}}" lazy-load="{{true}}"></image>
   </view>
 
   <view wx:else class="task-item done-task-item">
@@ -89,7 +89,7 @@
       <span wx:else>{{item.title}}</span>
     </view>
 
-    <image wx:if="{{project.max_num_account != 1}}" src="{{memberMap[item.completer].avatar}}" lazy-load="{{true}}"></image>
+    <image wx:if="{{project.cate_id != 1}}" src="{{memberMap[item.completer].avatar}}" lazy-load="{{true}}"></image>
   </view>
 </block>
 
@@ -125,7 +125,7 @@
   <view class="mask" bindtap="closeVideoView"></view>
   <view class="main">
     <view class="title">已满员</view>
-    <view class="model-text">您的清单已满员，看看广告提升一下成员人数上限吧。</view>
+    <view class="model-text">该清单当前人数上限 {{project.max_num_account}} 人，看看广告可以提升上限。</view>
     <button type="primary" size="min" catchtap="playVideoAd"><i-icon type="video" size="22"/> 马上提升</button>
     <view class="link opt-link"> </view>
   </view>

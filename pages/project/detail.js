@@ -72,10 +72,11 @@ Page({
           that.doIncMemberCountProject(that.data.project)
         } else {
           // 播放中途退出，不下发游戏奖励
-          $Message({
-            content: '视频没有播放完，耐心一点哦~',
-            type: 'error'
-          });
+          wx.showToast({
+            title: '视频还没有播放完，耐心一点哦~',
+            icon: 'none',
+            duration: 2500
+          })
         }
       })
     }
@@ -626,23 +627,31 @@ Page({
         videoAd.load()
           .then(() => videoAd.show())
           .catch(err => {
-            $Message({
-              content: '出了点小问题，稍候再试吧~',
-              type: 'error'
-            });
+            wx.showToast({
+              title: '出了点小问题，稍候再试吧~',
+              icon: 'none',
+              duration: 2500
+            })
           })
       })
     } else {
-      $Message({
-        content: '出了点小问题，稍候再试吧~',
-        type: 'error'
-      });
+      wx.showToast({
+        title: '出了点小问题，稍候再试吧~',
+        icon: 'none',
+        duration: 2500
+      })
     }
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+
+    this.setData({
+      placardVisible: false,
+      taskEditModelVisible: false,
+      videoModelVisible: false,
+    })
 
     let _projectId = this.data.projectId
 

@@ -107,6 +107,7 @@
   margin-top: 50rpx;
   width: 70vw;
   background: transparent;
+  box-shadow: 0 0 0;
 }
 .canvas-view.active .main {
   display: block;

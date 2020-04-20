@@ -56,8 +56,8 @@ Page({
     this.getTodoTaskList(_projectId)
     this.getDoneTaskList(_projectId)
 
-
-    let that = this
+  },
+  initRewardedVideoAd(__this) {
     // 激励视频广告
     if (wx.createRewardedVideoAd) {
       videoAd = wx.createRewardedVideoAd({
@@ -69,7 +69,7 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          that.doIncMemberCountProject(that.data.project)
+          __this.doIncMemberCountProject(__this.data.project)
         } else {
           // 播放中途退出，不下发游戏奖励
           wx.showToast({
@@ -227,6 +227,9 @@ Page({
         if(res.cover == null || res.cover == undefined || res.cover == '') {
           that.setMainColor(res.color)
         }
+
+        // 初始化激励视频广告
+        that.initRewardedVideoAd(that)
       }
     })
   },

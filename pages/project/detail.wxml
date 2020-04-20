@@ -125,7 +125,7 @@
   <view class="mask" bindtap="closeVideoView"></view>
   <view class="main">
     <view class="title">已满员</view>
-    <view class="model-text">该清单当前人数上限 {{project.max_num_account}} 人，看看广告可以提升上限。</view>
+    <view class="model-text">该清单当前人数上限 {{project.max_num_account}} 人，看段广告提升一下上限吧。</view>
     <button type="primary" size="min" catchtap="playVideoAd"><i-icon type="video" size="22"/> 马上提升</button>
     <view class="link opt-link"> </view>
   </view>

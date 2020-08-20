@@ -1,3 +1,4 @@
+const app = getApp()
 const { $Message } = require('../../components/iview/base/index');
 
 Page({
@@ -5,7 +6,8 @@ Page({
     loading: false,
     authModelVisible: false,
     moreMenuVisible: false,
-    maxNumProject: 10,
+    msgModelVisible: false,
+    maxNumProject: 5,
     planList: [],
     projectList: [],
     projectStatisticsMap: {},
@@ -186,11 +188,24 @@ Page({
   },
   // 点击添加清单按钮
   addProject() {
-    if (this.data.projectList.length >= this.data.maxNumProject) {
-      $Message({
-        content: '数量已达上限，建议删除或归档历史清单!',
-        type: 'warning'
-      });
+
+    let _maxNumProject = this.data.maxNumProject;
+
+    if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
+
+      let _userMaxNumProject = app.globalData.userInfo.max_num_project | 0
+      if(_maxNumProject < _userMaxNumProject) {
+        _maxNumProject = _userMaxNumProject;
+      }
+
+    }
+
+    if (this.data.projectList.length >= _maxNumProject) {
+
+      // 打开信息提醒框
+      this.setData({
+        msgModelVisible: true
+      })
       return
     }
 
@@ -283,6 +298,11 @@ Page({
   closeAuthView() {
     this.setData({
       authModelVisible: false,
+    })
+  },
+  closeMsgView() {
+    this.setData({
+      msgModelVisible: false,
     })
   },
   /**

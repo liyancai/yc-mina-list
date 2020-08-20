@@ -140,6 +140,7 @@ page {
 }
 .model-view .model-text {
   padding: 25rpx;
+  line-height: 1.5rem;
   font-size: 10pt;
   color: var(--tips-font-color);
 }

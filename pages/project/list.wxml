@@ -20,8 +20,8 @@
 <view class="opt-icon more" bindtap="toggleMoreMenu"><i-icon type="other" size="28"/></view>
 <view class="opt-icon achives {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoSquare"><i-icon type="integral" size="28"/></view>
 <view class="opt-icon about {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoPersonal"><i-icon type="mine" size="28"/></view>
-<view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoPlanList"><i-icon type="flashlight" size="28"/></view>
-<!-- <view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}"><button open-type="contact" plain='{{true}}'><i-icon type="customerservice" size="28"/></button></view> -->
+<!-- <view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}" bindtap="gotoPlanList"><i-icon type="flashlight" size="28"/></view> -->
+<view class="opt-icon contact {{moreMenuVisible ? 'active' : ''}}"><button open-type="contact" plain='{{true}}'><i-icon type="customerservice" size="28"/></button></view>
 
 
 <view class="model-view {{authModelVisible ? 'active' : ''}}">
@@ -33,3 +33,14 @@
     <view class="link opt-link" catchtap="gotoCreate">跳过</view>
   </view>
 </view>
+
+<view class="model-view {{msgModelVisible ? 'active' : ''}}">
+  <view class="mask" bindtap="closeMsgView"></view>
+  <view class="main">
+    <view class="title">已达上限</view>
+    <view class="model-text">数量已达上限，建议删除或归档历史清单! (提升数量上限 1元/条)</view>
+    <button type="primary" size="min" open-type="contact" bindgetuserinfo="getUserInfo"><i-icon type="customerservice" size="22"/> 联系客服</button>
+    <view class="link opt-link"> </view>
+  </view>
+</view>
+

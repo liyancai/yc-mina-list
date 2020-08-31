@@ -7,7 +7,7 @@ Page({
     authModelVisible: false,
     moreMenuVisible: false,
     msgModelVisible: false,
-    maxNumProject: 5,
+    maxNumProject: 7,
     planList: [],
     projectList: [],
     projectStatisticsMap: {},
@@ -246,6 +246,12 @@ Page({
       url: '/pages/project/detail?projectId=' + _project._id,
     })
   },
+  gotoNoticeList(){
+    this.toggleMoreMenu()
+    wx.navigateTo({
+      url: '/notice/pages/list',
+    })
+  },
   gotoProjectArchives() {
     this.toggleMoreMenu()
     wx.navigateTo({
@@ -256,18 +262,6 @@ Page({
     this.toggleMoreMenu()
     wx.navigateTo({
       url: '/pages/personal/index',
-    })
-  },
-  gotoSquare() {
-    this.toggleMoreMenu()
-    wx.navigateTo({
-      url: '/square/pages/project/index',
-    })
-  },
-  gotoPlanList() {
-    this.toggleMoreMenu()
-    wx.navigateTo({
-      url: '/plan/pages/plan/list',
     })
   },
   toggleMoreMenu() {

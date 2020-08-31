@@ -50,17 +50,6 @@ exports.main = async (event, context) => {
         members: _.push([OPENID]),
       }
     }
-  } else if (action == 'doSquare') {
-    _data = {
-      square: true,
-      audit: false,
-      modifyTime: new Date(),
-    }
-  } else if (action == 'unSquare') {
-    _data = {
-      square: false,
-      audit: false,
-    }
   } else if (action == 'incMemberCount') {
     _data = {
       max_num_account: _.inc(1)

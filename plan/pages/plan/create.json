@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "创建小目标",
   "usingComponents": {
-    "i-icon": "../../components/iview/icon/index",
-    "i-message": "../../components/iview/message/index"
+    "i-icon": "/components/iview/icon/index",
+    "i-message": "/components/iview/message/index"
   }
 }

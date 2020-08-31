@@ -1,6 +1,6 @@
 const app = getApp()
-const accountServUtil = require('../../../service/AccountService.js')
-const projectServUtil = require('../../../service/ProjectService.js')
+const accountServUtil = require('../../service/AccountService.js')
+const projectServUtil = require('../../service/ProjectService.js')
 
 Page({
   data: {
@@ -13,6 +13,8 @@ Page({
   onLoad: function (options) {
 
     let _projectId = options.projectId
+
+    // _projectId = ''
 
     if (_projectId == null || _projectId == undefined) {
 
@@ -38,7 +40,7 @@ Page({
           title: '清单已删除！',
           icon: 'none'
         })
-        that.gotoSquare()
+        that.gotoProjectList()
 
         return
       } else {
@@ -120,11 +122,6 @@ Page({
       url: '/pages/project/list',
     })
   },
-  gotoSquare() {
-    wx.redirectTo({
-      url: '/square/pages/project/index',
-    })
-  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -142,7 +139,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: this.data.project.name + ' - 来自简单好用的清单小程序',
-      path: '/square/pages/project/detail?projectId=' + this.data.projectId
+      path: '/article/pages/detail?projectId=' + this.data.projectId
     }
   }
 })

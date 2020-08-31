@@ -1,7 +1,7 @@
 .desc-view {
   margin: 25rpx; padding: 25rpx 50rpx;
   width: 600rpx; line-height: 1.8rem;
-  background: #f8f8f8;
+  background: var(--gray-background-color);
   font-size: 10pt;
   border-radius: 3px;
 }

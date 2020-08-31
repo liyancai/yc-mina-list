@@ -12,11 +12,18 @@
   ],
   "subpackages": [
     {
-      "root": "square",
-      "name": "square",
+      "root": "article",
+      "name": "article",
       "pages": [
-        "pages/project/index",
-        "pages/project/detail"
+        "pages/detail"
+      ]
+    },
+    {
+      "root": "notice",
+      "name": "notice",
+      "pages": [
+        "pages/list",
+        "pages/detail"
       ]
     },
     {

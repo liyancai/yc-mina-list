@@ -16,20 +16,22 @@
 </view>
 
 <view class="section-module">
-  <navigator url='/square/pages/project/index'>
+  <navigator url='/plan/pages/plan/list'>
   <view class="section-item">
-    <i-icon type="integral" size="24"/>
-    <view>清单广场</view>
+    <i-icon type="flashlight" size="24"/>
+    <view>小目标</view>
     <span></span>
   </view>
   </navigator>
 </view>
 
+<view class="line-m gray min"></view>
+
 <view class="section-module">
-  <navigator url='/plan/pages/plan/list'>
+  <navigator url='/notice/pages/list'>
   <view class="section-item">
-    <i-icon type="flashlight" size="24"/>
-    <view>小目标</view>
+    <i-icon type="remind" size="24"/>
+    <view>公告</view>
     <span></span>
   </view>
   </navigator>
@@ -56,6 +58,14 @@
 </view>
 
 <view class="line-m gray min"></view>
+
+<view class="section-module">
+  <view class="section-item" bindtap="previewPayCodeImage">
+    <i-icon type="like" size="24"/>
+    <view>赞赏作者</view>
+    <span></span>
+  </view>
+</view>
 
 <view class="section-module">
   <navigator url='/pages/personal/about'>

@@ -120,7 +120,7 @@ Page({
   },
   gotoProjectDetail(__projectId) {
     wx.navigateTo({
-      url: '/square/pages/project/detail?projectId=' + __projectId,
+      url: '/article/pages/detail?projectId=' + __projectId,
     })    
   },
   /**

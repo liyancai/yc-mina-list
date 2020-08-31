@@ -2,13 +2,13 @@
 Page({
   data: {
     loading: false,
-    projectList: [],
+    noticeList: [],
   },
   onLoad: function (options) {
-    this.getProjectList()
+    this.getNoticeList()
   },
-  // 查询分享到清单广场的清单列表
-  getProjectList() {
+  // 查询公告列表
+  getNoticeList() {
     let that = this
     wx.showNavigationBarLoading()
     that.setData({
@@ -17,16 +17,16 @@ Page({
 
     wx.stopPullDownRefresh()
     wx.cloud.callFunction({
-      name: 'project-list',
+      name: 'notice-list',
       data: {
-        action: 'square',
+        active: true
       }
     })
     .then(res => {
       wx.hideNavigationBarLoading()
-
+      
       that.setData({
-        projectList: res.result.data,
+        noticeList: res.result.data,
         loading: false
       })
     })
@@ -39,21 +39,17 @@ Page({
     })
 
   },
+  gotoNoticeDetail(event) {
+    let _notice = event.currentTarget.dataset.notice
+    wx.navigateTo({
+      url: '/notice/pages/detail?id=' + _notice._id,
+    })    
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getProjectList()
+    this.getNoticeList()
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function (res) {
-    return {
-      title: '简单好用的清单小程序，省时更省心。',
-      imageUrl: '/images/cover.png',
-      path: '/pages/project/list'
-    }
-  }
 })

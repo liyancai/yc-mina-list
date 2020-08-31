@@ -1,0 +1,15 @@
+<view class='title'>{{notice.title}}</view>
+<view class='time'>{{notice.time}}</view>
+
+<view class="rich-text">
+  <block wx:for="{{notice.content}}" wx:key='notice_detail'>
+    <image wx:if="{{item.type=='image'}}" src="{{item.url}}" mode="widthFix" lazy-load='true' bindtap='previewImage' data-src='{{item.url}}'></image>
+    <video wx:elif="{{item.type=='video'}}" src="{{item.url}}"></video>
+    <view wx:elif="{{item.type=='label'}}" class="label">{{item.value}}</view>
+    <view wx:elif="{{item.type=='text'}}">{{item.value}}</view>
+    <navigator wx:elif="{{item.type=='project'}}" url="{{item.url}}">
+      <view class="opt-link">{{item.value}} >></view>
+    </navigator>
+  </block>
+</view>
+

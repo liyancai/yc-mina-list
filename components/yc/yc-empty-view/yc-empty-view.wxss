@@ -8,7 +8,7 @@
   justify-content: space-around;
   align-items: center;
 }
-.empty-view image {
+.empty-view .empty-icon {
   margin-bottom: 25rpx;
   width: 456rpx; height: 342rpx;
 }

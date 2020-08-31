@@ -39,7 +39,7 @@
 
 <view wx:if="{{isMember}}" class="task-item todo-task-item">
   <i-icon type="add" size="28" />
-  <input value="{{inputValue}}" placeholder="在这里添加新的待办事项" maxlength="300" bindblur="addTask" ></input>
+  <input value="{{inputValue}}" placeholder="在这里添加新的待办事项" maxlength="400" bindblur="addTask" ></input>
 </view>
 
 <block wx:for="{{todoTaskList}}" wx:key='todo_task'>

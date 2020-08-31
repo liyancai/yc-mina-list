@@ -88,15 +88,6 @@ Page({
       '📥 清单归档',
       '🗑️ 删除清单',
     ]
-    if (__project.square) {
-      if (__project.audit) {
-        _list.push('⛲ 从清单广场撤销')
-      } else {
-        _list.push('⛲ 撤销广场申请')
-      }
-    } else {
-      _list.push('⛲ 分享到清单广场')
-    }
     this.data.projectOptList = _list
   },
   showProjectOptModal() {
@@ -117,12 +108,6 @@ Page({
           that.doDoneProject(_project)
         } else if (res.tapIndex == 3) {
           that.doRemoveProject(_project)
-        } else if (res.tapIndex == 4) {
-          if (_project.square) {
-            that.unSquareProject(_project)
-          } else {
-            that.doSquareProject(_project)
-          }
         }
       },
       fail(res) {
@@ -460,61 +445,6 @@ Page({
       console.error(err)
     })
   },
-  doSquareProject(__project) {
-    let that = this
-    wx.showLoading({ title: '加载中···' })
-    wx.cloud.callFunction({
-      name: 'project-modify',
-      data: {
-        action: 'doSquare',
-        projectId: __project._id,
-      }
-    })
-    .then(res => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '提交成功，正在审核中！',
-        icon: 'none',
-      })
-      __project['square'] = true
-      __project['audit'] = false
-      that.setData({
-        project: __project
-      })
-      that.initProjectOptList(__project)
-    })
-    .catch(err => {
-      wx.hideLoading()
-      console.error(err)
-    })
-  },
-  unSquareProject(__project) {
-    let that = this
-    wx.showLoading({ title: '加载中···' })
-    wx.cloud.callFunction({
-      name: 'project-modify',
-      data: {
-        action: 'unSquare',
-        projectId: __project._id,
-      }
-    })
-    .then(res => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '已从广场撤销！',
-      })
-      __project['square'] = false
-      __project['audit'] = false
-      that.setData({
-        project: __project
-      })
-      that.initProjectOptList(__project)
-    })
-    .catch(err => {
-      wx.hideLoading()
-      console.error(err)
-    })
-  },
   doIncMemberCountProject(__project) {
     let that = this
     wx.showLoading({ title: '请稍候···' })
@@ -826,7 +756,7 @@ Page({
     } else {
       return {
         title: this.data.project.name + ' - 来自简单好用的清单小程序',
-        path: '/square/pages/project/detail?projectId=' + this.data.projectId
+        path: '/article/pages/detail?projectId=' + this.data.projectId
       }
     }
   }

@@ -1,0 +1,10 @@
+@import '/pages/project/list.wxss';
+
+image {
+  width: 100%; height: 300rpx;
+}
+
+.section-item span {
+  margin-right: 0;
+  color: var(--gray);
+}

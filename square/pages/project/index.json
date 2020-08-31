@@ -1,7 +1,0 @@
-{
-  "enablePullDownRefresh": true,
-  "navigationBarTitleText": "清单广场",
-  "usingComponents": {
-    "yc-empty-view": "../../../components/yc/yc-empty-view/yc-empty-view"
-  }
-}

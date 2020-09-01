@@ -25,8 +25,6 @@
   </navigator>
 </view>
 
-<view class="line-m gray min"></view>
-
 <view class="section-module">
   <navigator url='/notice/pages/list'>
   <view class="section-item">

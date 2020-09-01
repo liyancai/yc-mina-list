@@ -2,6 +2,7 @@
   padding: 30rpx;
   font-size: 14pt;
   font-weight: 450;
+  color: var(--yc-green);
 }
 .time {
   padding: 0 30rpx;

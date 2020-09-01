@@ -11,5 +11,8 @@
       <view class="opt-link">{{item.value}} >></view>
     </navigator>
   </block>
+  
+  <view>欢迎添加清单小本子的微信：bzsnail，了解小本子的更多内容。</view>
+  <image src="/images/wechat-qrcode.jpeg" mode="aspectFit" lazy-load='true' bindtap='previewImage' data-src='/images/wechat-qrcode.jpeg'></image>
 </view>
 

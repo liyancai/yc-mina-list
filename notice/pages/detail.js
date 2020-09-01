@@ -50,6 +50,12 @@ Page({
       url: '/notice/pages/list',
     })
   },
+  previewImage: function (event) {
+    let dataset = event.currentTarget.dataset
+    wx.previewImage({
+      urls: [dataset.src]
+    })
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

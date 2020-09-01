@@ -138,8 +138,13 @@ Page({
    */
   onShareAppMessage: function (res) {
     return {
-      title: this.data.project.name + ' - 来自简单好用的清单小程序',
+      title: this.data.project.name + ' - 来自简单好用的清单小本子',
       path: '/article/pages/detail?projectId=' + this.data.projectId
+    }
+  },
+  onShareTimeline: function (res) {
+    return {
+      title: this.data.project.name + ' - 来自简单好用的清单小本子',
     }
   }
 })

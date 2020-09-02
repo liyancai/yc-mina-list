@@ -32,7 +32,7 @@ module.exports = {
 
 <yc-empty-view show='{{noticeList.length==0 && !loading}}'>暂无公告</yc-empty-view>
 
-<image wx:if='{{noticeList.length > 0 && !loading}}' src="https://goss.veer.com/creative/vcg/veer/612/veer-317961223.jpg" mode="aspectFill" lazy-load="true"></image>
+<image wx:if='{{noticeList.length > 0 && !loading}}' src="{{bgImage}}" mode="aspectFill" lazy-load="true"></image>
 
 <view class="section-module" wx:for="{{noticeList}}" wx:key='notice_list'>
   <view class="section-item" catchtap="gotoNoticeDetail" data-notice="{{item}}">

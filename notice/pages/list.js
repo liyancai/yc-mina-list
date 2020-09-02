@@ -1,10 +1,13 @@
+import { getNoticeBg } from '../../service/SystemSettingService.js'
 
 Page({
   data: {
     loading: false,
     noticeList: [],
+    bgImage: ''
   },
   onLoad: function (options) {
+    this.getBgImage()
     this.getNoticeList()
   },
   // 查询公告列表
@@ -44,6 +47,14 @@ Page({
     wx.navigateTo({
       url: '/notice/pages/detail?id=' + _notice._id,
     })    
+  },
+  getBgImage() {
+    let that = this
+    getNoticeBg(res => {
+      that.setData({
+        bgImage: res.value ? res.value : 'https://goss.veer.com/creative/vcg/veer/612/veer-317961223.jpg'
+      })      
+    })
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

@@ -9,7 +9,7 @@ let getCollection = () => {
 }
 
 /**
- * 清单详情信息
+ * 我的页面 背景图
  */
 let getPersonalBg = (callback) => {
   wx.stopPullDownRefresh()
@@ -27,4 +27,23 @@ let getPersonalBg = (callback) => {
   })
 }
 
-module.exports = { getPersonalBg }
+/**
+ * 公告页面 背景图
+ */
+let getNoticeBg = (callback) => {
+  wx.stopPullDownRefresh()
+  wx.showNavigationBarLoading()
+  getCollection()
+  .doc('bg-notice')
+  .get()
+  .then(res => {
+    wx.hideNavigationBarLoading()
+    callback(res.data)
+  }).catch(err => {
+    console.error(err)
+    wx.hideNavigationBarLoading()
+    callback({})
+  })
+}
+
+module.exports = { getPersonalBg, getNoticeBg }

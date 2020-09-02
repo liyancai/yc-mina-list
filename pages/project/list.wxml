@@ -38,7 +38,7 @@
   <view class="mask" bindtap="closeMsgView"></view>
   <view class="main">
     <view class="title">已达上限</view>
-    <view class="model-text">数量已达上限，建议删除或归档历史清单! (赞赏作者，提升数量上限)</view>
+    <view class="model-text">数量已达上限，建议删除或归档历史清单! (联系客服，提升数量上限)</view>
     <button type="primary" size="min" open-type="contact" bindgetuserinfo="getUserInfo"><i-icon type="customerservice" size="22"/> 联系客服</button>
     <view class="link opt-link"> </view>
   </view>

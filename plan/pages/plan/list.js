@@ -1,4 +1,4 @@
-const { $Message } = require('../../../components/iview/base/index');
+import { $Message } from '../../../components/iview/base/index';
 
 Page({
   data: {

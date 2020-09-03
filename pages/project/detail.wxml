@@ -62,7 +62,6 @@
       <span wx:else>{{item.title}}</span>
     </view>
 
-    <image wx:if="{{project.cate_id != 1}}" src="{{memberMap[item.author].avatar}}" lazy-load="{{true}}"></image>
   </view>
 </block>
 
@@ -89,7 +88,6 @@
       <span wx:else>{{item.title}}</span>
     </view>
 
-    <image wx:if="{{project.cate_id != 1}}" src="{{memberMap[item.completer].avatar}}" lazy-load="{{true}}"></image>
   </view>
 </block>
 

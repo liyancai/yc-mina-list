@@ -16,6 +16,8 @@ exports.main = async (event, context) => {
 
   const { action, projectId, project, name, avatar, cover } = event
 
+  console.log('action: ' + action)
+
   let _data = {}
   if (action == 'modify') {
 
@@ -43,11 +45,17 @@ exports.main = async (event, context) => {
       done: false,
     }
   } else if (action == 'join') {
+    console.log(project)
+    console.log(OPENID)
+    console.log(project.members.indexOf(OPENID) > -1)
     if (project.members.indexOf(OPENID) > -1) {
-      return ''
+      _data = {
+        modifyTime: new Date(),
+      }
     } else {
       _data = {
         members: _.push([OPENID]),
+        modifyTime: new Date(),
       }
     }
   } else if (action == 'incMemberCount') {

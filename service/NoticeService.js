@@ -9,7 +9,7 @@ let getCollection = () => {
 }
 
 /**
- * 清单详情信息
+ * 公告详情信息
  */
 let getInfo = (id, callback) => {
   wx.stopPullDownRefresh()

@@ -1,7 +1,6 @@
 const app = getApp()
 const canvasUtil = require('../../utils/canvas.js')
 const accountServUtil = require('../../service/AccountService.js')
-const projectServUtil = require('../../service/ProjectService.js')
 const { $Message } = require('../../components/iview/base/index');
 let videoAd = null
 

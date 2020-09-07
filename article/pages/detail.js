@@ -1,6 +1,5 @@
 const app = getApp()
 const accountServUtil = require('../../service/AccountService.js')
-const projectServUtil = require('../../service/ProjectService.js')
 
 Page({
   data: {
@@ -33,9 +32,23 @@ Page({
   },
   // 查询清单信息
   getProjectInfo(__projectId) {
+
+    wx.stopPullDownRefresh()
+    wx.showNavigationBarLoading()
+
     let that = this
-    projectServUtil.getInfo(__projectId, res => {
-      if (res == null) {
+    wx.cloud.callFunction({
+      name: 'project-info',
+      data: {
+        projectId: __projectId,
+      }
+    })
+    .then(res => {
+      wx.hideNavigationBarLoading()
+
+      let _project = res.result.data
+
+      if (_project == null) {
         wx.showToast({
           title: '清单已删除！',
           icon: 'none'
@@ -44,11 +57,19 @@ Page({
 
         return
       } else {
+        if(_project && _project.members) {
+          _project['members'] = Array.from(new Set(_project.members))
+        }
+
         that.setData({
-          project: res
+          project: _project
         })
 
-        accountServUtil.getList(res.members, res => {
+        if (_project.cover == null || _project.cover == undefined || _project.cover == '') {
+          that.setMainColor(res.color)
+        }
+
+        accountServUtil.getList(_project.members, res => {
           let _map = {}
           res.forEach(v => {
             _map[v._id] = v
@@ -58,10 +79,6 @@ Page({
             memberMap: _map
           })
         })
-
-        if (res.cover == null || res.cover == undefined || res.cover == '') {
-          that.setMainColor(res.color)
-        }
       }
     })
   },

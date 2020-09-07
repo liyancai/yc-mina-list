@@ -172,9 +172,24 @@ Page({
   },
   // 查询清单信息
   getProjectInfo(__projectId) {
+
+    wx.stopPullDownRefresh()
+    wx.showNavigationBarLoading()
+
     let that = this
-    projectServUtil.getInfo(__projectId, res => {
-      if (res == null || res.done) {
+    // 调用project-info云函数请求
+    wx.cloud.callFunction({
+      name: 'project-info',
+      data: {
+        projectId: __projectId,
+      }
+    })
+    .then(res => {
+      wx.hideNavigationBarLoading()
+
+      let _project = res.result.data
+
+      if (_project == null || _project.done) {
         wx.showToast({
           title: '清单已归档或已删除！',
           icon: 'none'
@@ -183,22 +198,19 @@ Page({
 
         return
       } else {
+        if(_project && _project.members) {
+          _project['members'] = Array.from(new Set(_project.members))
+        }
+    
         that.setData({
-          project: res
+          project: _project
         })
 
-        let setMemberStatus = function() {
-          if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
-            that.setData({
-              isMember: res.members.indexOf(app.globalData.userInfo._id) > -1
-            })
-          }
+        if(_project.cover == null || _project.cover == undefined || _project.cover == '') {
+          that.setMainColor(_project.color)
         }
-        // 获取清单详情后立即更新成员状态，预防执行顺序的问题，300ms后再次更新一次
-        setMemberStatus()
-        setTimeout(setMemberStatus, 300)
 
-        accountServUtil.getList(res.members, res => {
+        accountServUtil.getList(_project.members, res => {
           let _map = {}
           res.forEach(v => {
             _map[v._id] = v
@@ -209,13 +221,24 @@ Page({
           })
         })
 
-        if(res.cover == null || res.cover == undefined || res.cover == '') {
-          that.setMainColor(res.color)
+        let setMemberStatus = function() {
+          if (app.globalData.userInfo != null && app.globalData.userInfo != undefined) {
+            that.setData({
+              isMember: _project.members.indexOf(app.globalData.userInfo._id) > -1
+            })
+          }
         }
+        // 获取清单详情后立即更新成员状态，预防执行顺序的问题，300ms后再次更新一次
+        setMemberStatus()
+        setTimeout(setMemberStatus, 300)
 
         // 初始化激励视频广告
         that.initRewardedVideoAd(that)
       }
+    })
+    .catch(err => {
+      wx.hideNavigationBarLoading()
+      console.error(err)
     })
   },
   // 查询清单下的未完成任务列表

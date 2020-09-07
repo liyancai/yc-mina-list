@@ -4,7 +4,7 @@ Page({
   data: {
     loading: false,
     noticeList: [],
-    bgImage: ''
+    bgImage: 'https://goss.veer.com/creative/vcg/veer/612/veer-317961223.jpg'
   },
   onLoad: function (options) {
     this.getBgImage()
@@ -52,7 +52,7 @@ Page({
     let that = this
     getNoticeBg(res => {
       that.setData({
-        bgImage: res.value ? res.value : 'https://goss.veer.com/creative/vcg/veer/612/veer-317961223.jpg'
+        bgImage: res.value ? res.value : that.data.bgImage
       })      
     })
   },

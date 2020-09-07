@@ -4,7 +4,7 @@ Page({
   data: {
     loading: false,
     noticeList: [],
-    bgImage: 'https://goss.veer.com/creative/vcg/veer/612/veer-317961223.jpg'
+    bgImage: '"https://goss4.veer.com/creative/vcg/veer/612/veer-312155011.jpg'
   },
   onLoad: function (options) {
     this.getBgImage()

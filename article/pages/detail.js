@@ -162,7 +162,6 @@ Page({
   onShareTimeline: function (res) {
     return {
       title: this.data.project.name + ' - 来自简单好用的清单小本子',
-      imageUrl: this.data.project.avatar,
     }
   }
 })

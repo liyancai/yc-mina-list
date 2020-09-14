@@ -4,6 +4,9 @@ image {
   width: 100%; height: 300rpx;
 }
 
+.section-item i-icon {
+  margin-right: 5px;
+}
 .section-item span {
   margin-right: 0;
   color: var(--gray);

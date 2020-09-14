@@ -188,19 +188,19 @@ Page({
 
       let _project = res.result.data
 
-      if (_project == null || _project.done) {
+      if(_project == null) {
         wx.showToast({
-          title: '清单已归档或已删除！',
+          title: '清单已删除！',
           icon: 'none'
         })
         that.gotoProjectList()
 
         return
       } else {
-        if(_project && _project.members) {
+
+        if(_project.members) {
           _project['members'] = Array.from(new Set(_project.members))
         }
-    
         that.setData({
           project: _project
         })
@@ -208,6 +208,17 @@ Page({
         if(_project.cover == null || _project.cover == undefined || _project.cover == '') {
           that.setMainColor(_project.color)
         }
+
+        if (_project.done) {
+          wx.showToast({
+            title: '清单已归档！',
+            icon: 'none'
+          })
+          that.gotoProjectList()
+
+          return
+        }
+        
 
         accountServUtil.getList(_project.members, res => {
           let _map = {}
@@ -785,6 +796,7 @@ Page({
   onShareTimeline: function (res) {
     return {
       title: this.data.project.name + ' - 来自简单好用的清单小本子',
+      imageUrl: this.data.project.avatar,
     }
   }
 })

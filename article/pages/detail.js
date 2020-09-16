@@ -57,10 +57,10 @@ Page({
 
         return
       } else {
-        if(_project && _project.members) {
+
+        if(_project.members) {
           _project['members'] = Array.from(new Set(_project.members))
         }
-
         that.setData({
           project: _project
         })

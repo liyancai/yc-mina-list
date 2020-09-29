@@ -121,7 +121,7 @@ Page({
   gotoProjectDetail(__projectId) {
     wx.navigateTo({
       url: '/article/pages/detail?projectId=' + __projectId,
-    })    
+    })
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

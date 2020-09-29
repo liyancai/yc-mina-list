@@ -3,8 +3,6 @@ var timeChn = function (val) {
   if (!val) {
     return false
   }
-  var reg = getRegExp("-", "g");
-  var _time = val.replace(reg, "/")
   var realTime = getDate(val).getTime()
   var nowTime = getDate().getTime()
   var diffValue = nowTime - realTime

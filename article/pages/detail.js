@@ -66,7 +66,7 @@ Page({
         })
 
         if (_project.cover == null || _project.cover == undefined || _project.cover == '') {
-          that.setMainColor(res.color)
+          that.setMainColor(_project.color)
         }
 
         accountServUtil.getList(_project.members, res => {

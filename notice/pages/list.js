@@ -13,7 +13,9 @@ Page({
   // 查询公告列表
   getNoticeList() {
     let that = this
-    wx.showNavigationBarLoading()
+    wx.showLoading({
+      title: '正在加载'
+    })
     that.setData({
       loading: true
     })
@@ -26,7 +28,7 @@ Page({
       }
     })
     .then(res => {
-      wx.hideNavigationBarLoading()
+      wx.hideLoading()
       
       that.setData({
         noticeList: res.result.data,
@@ -34,7 +36,7 @@ Page({
       })
     })
     .catch(err => {
-      wx.hideNavigationBarLoading()
+      wx.hideLoading()
       that.setData({
         loading: false
       })

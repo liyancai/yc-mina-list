@@ -109,13 +109,13 @@ Page({
     let that = this
     wx.showActionSheet({
       itemList: [
-        '️️️📄 查看详情',
+        '️️️📄 预览清单',
         '📥 清单归档',
         '🗑️ 删除清单',
       ],
       success(res) {
         if (res.tapIndex == 0) {
-          that.gotoProjectDetail(event)
+          that.gotoArticleDetail(event)
         } else if (res.tapIndex == 1) {
           that.doDoneProject(_index, _project)
         } else if (res.tapIndex == 2) {
@@ -244,6 +244,12 @@ Page({
     let _project = event.currentTarget.dataset.project
     wx.navigateTo({
       url: '/pages/project/detail?projectId=' + _project._id,
+    })
+  },
+  gotoArticleDetail(event) {
+    let _project = event.currentTarget.dataset.project
+    wx.navigateTo({
+      url: '/article/pages/detail?projectId=' + _project._id,
     })
   },
   gotoNoticeList(){

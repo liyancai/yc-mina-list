@@ -3,9 +3,10 @@
 <yc-empty-view show='{{projectList.length==0 && !loading}}'>暂无已归档的清单</yc-empty-view>
 
 <view class="section-module" wx:for="{{projectList}}" wx:key='project_archives'>
-  <view class="section-item" bindlongpress="showOptModal" data-project="{{item}}" data-index="{{index}}">
+  <view class="section-item" bindtap="showOptModal" data-project="{{item}}" data-index="{{index}}">
     <image src="{{item.avatar}}"></image>
     <view>{{item.name}}</view>
+    <span></span>
   </view>
 </view>
 

@@ -47,10 +47,10 @@ page {
 .section-item span:after {
   content: " ";
   display: inline-block;
-  width: 8px; height: 8px;
-  border-width: 2px 2px 0 0;
+  width: 5pt; height: 5pt;
+  border-width: 1px 1px 0 0;
   border-style: solid;
-  border-color: #b2b2b2;
+  border-color: var(--tips-font-color);
   transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
 }
 

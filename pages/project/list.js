@@ -11,9 +11,11 @@ Page({
     planList: [],
     projectList: [],
     projectStatisticsMap: {},
+    noticeList: [],
   },
   onShow: function (options) {
     this.getProjectList()
+    this.getNoticeList()
   },
   // 查询未归档的清单列表
   getProjectList() {
@@ -95,6 +97,32 @@ Page({
       that.setData({
         projectStatisticsMap: _map
       })
+    })
+    .catch(err => {
+      wx.hideNavigationBarLoading()
+      console.error(err)
+    })
+  },
+  // 查询公告列表
+  getNoticeList() {
+    let that = this
+
+    wx.showNavigationBarLoading()
+
+    wx.cloud.callFunction({
+      name: 'notice-list',
+      data: {
+        showOnHomepage: true
+      }
+    })
+    .then(res => {
+      wx.hideNavigationBarLoading()
+      
+      that.setData({
+        noticeList: res.result.data,
+        loading: false
+      })
+
     })
     .catch(err => {
       wx.hideNavigationBarLoading()
@@ -256,6 +284,12 @@ Page({
     this.toggleMoreMenu()
     wx.navigateTo({
       url: '/notice/pages/list',
+    })
+  },
+  gotoNoticeDetail(event) {
+    let _notice = event.currentTarget.dataset.notice
+    wx.navigateTo({
+      url: '/notice/pages/detail?id=' + _notice._id,
     })
   },
   gotoProjectArchives() {

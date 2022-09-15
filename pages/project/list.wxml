@@ -1,3 +1,5 @@
+<i-notice-bar icon="systemprompt" closable wx:if="{{noticeList.length > 0}}"><span catchtap="gotoNoticeDetail" data-notice="{{noticeList[0]}}">{{ noticeList[0].title }}</span></i-notice-bar>
+
 <i-message id="message" />
 
 <view class="label">我的清单</view>
@@ -7,7 +9,7 @@
     <image src="{{item.avatar}}"></image>
     <view>{{item.name}}</view>
     <span></span>
-    <view class="progress-bar" style="width: {{projectStatisticsMap[item._id].percent * 100 || 0}}%;"></view>
+    <view class="progress-bar" style="width: {{ (projectStatisticsMap[item._id].percent * 100 || 0) + '%'}}; "></view>
   </view>
 </view>
 

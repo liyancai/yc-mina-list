@@ -4,7 +4,7 @@ Page({
   data: {
     loading: false,
     noticeList: [],
-    bgImage: '"https://goss4.veer.com/creative/vcg/veer/612/veer-312155011.jpg'
+    bgImage: 'https://goss4.veer.com/creative/vcg/veer/612/veer-312155011.jpg'
   },
   onLoad: function (options) {
     this.getBgImage()
@@ -48,7 +48,7 @@ Page({
     let _notice = event.currentTarget.dataset.notice
     wx.navigateTo({
       url: '/notice/pages/detail?id=' + _notice._id,
-    })    
+    })
   },
   getBgImage() {
     let that = this

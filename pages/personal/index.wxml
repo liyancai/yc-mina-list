@@ -1,6 +1,6 @@
 <view class="section-user" style="background: url('{{bgImage}}') no-repeat center; background-size: cover;">
-  <open-data type="userAvatarUrl"></open-data>
-  <open-data type="userNickName"></open-data>
+  <image src="{{avatar}}"></image>
+  <text>{{nickname}}</text>
 </view>
 
 <view class="line-m gray"></view>

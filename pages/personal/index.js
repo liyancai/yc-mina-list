@@ -1,11 +1,25 @@
+const app = getApp()
 const sysSettingServUtil = require('../../service/SystemSettingService.js')
 
 Page({
   data: {
-    bgImage: ''
+    bgImage: '',
+    defaultAvatar: '/images/logo.png',
+    defaultNickname: '清单小本子',
+    avatar: '',
+    nickname: '',
   },
   onLoad: function (options) {
     this.getBgImage()
+
+    var that = this
+
+    var _avatar = app.globalData.userInfo.avatar
+    var _nickname = app.globalData.userInfo.nickname
+    this.setData({
+      avatar: (_avatar == null || _avatar == undefined) ? that.data.defaultAvatar : _avatar,
+      nickname: (_nickname == null || _nickname == undefined) ? that.data.defaultNickname : _nickname
+    })
   },
   // 查询清单信息
   getBgImage() {

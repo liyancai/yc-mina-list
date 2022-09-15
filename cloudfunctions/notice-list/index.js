@@ -14,10 +14,17 @@ exports.main = async (event, context) => {
 
   const { OPENID, APPID } = cloud.getWXContext()
 
-  const {} = event
+  const { showOnHomepage } = event
 
   let _data = {
     active: true
+  }
+
+  if(showOnHomepage) {
+    _data = {
+      active: true,
+      showOnHomepage: true
+    }
   }
 
   try {

@@ -8,7 +8,7 @@ page {
   justify-content: flex-start;
   align-items: center;
 }
-.section-user open-data:first-child {
+.section-user image {
   margin: 8vw 0 0;
   width: 18vw; height: 18vw;
   display: inline-block;
@@ -16,8 +16,9 @@ page {
   border: 2px solid #fff;  
   box-shadow: 3px 3px 10px rgba(0, 0, 0, .2);  
   border-radius: 50%;
+  background-color: #fff;
 }
-.section-user open-data:last-child {
+.section-user text {
   padding: 5vw 0; 
   color: #fff;
 }

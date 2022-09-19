@@ -7,7 +7,7 @@ Page({
     authModelVisible: false,
     moreMenuVisible: false,
     msgModelVisible: false,
-    maxNumProject: 5,
+    maxNumProject: 50,
     planList: [],
     projectList: [],
     projectStatisticsMap: {},
